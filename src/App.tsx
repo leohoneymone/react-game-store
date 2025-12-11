@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
+
+import Header from "./components/layout/Header";
 
 const App = () => {
-
-    const[c, sc] = useState<number>(0);
     
-    return <div>
-        <h1>Hello Webpack</h1>
-        <button onClick={() => {sc(c + 1)}}> {c} click me</button>
-    </div>
+    return <>
+        <Header />
+    </>
 }
 
 export default App;
