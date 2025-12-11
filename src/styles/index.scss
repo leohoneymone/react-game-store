@@ -1,0 +1,57 @@
+@use "vars" as v;
+@use "mixins" as m;
+
+// Подключение цветов в зависимости от темы приложения
+:root{
+    --primary: #{v.$color-primary-dark};
+    --secondary: #{v.$color-secondary-dark};
+    --bg-main: #{v.$background-main-dark};
+    --bg-el: #{v.$background-elements-dark};
+}
+
+// Основные стили
+*,::before,::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-family: 'Jost', sans-serif;
+    font-size: 13pt;
+}
+
+// Заголовок и его содержимое
+header{
+    position: relative;
+    height: 100px;
+    background: var(--bg-main);
+    // Фон с изолнинями
+    .background{
+        position: absolute;
+        height: 100px;
+        width: 100%;
+        z-index: 0;
+        background: var(--secondary);
+        mask-image: url('../assets/background_pattern.svg');
+        mask-size: 1920px;
+        mask-repeat: no-repeat;
+        mask-position: 50% 25%;
+    }
+    // Фоновый градиент и контейнер для содержимого
+    .header-container{
+        position: relative;
+        z-index: 1;
+        height: 100px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--primary);
+        background: linear-gradient(90deg, var(--bg-main) 15%, #00000000, var(--bg-main) 85%);
+    }
+    // Разметка для содержимого
+    .header-content{
+        @include m.content-limitations();
+    }
+}
