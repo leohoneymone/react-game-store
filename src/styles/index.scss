@@ -24,12 +24,14 @@ html{
 // Заголовок и его содержимое
 header{
     position: relative;
-    height: 100px;
+    height: 97px;
     background: var(--bg-main);
+    border-bottom: 3px solid var(--secondary);
+    box-sizing: content-box;
     // Фон с изолнинями
     .background{
         position: absolute;
-        height: 100px;
+        height: inherit;
         width: 100%;
         z-index: 0;
         background: var(--secondary);
@@ -42,7 +44,7 @@ header{
     .header-container{
         position: relative;
         z-index: 1;
-        height: 100px;
+        height: inherit;
         width: 100%;
         display: flex;
         justify-content: center;
@@ -53,5 +55,36 @@ header{
     // Разметка для содержимого
     .header-content{
         @include m.content-limitations();
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
+    // Логотип
+    .svg-logo-color{
+        stroke: var(--primary);
+        animation: logo-breathe 3s ease-in-out infinite;
+    }
+    // Описание проекта
+    .header-description{
+        h2{
+            letter-spacing: 0.05rem;
+        }
+        p{
+            letter-spacing: 0.125rem;
+        }
+    }
+}
+
+// Анимация "дыхания" логотипа
+@keyframes logo-breathe {
+    from{transform: translateY(4px);}
+    50%{transform: translateY(-2px);}
+    to{transform: translateY(4px);}
+}
+
+// Контент приложения
+main{
+    width: 100%;
+    min-height: calc(100vh - 100px);
+    background: var(--bg-main);
 }
