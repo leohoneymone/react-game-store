@@ -10,7 +10,7 @@ const StorePage = () => {
 
         <div className="store-control-row">
             <div className="switch-block">
-                <label htmlFor="all" className="switch-options"><input type="radio" name="platform" id="all"/>Все</label>
+                <label htmlFor="all" className="switch-options"><input type="radio" name="platform" id="all" checked={true}/>Все</label>
                 <label htmlFor="steam" className="switch-options"><input type="radio" name="platform" id="steam"/>Steam</label>
                 <label htmlFor="ps" className="switch-options"><input type="radio" name="platform" id="ps"/>PS5</label>
                 <label htmlFor="xbox" className="switch-options"><input type="radio" name="platform" id="xbox"/>Xbox</label>
