@@ -3,7 +3,7 @@
 @use "elements";
 
 // Подключение цветов в зависимости от темы приложения
-:root{
+:root, :root[theme=dark]{
     --primary: #{v.$color-primary-dark};
     --secondary: #{v.$color-secondary-dark};
     --bg-main: #{v.$background-main-dark};
