@@ -245,6 +245,18 @@ footer{
         }
     }
 
+    // Ссылки, мимикрирующие под кнопки
+    .store-control-links{
+        @include m.buttons-and-controls();
+        padding: 0.3rem 0.7rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &:hover{
+            transform: none;
+        }
+    }
+
     // Поле для ввода
     .search-bar{
         flex-grow: 1;
