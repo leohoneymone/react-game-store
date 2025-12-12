@@ -204,6 +204,7 @@ footer{
         // Маскировка input:radio
         .switch-options{
             @include m.buttons-and-controls();
+            box-shadow: 0 0 3px 0 v.$shadow;
             &:has(input:checked){
                 color: var(--btn-text-hover);
                 background: var(--btn-bg-hover);
