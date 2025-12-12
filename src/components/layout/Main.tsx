@@ -1,11 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useLayoutEffect } from "react";
 
 import { useStoreContext } from "../../utils/context";
+import Toast from "./Toast";
 
 const Main = ({children}) => {
 
-   return <main>
+    const {theme, toast} = useStoreContext();
+
+    // Установка темы
+    useLayoutEffect(() => {
+        document.querySelector('html')?.setAttribute("theme", theme);
+    }, [theme])
+
+    return <main>
         {children}
+        {toast ? <Toast /> : null}
     </main>
 }
 

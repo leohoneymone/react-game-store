@@ -6,6 +6,9 @@ export type Themes = 'light' | 'dark';
 type CtxTypes = {
     theme: Themes,
     setTheme: (theme: Themes) => void
+
+    toast: string,
+    setToast: (msg: string) => void
 }
 
 const storeCtx = createContext<CtxTypes | undefined>(undefined);
@@ -13,9 +16,11 @@ const storeCtx = createContext<CtxTypes | undefined>(undefined);
 export default function StoreContext({children}){
 
     const[theme, setTheme] = useState<Themes>('dark');
+    const[toast, setToast] = useState<string>("");
 
     const value = {
-        theme, setTheme
+        theme, setTheme,
+        toast, setToast,
     }
 
     return <storeCtx.Provider value={value}>

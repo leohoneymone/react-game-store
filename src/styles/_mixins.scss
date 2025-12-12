@@ -1,3 +1,5 @@
+@use "vars" as v;
+
 // Миксин для ограничения ширины контента
 @mixin content-limitations() {
     width: 100%;
@@ -16,4 +18,14 @@
     mask-size: 1920px;
     mask-repeat: no-repeat;
     mask-position: 50% 25%;
+}
+
+// Миксин для элементов
+@mixin elements-background() {
+    background: var(--bg-elements);
+    color: var(--primary);
+    border: 0;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px 0 v.$shadow;
 }

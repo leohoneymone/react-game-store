@@ -7,13 +7,15 @@
     --primary: #{v.$color-primary-dark};
     --secondary: #{v.$color-secondary-dark};
     --bg-main: #{v.$background-main-dark};
-    --bg-el: #{v.$background-elements-dark};
+    --bg-elements: #{v.$background-elements-dark};
+    --bg-tiles: #{v.$background-tiles-light};
 }
 :root[theme=light]{
     --primary: #{v.$color-primary-light};
     --secondary: #{v.$color-secondary-light};
     --bg-main: #{v.$background-main-light};
-    --bg-el: #{v.$background-elements-light};
+    --bg-elements: #{v.$background-elements-light};
+    --bg-tiles: #{v.$background-tiles-light};
 }
 
 // Основные стили
@@ -84,6 +86,25 @@ main{
     width: 100%;
     min-height: calc(100vh - 353px);
     background: var(--bg-main);
+    position: relative;
+}
+
+// Всплывающее окно
+.toast-container{
+    @include m.elements-background();
+    max-width: 300px;
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    .close{
+        position: inherit;
+        right: 0.75rem;
+        top: 0.5rem;
+        cursor: pointer;
+    }
+    h3{
+        margin: -0.25rem 0 0.25rem;
+    }
 }
 
 // Футер
@@ -156,6 +177,4 @@ footer{
             }
         }
     }
-    
-
 }
