@@ -2,6 +2,13 @@ import React from "react";
 
 import { useStoreContext } from "../../utils/context";
 
+import gamepad from '../../assets/icons/gamepad.png';
+import steam from '../../assets/icons/steam.png';
+import ps from '../../assets/icons/ps.png';
+import xbox from '../../assets/icons/xbox.png';
+import nswitch from '../../assets/icons/switch.png';
+import mobile from '../../assets/icons/mobile.png';
+
 const StorePage = () => {
 
     const {theme, setTheme} = useStoreContext();
@@ -10,12 +17,24 @@ const StorePage = () => {
 
         <div className="store-control-row">
             <div className="switch-block">
-                <label htmlFor="all" className="switch-options"><input type="radio" name="platform" id="all" defaultChecked={true}/>Все</label>
-                <label htmlFor="steam" className="switch-options"><input type="radio" name="platform" id="steam"/>Steam</label>
-                <label htmlFor="ps" className="switch-options"><input type="radio" name="platform" id="ps"/>PS5</label>
-                <label htmlFor="xbox" className="switch-options"><input type="radio" name="platform" id="xbox"/>Xbox</label>
-                <label htmlFor="switch" className="switch-options"><input type="radio" name="platform" id="switch"/>Switch</label>
-                <label htmlFor="mobile" className="switch-options"><input type="radio" name="platform" id="mobile"/>Мобильные</label>
+                <label htmlFor="all" className="switch-options"><input type="radio" name="platform" id="all" defaultChecked={true}/>
+                    <img src={gamepad} alt="gamepad" /> Все
+                </label>
+                <label htmlFor="steam" className="switch-options"><input type="radio" name="platform" id="steam"/>
+                    <img src={steam} alt="steam" /> Steam
+                </label>
+                <label htmlFor="ps" className="switch-options"><input type="radio" name="platform" id="ps"/>
+                    <img src={ps} alt="ps" /> PS5
+                </label>
+                <label htmlFor="xbox" className="switch-options"><input type="radio" name="platform" id="xbox"/>
+                    <img src={xbox} alt="xbox" /> Xbox
+                </label>
+                <label htmlFor="switch" className="switch-options"><input type="radio" name="platform" id="switch"/>
+                    <img src={nswitch} alt="nswitch" /> Switch
+                </label>
+                <label htmlFor="mobile" className="switch-options"><input type="radio" name="platform" id="mobile"/>
+                    <img src={mobile} alt="mobile" /> Мобильные
+                </label>
             </div>
 
             <input type="text" placeholder="Поиск игры..." className="search-bar"/>

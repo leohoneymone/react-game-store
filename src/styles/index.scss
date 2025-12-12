@@ -11,6 +11,9 @@
     --bg-buttons: #{v.$background-buttons-dark};
     --btn-text-hover: #{v.$button-hover-text-dark};
     --btn-bg-hover: #{v.$button-hover-background-dark};
+
+    --icon-filter: invert(1);
+    --icon-filter-hover: invert(0);
 }
 :root[theme=light]{
     --primary: #{v.$color-primary-light};
@@ -20,6 +23,9 @@
     --bg-buttons: #{v.$background-buttons-light};
     --btn-text-hover: #{v.$button-hover-text-light};
     --btn-bg-hover: #{v.$button-hover-background-light};
+
+    --icon-filter: invert(0);
+    --icon-filter-hover: invert(1);
 }
 
 // Основные стили
@@ -201,17 +207,40 @@ footer{
         gap: 0.5rem;
         @include m.elements-background();
         padding: 0.5rem;
-        // Маскировка input:radio
         .switch-options{
             @include m.buttons-and-controls();
             box-shadow: 0 0 3px 0 v.$shadow;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+
+            // Иконки
+            img{
+                width: 24px;
+                height: 24px;
+                filter: var(--icon-filter);
+                transition: v.$transition-hover;
+            }
+
             &:has(input:checked){
                 color: var(--btn-text-hover);
                 background: var(--btn-bg-hover);
+                img{
+                    filter: var(--icon-filter-hover);
+                }
             }
+            &:hover{
+                img{
+                    transition: v.$transition-hover;
+                    filter: var(--icon-filter-hover);
+                }
+            }
+
+            // Маскировка input:radio
             input{
                 display: none;
             }
+
         }
     }
 
