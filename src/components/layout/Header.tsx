@@ -17,7 +17,7 @@ const Header = () => {
             <div className="header-container">
                 <div className="header-content">
                     <h1>CLD GAMES</h1>
-                    <a href="#"><Logo /></a>
+                    <a className="logo-link" href="#"><Logo /></a>
                     <div className="header-description">
                         <h2>Pet-project Store</h2>
                         <p>Powered by React + TS</p>

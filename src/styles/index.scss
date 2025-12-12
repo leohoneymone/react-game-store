@@ -59,6 +59,11 @@ header{
         justify-content: space-between;
     }
     // Логотип
+    .logo-link{
+        &:hover{
+            transform: none;
+        }
+    }
     .svg-logo-color{
         stroke: var(--primary);
         animation: logo-breathe 3s ease-in-out infinite;
