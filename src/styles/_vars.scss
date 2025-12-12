@@ -16,3 +16,15 @@ $background-main-dark: #111418;
 $background-elements-dark: #141721;
 
 // Общие
+$text-secondary: #777777;
+
+// Переходы
+$transition-hover: .25s ease-in-out;
+
+// АНИМАЦИЯ
+// Анимация "дыхания" логотипа
+@keyframes logo-breathe {
+    from{transform: translateY(4px);}
+    50%{transform: translateY(-2px);}
+    to{transform: translateY(4px);}
+}
