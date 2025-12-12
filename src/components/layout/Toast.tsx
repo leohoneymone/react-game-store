@@ -5,15 +5,15 @@ const Toast = () => {
 
     const {toast, setToast} = useStoreContext();
 
-    // useEffect(() => {
-    //     const toastTimeout = setTimeout(() => {
-    //         setToast("");
-    //     }, 2000)
+    useEffect(() => {
+        const toastTimeout = setTimeout(() => {
+            setToast("");
+        }, 2000)
  
-    //     return () => {
-    //         clearTimeout(toastTimeout);
-    //     }
-    // }, [])
+        return () => {
+            clearTimeout(toastTimeout);
+        }
+    }, [])
 
     return <div className="toast-container">
         <span className="close" onClick={() => {setToast("")}}>✖</span>
