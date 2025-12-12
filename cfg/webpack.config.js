@@ -57,6 +57,7 @@ module.exports = (env, argv) => {
         plugins: [
             new HtmlWebpackPlugin({
                 title: "test app",
+                favicon: path.resolve(__dirname, '../src/assets/favicon.ico'),
                 meta: {
                     'charset': 'UTF-8',
                     viewport: 'width=device-width, initial-scale=1',
