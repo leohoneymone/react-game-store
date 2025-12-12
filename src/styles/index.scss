@@ -8,14 +8,18 @@
     --secondary: #{v.$color-secondary-dark};
     --bg-main: #{v.$background-main-dark};
     --bg-elements: #{v.$background-elements-dark};
-    --bg-tiles: #{v.$background-tiles-light};
+    --bg-buttons: #{v.$background-buttons-dark};
+    --btn-text-hover: #{v.$button-hover-text-dark};
+    --btn-bg-hover: #{v.$button-hover-background-dark};
 }
 :root[theme=light]{
     --primary: #{v.$color-primary-light};
     --secondary: #{v.$color-secondary-light};
     --bg-main: #{v.$background-main-light};
     --bg-elements: #{v.$background-elements-light};
-    --bg-tiles: #{v.$background-tiles-light};
+    --bg-buttons: #{v.$background-buttons-light};
+    --btn-text-hover: #{v.$button-hover-text-light};
+    --btn-bg-hover: #{v.$button-hover-background-light};
 }
 
 // Основные стили
@@ -87,7 +91,7 @@ main{
     min-height: calc(100vh - 353px);
     background: var(--bg-main);
     position: relative;
-    padding-bottom: 1rem;
+    padding: 1rem 0;
     display: flex;
     justify-content: center;
     .page-content{
@@ -184,3 +188,48 @@ footer{
         }
     }
 }
+
+// СТРАНИЦА МАГАЗИНА
+// Строка с элементами управления контентом
+.store-control-row{
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    // Выборы
+    .switch-block{
+        display: flex;
+        gap: 0.5rem;
+        @include m.elements-background();
+        padding: 0.5rem;
+        // Маскировка input:radio
+        .switch-options{
+            @include m.buttons-and-controls();
+            &:has(input:checked){
+                color: var(--btn-text-hover);
+                background: var(--btn-bg-hover);
+            }
+            input{
+                display: none;
+            }
+        }
+    }
+
+    // Поле для ввода
+    .search-bar{
+        flex-grow: 1;
+        @include m.elements-background();
+        border: 1px solid var(--bg-elements);
+        outline: none;
+        transition: v.$transition-hover;
+        &:focus{
+            transition: v.$transition-hover;
+            border: 1px solid v.$text-secondary;
+        }
+        &::placeholder{
+            font-size: 1rem;
+            color: v.$text-secondary;
+            font-family: 'Jost', sans-serif;
+        }
+    } 
+}
+

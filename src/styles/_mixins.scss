@@ -29,3 +29,24 @@
     border-radius: 0.5rem;
     box-shadow: 0 0 10px 0 v.$shadow;
 }
+
+// Миксин для кнопок и элементов управления
+@mixin buttons-and-controls() {
+    color: var(--primary);
+    border: 0;
+    background: var(--bg-buttons);
+    padding: 0.3rem 0.5rem;
+    border-radius: 0.3rem;
+    box-shadow: 0 0 5px 0 v.$shadow;
+    cursor: pointer;
+    transition: v.$transition-hover;
+    &:hover{
+        transition: v.$transition-hover;
+        color: var(--btn-text-hover);
+        background: var(--btn-bg-hover);
+    }
+    &:active{
+        transition: v.$transition-hover;
+        box-shadow: inset 0 0 5px 0 v.$shadow;
+    }
+}
