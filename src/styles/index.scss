@@ -9,6 +9,12 @@
     --bg-main: #{v.$background-main-dark};
     --bg-el: #{v.$background-elements-dark};
 }
+:root[theme=light]{
+    --primary: #{v.$color-primary-light};
+    --secondary: #{v.$color-secondary-light};
+    --bg-main: #{v.$background-main-light};
+    --bg-el: #{v.$background-elements-light};
+}
 
 // Основные стили
 *,::before,::after{
