@@ -11,8 +11,10 @@ $color-secondary-light: #00000066;
 
 $background-main-light: #dfdfdf;
 $background-elements-light: #ffffff;
-$background-tiles-light: #141721;
 
+$background-buttons-light: #cecece;
+$button-hover-text-light: #ffffff;
+$button-hover-background-light: #2778d4;
 
 // Для тёмной темы
 $color-primary-dark: #ffffff;
@@ -20,7 +22,10 @@ $color-secondary-dark: #ffffff66;
 
 $background-main-dark: #111418;
 $background-elements-dark: #21262e;
-$background-tiles-dark: #21262e;
+
+$background-buttons-dark: #343c47;
+$button-hover-text-dark: #000000;
+$button-hover-background-dark: #ffffff;
 
 // Общие
 $text-secondary: #666666;
