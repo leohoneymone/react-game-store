@@ -9,6 +9,9 @@ import xbox from '../../assets/icons/xbox.png';
 import nswitch from '../../assets/icons/switch.png';
 import mobile from '../../assets/icons/mobile.png';
 
+import sun from '../../assets/icons/sun.png';
+import moon from '../../assets/icons/moon.png';
+
 const StorePage = () => {
 
     const {theme, setTheme} = useStoreContext();
@@ -44,8 +47,12 @@ const StorePage = () => {
             <button>Товары</button>
 
             <div className="switch-block">
-                <label htmlFor="light" className="switch-options"><input type="radio" name="theme" id="light" checked={theme === "light"} onClick={() => {setTheme("light")}}/>🌞</label>
-                <label htmlFor="dark" className="switch-options"><input type="radio" name="theme" id="dark" checked={theme === "dark"} onClick={() => {setTheme("dark")}}/>🌑</label>
+                <label htmlFor="light" className="switch-options"><input type="radio" name="theme" id="light" checked={theme === "light"} onClick={() => {setTheme("light")}}/>
+                    <img src={sun} alt="sun" />
+                </label>
+                <label htmlFor="dark" className="switch-options"><input type="radio" name="theme" id="dark" checked={theme === "dark"} onClick={() => {setTheme("dark")}}/>
+                    <img src={moon} alt="moon" />
+                </label>
             </div>
         </div>
 
