@@ -5,6 +5,7 @@
     padding: 0 2rem;
 }
 
+// Миксин для элементов с фоном с изолиниями
 @mixin isoline-bg() {
     position: absolute;
     height: inherit;
