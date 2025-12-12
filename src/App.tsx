@@ -1,4 +1,5 @@
 import React from "react";
+import { HashRouter, Routes, Route } from "react-router-dom";
 
 import StoreContext from "./utils/context";
 
@@ -8,13 +9,18 @@ import Footer from "./components/layout/Footer";
 
 const App = () => {
     
-    return <>
+    return <HashRouter>
         <Header />
         <StoreContext>
-            <Main />
+            <Main>
+                <Routes>
+                    <Route path="/" element={"Main"}/>
+                    <Route path="/games" element={"Game"}/>
+                </Routes>
+            </Main>
         </StoreContext>
         <Footer />
-    </>
+    </HashRouter>
 }
 
 export default App;
