@@ -7,6 +7,8 @@ import Header from "./components/layout/Header";
 import Main from "./components/layout/Main";
 import Footer from "./components/layout/Footer";
 
+import StorePage from "./pages/StorePage";
+
 const App = () => {
     
     return <HashRouter>
@@ -14,8 +16,7 @@ const App = () => {
         <StoreContext>
             <Main>
                 <Routes>
-                    <Route path="/" element={"Main"}/>
-                    <Route path="/games" element={"Game"}/>
+                    <Route path="/" element={<StorePage />}/>
                 </Routes>
             </Main>
         </StoreContext>
