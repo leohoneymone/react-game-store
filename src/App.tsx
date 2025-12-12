@@ -7,7 +7,7 @@ import Header from "./components/layout/Header";
 import Main from "./components/layout/Main";
 import Footer from "./components/layout/Footer";
 
-import StorePage from "./pages/StorePage";
+import StorePage from "./components/pages/StorePage";
 
 const App = () => {
     
