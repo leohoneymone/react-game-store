@@ -87,6 +87,12 @@ main{
     min-height: calc(100vh - 353px);
     background: var(--bg-main);
     position: relative;
+    padding-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    .page-content{
+        @include m.content-limitations();
+    }
 }
 
 // Всплывающее окно
