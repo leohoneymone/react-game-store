@@ -4,3 +4,15 @@
     max-width: 1700px;
     padding: 0 2rem;
 }
+
+@mixin isoline-bg() {
+    position: absolute;
+    height: inherit;
+    width: 100%;
+    z-index: 0;
+    background: var(--secondary);
+    mask-image: url('../assets/background_pattern.svg');
+    mask-size: 1920px;
+    mask-repeat: no-repeat;
+    mask-position: 50% 25%;
+}
