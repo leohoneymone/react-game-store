@@ -1,6 +1,10 @@
 import React from "react";
 
+import { useStoreContext } from "../../utils/context";
+
 const StorePage = () => {
+
+    const {theme, setTheme} = useStoreContext();
 
     return <div className="page-content">
 
@@ -21,8 +25,8 @@ const StorePage = () => {
             <button>Товары</button>
 
             <div className="switch-block">
-                <label htmlFor="light" className="switch-options"><input type="radio" name="theme" id="light"/>🌞</label>
-                <label htmlFor="dark" className="switch-options"><input type="radio" name="theme" id="dark"/>🌑</label>
+                <label htmlFor="light" className="switch-options"><input type="radio" name="theme" id="light" checked={theme === "light"} onClick={() => {setTheme("light")}}/>🌞</label>
+                <label htmlFor="dark" className="switch-options"><input type="radio" name="theme" id="dark" checked={theme === "dark"} onClick={() => {setTheme("dark")}}/>🌑</label>
             </div>
         </div>
 
