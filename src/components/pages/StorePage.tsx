@@ -17,6 +17,7 @@ import mobile from '../../assets/icons/mobile.png';
 import sun from '../../assets/icons/sun.png';
 import moon from '../../assets/icons/moon.png';
 import dice from '../../assets/icons/dice.png';
+import cart from '../../assets/icons/cart.png';
 
 // Компоненты
 import SelectBlock from "../store/SelectBlock";
@@ -69,7 +70,7 @@ const StorePage = () => {
 
             <input type="text" placeholder="Поиск игры..." className="search-bar"/>
 
-            <a href="#" className="store-control-links">Корзина</a>
+            <a href="#" className="store-control-links"> <img src={cart} alt="cart" /> Корзина</a>
 
             <a href="#" className="store-control-links">Приобретённые</a>
 
