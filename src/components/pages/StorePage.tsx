@@ -68,11 +68,11 @@ const StorePage = () => {
                     <img src={dice} alt="dice" /> Мне повезёт!
                 </button>
 
-                <SelectBlock />
+                <SelectBlock toggleable={false}/>
 
-                <SelectBlock />
+                <SelectBlock toggleable={true}/>
 
-                <SelectBlock />
+                <SelectBlock toggleable={true}/>
             </div>
 
             <div className="store-tile-container">

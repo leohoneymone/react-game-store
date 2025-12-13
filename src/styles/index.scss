@@ -306,7 +306,21 @@ footer{
         @include m.elements-background();
         display: flex;
         flex-direction: column;
+        position: relative;
         gap: 0.5rem;
+
+        // Кнопка "раскрытия" меню
+        .toggle-arrow{
+            position: absolute;
+            top: 0.5rem;
+            right: 0.7rem;
+            cursor: pointer;
+            transition: v.$transition-hover;
+            &.active{
+                transition: v.$transition-hover;
+                transform: rotate(180deg);
+            }
+        }
 
         label{
             cursor: pointer;
