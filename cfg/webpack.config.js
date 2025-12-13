@@ -1,3 +1,4 @@
+const DotenvWebpackPlugin = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
@@ -55,6 +56,7 @@ module.exports = (env, argv) => {
         },
 
         plugins: [
+            // HTML webpack plugin
             new HtmlWebpackPlugin({
                 title: "test app",
                 favicon: path.resolve(__dirname, '../src/assets/favicon.ico'),
@@ -65,6 +67,15 @@ module.exports = (env, argv) => {
                 },
                 template: path.resolve(__dirname, '../src/index.html'),
                 filename: 'index.html',
+            }),
+
+            // dotenv plugin (.env)
+            new DotenvWebpackPlugin({
+                path: './.env',
+                safe: true,
+                systemvars: true,
+                silent: false,
+                defaults: './.env.local',
             }),
         ],
 
