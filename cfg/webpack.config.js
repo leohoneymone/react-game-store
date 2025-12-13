@@ -58,7 +58,7 @@ module.exports = (env, argv) => {
         plugins: [
             // HTML webpack plugin
             new HtmlWebpackPlugin({
-                title: "test app",
+                title: "CLD GAME STORE",
                 favicon: path.resolve(__dirname, '../src/assets/favicon.ico'),
                 meta: {
                     'charset': 'UTF-8',
