@@ -289,13 +289,14 @@ footer{
     display: flex;
     flex-direction: column;
     gap: inherit;
-    min-width: 190px;
+    min-width: 265px;
 
     // Кнопка "Мне повезёт"
     .get-lucky-btn{
         display: flex;
+        gap: 1rem;
         align-items: center;
-        justify-content: space-evenly;
+        justify-content: center;
         height: 53px;
         font-weight: bold;
         font-size: 1.1rem;
@@ -341,6 +342,11 @@ footer{
                 width: 24px;
                 height: 24px;
                 filter: var(--icon-filter-hover);
+            }
+            .game-count{
+                font-size: 0.75rem;
+                color: var(--secondary);
+                margin-bottom: -0.25rem;
             }
 
             // Отображение при выборе пункта
