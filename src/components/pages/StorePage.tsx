@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { useStoreContext } from "../../utils/context";
+
+import { SearchTerm, getGenres, getTags } from "../../utils/api";
 
 import gamepad from '../../assets/icons/gamepad.png';
 import steam from '../../assets/icons/steam.png';
