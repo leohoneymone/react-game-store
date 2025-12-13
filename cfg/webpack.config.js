@@ -50,7 +50,10 @@ module.exports = (env, argv) => {
                 // Assets 
                 {
                     test: /\.(jpg|jpeg|png|gif|svg|ico)$/,
-                    type: 'asset/resource'
+                    type: 'asset/resource',
+                    generator: {
+                        filename: 'assets/[name][ext]',
+                    }
                 },
             ]
         },
