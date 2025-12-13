@@ -264,14 +264,14 @@ footer{
         border: 1px solid var(--bg-elements);
         outline: none;
         transition: v.$transition-hover;
+        font-family: 'Jost', sans-serif;
+        font-size: 1rem;
         &:focus{
             transition: v.$transition-hover;
             border: 1px solid v.$text-secondary;
         }
         &::placeholder{
-            font-size: 1rem;
             color: v.$text-secondary;
-            font-family: 'Jost', sans-serif;
         }
     } 
 }
