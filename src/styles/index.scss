@@ -195,6 +195,30 @@ footer{
     }
 }
 
+// Прелоадер
+.preloader{
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    justify-content: center;
+    align-items: center;
+    svg:has(.svg-logo-color){
+        transform: scale(2);
+    }
+    .svg-logo-color{
+        stroke: var(--primary);
+    }
+    .logo-eye{
+        animation: logo-search 3s ease-in-out infinite;
+    }
+    h2{
+        color: var(--primary);
+    }
+}
+
 // СТРАНИЦА МАГАЗИНА
 // Строка с элементами управления контентом
 .store-control-row{
@@ -276,12 +300,12 @@ footer{
     } 
 }
 
-
 // Поле с контентом магазина
 .store-content-block{
     padding-top: 1rem;
     display: flex;
     gap: 1rem;
+    min-height: 100%;
 }
 
 // Левая панель с элементами выборки
@@ -375,4 +399,9 @@ footer{
             display: none;
         }
     }
+}
+
+// Контейнер с тайлами
+.store-tile-container{
+    width: 100%;
 }

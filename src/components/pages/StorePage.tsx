@@ -20,6 +20,7 @@ import dice from '../../assets/icons/dice.png';
 
 // Компоненты
 import SelectBlock from "../store/SelectBlock";
+import Preloader from "../layout/Preloader";
 
 const StorePage = () => {
     // Контекст для управления темой

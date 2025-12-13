@@ -41,3 +41,14 @@ $transition-hover: .25s ease-in-out;
     50%{transform: translateY(-2px);}
     to{transform: translateY(4px);}
 }
+
+// Анимация "поиска" для прелоадера
+@keyframes logo-search {
+    from{transform: translate(0);}
+    15%{transform: translate(-2px, 2px);}
+    35%{transform: translate(-2px, 2px);}
+    50%{transform: translate(2px, 2px);}
+    70%{transform: translate(2px, 2px);}
+    85%{transform: translate(0);} 
+    to{transform: translate(0);}
+}
