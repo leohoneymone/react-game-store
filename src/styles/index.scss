@@ -140,7 +140,7 @@ footer{
         border-top: 3px solid var(--secondary);
         padding: 1rem 0.5rem;
         display: flex;
-        gap: 2.5rem;
+        gap: 3.5rem;
         .author{
             display: flex;
             flex-direction: column;
@@ -160,7 +160,7 @@ footer{
             width: fit-content;
             color: v.$text-secondary;
             &:hover{
-                color: var(--primary);
+                color: var(--btn-bg-hover);
             }
         }
     }
@@ -248,7 +248,7 @@ footer{
     // Ссылки, мимикрирующие под кнопки
     .store-control-links{
         @include m.buttons-and-controls();
-        padding: 0.3rem 0.7rem;
+        padding: 0.3rem 1rem;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -276,3 +276,83 @@ footer{
     } 
 }
 
+
+// Поле с контентом магазина
+.store-content-block{
+    padding-top: 1rem;
+    display: flex;
+    gap: 1rem;
+}
+
+// Левая панель с элементами выборки
+.store-select-panel{
+    display: flex;
+    flex-direction: column;
+    gap: inherit;
+    min-width: 190px;
+
+    // Кнопка "Мне повезёт"
+    .get-lucky-btn{
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        height: 53px;
+        font-weight: bold;
+        font-size: 1.1rem;
+    }
+
+    // Панель с элементами выборки
+    .select-block{
+        @include m.elements-background();
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        label{
+            cursor: pointer;
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            .img-bg{
+                width: 24px;
+                height: 24px;
+                border: 2px solid var(--primary);
+                border-radius: 2px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: v.$transition-hover;
+            }
+            img{
+                width: 24px;
+                height: 24px;
+                filter: var(--icon-filter-hover);
+            }
+
+            // Отображение при выборе пункта
+            &:not(:has(input:checked)){
+                img{
+                    display: none;
+                }
+            }
+            &:has(input:checked){
+               .img-bg{
+                    background: var(--btn-bg-hover);
+               }
+            }
+
+            // Наведение
+            &:hover{
+                .img-bg{
+                    transition: v.$transition-hover;
+                    background: var(--btn-bg-hover);
+                }
+            }
+        }
+
+        // Маскировка input:checkbox
+        input{
+            display: none;
+        }
+    }
+}

@@ -17,4 +17,18 @@ button{
     @include m.buttons-and-controls();
     font-family: 'Jost', sans-serif;
     font-size: 1rem;
+
+    // Иконки внутри кнопок
+    img{
+        width: 24px;
+        height: 24px;
+        filter: var(--icon-filter);
+        transition: v.$transition-hover;
+    }
+    &:hover{
+        img{
+            transition: v.$transition-hover;
+            filter: var(--icon-filter-hover);
+        }
+    }
 }

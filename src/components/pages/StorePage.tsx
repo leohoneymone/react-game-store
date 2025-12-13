@@ -12,6 +12,10 @@ import mobile from '../../assets/icons/mobile.png';
 import sun from '../../assets/icons/sun.png';
 import moon from '../../assets/icons/moon.png';
 
+import dice from '../../assets/icons/dice.png';
+
+import SelectBlock from "../store/SelectBlock";
+
 const StorePage = () => {
 
     const {theme, setTheme} = useStoreContext();
@@ -54,6 +58,27 @@ const StorePage = () => {
                     <img src={moon} alt="moon" />
                 </label>
             </div>
+        </div>
+
+        <div className="store-content-block">
+
+            <div className="store-select-panel">
+
+                <button className="get-lucky-btn"> 
+                    <img src={dice} alt="dice" /> Мне повезёт!
+                </button>
+
+                <SelectBlock />
+
+                <SelectBlock />
+
+                <SelectBlock />
+            </div>
+
+            <div className="store-tile-container">
+
+            </div>
+
         </div>
 
     </div>
