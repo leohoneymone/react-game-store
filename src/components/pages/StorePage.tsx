@@ -5,6 +5,8 @@ import { useStoreContext } from "../../utils/context";
 // API
 import { SearchTerm, getGenres, getTags } from "../../utils/api";
 
+import { releaseOptionsList } from "../../utils/misc";
+
 // Иконки
 import gamepad from '../../assets/icons/gamepad.png';
 import steam from '../../assets/icons/steam.png';
@@ -30,6 +32,7 @@ const StorePage = () => {
     // Работа с выборкой
     const[selGenres, selectGenres] = useState<number[]>([]);
     const[selTags, selectTags] = useState<number[]>([]);
+    const[selDates, selectDates] = useState<number[]>([]);
  
     // Подгрузка элементов выборки
     // Дополнительная обработка текста для лучшего отображения в полях
@@ -86,6 +89,8 @@ const StorePage = () => {
                 <button className="get-lucky-btn"> 
                     <img src={dice} alt="dice" /> Мне повезёт!
                 </button>
+
+                <SelectBlock title={"Дата выхода"} data={releaseOptionsList} select={selectDates} toggleable={false}/>
 
                 <SelectBlock title={"Жанры"} data={genres} select={selectGenres} toggleable={true}/>
 
