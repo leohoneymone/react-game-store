@@ -240,23 +240,11 @@ footer{
             gap: 0.5rem;
 
             // Иконки
-            img{
-                width: 24px;
-                height: 24px;
-                filter: var(--icon-filter);
-                transition: v.$transition-hover;
-            }
-
+            @include m.controls-icons();
             &:has(input:checked){
                 color: var(--btn-text-hover);
                 background: var(--btn-bg-hover);
                 img{
-                    filter: var(--icon-filter-hover);
-                }
-            }
-            &:hover{
-                img{
-                    transition: v.$transition-hover;
                     filter: var(--icon-filter-hover);
                 }
             }
@@ -272,8 +260,10 @@ footer{
     // Ссылки, мимикрирующие под кнопки
     .store-control-links{
         @include m.buttons-and-controls();
+        @include m.controls-icons();
         padding: 0.3rem 1rem;
         display: flex;
+        gap: 0.5rem;
         align-items: center;
         justify-content: center;
         &:hover{
