@@ -323,6 +323,9 @@ footer{
         flex-direction: column;
         position: relative;
         gap: 0.5rem;
+        .select-block-title{
+            cursor: pointer;
+        }
 
         // Кнопка "раскрытия" меню
         .toggle-arrow{
