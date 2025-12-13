@@ -51,10 +51,10 @@ const StorePage = () => {
             <a href="#" className="store-control-links">Приобретённые</a>
 
             <div className="switch-block">
-                <label htmlFor="light" className="switch-options"><input type="radio" name="theme" id="light" checked={theme === "light"} onClick={() => {setTheme("light")}}/>
+                <label htmlFor="light" className="switch-options"><input type="radio" name="theme" id="light" checked={theme === "light"} onChange={() => {setTheme("light")}}/>
                     <img src={sun} alt="sun" />
                 </label>
-                <label htmlFor="dark" className="switch-options"><input type="radio" name="theme" id="dark" checked={theme === "dark"} onClick={() => {setTheme("dark")}}/>
+                <label htmlFor="dark" className="switch-options"><input type="radio" name="theme" id="dark" checked={theme === "dark"} onChange={() => {setTheme("dark")}}/>
                     <img src={moon} alt="moon" />
                 </label>
             </div>
