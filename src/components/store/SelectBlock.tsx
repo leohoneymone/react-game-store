@@ -1,28 +1,68 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 import checkbox from '../../assets/icons/checkbox.png';
+import { SearchTerm } from "../../utils/api";
 
 const year:string = new Date().getFullYear().toString();
 
 // Типы для пропсов
 type SelectBlockProps = {
+    title: string,
     toggleable: boolean,
+    data: SearchTerm[],
+    select: (items: number[]) => void,
 }
 
-const SelectBlock = ({toggleable}: SelectBlockProps) => {
+const SelectBlock = ({title, toggleable, select, data}: SelectBlockProps) => {
 
+    // Раскрытие / сворачивание списка
     const[opened, toggleOpened] = useState<boolean>(false);
 
+    // Cписок выбранных значений
+    const [items, setItems] = useState<number[]>([]);
+
+    // Разделение списка для раскрытия и сворачивания
+    const alwaysDisplayed = data.slice(0, 3);
+    const remaining = data.slice(3);
+
+    // Функция выбора значений
+    const handleSelect = (e: React.ChangeEvent<HTMLInputElement>):void => {
+        if(e.target.checked){
+            setItems([...items, +e.target.value]);
+        } else {
+            setItems(items.filter(item => item !== +e.target.value));
+        }
+    }
+
+    // ОБновление списка 
+    useEffect(() => {
+        select(items);
+    }, [items]);
+
     return <div className="select-block">
-        <h3 className="select-block-title">Дата выхода</h3>
+        <h3 className="select-block-title">{title}</h3>
         
         {toggleable ? <div className={opened ? "toggle-arrow active" : "toggle-arrow"} onClick={() => {toggleOpened(!opened)}}>▼</div> : null}
 
-        <label><input type="checkbox" name="" /> <div className="img-bg"><img src={checkbox} alt="checkbox" /></div> Новинки</label>
-        <label><input type="checkbox" name="" /> <div className="img-bg"><img src={checkbox} alt="checkbox" /></div> Игры {year} года</label>
-        <label><input type="checkbox" name="" /> <div className="img-bg"><img src={checkbox} alt="checkbox" /></div> Старше 1 года</label>
+        {alwaysDisplayed.map( item => <label key={item.id}>
+            <input type="checkbox" value={item.id} checked={items.includes(item.id)} onChange={handleSelect}/> 
+            <div className="img-bg">
+                <img src={checkbox} alt="checkbox"/>
+            </div>
+            {item.name} 
+            <span className="game-count">{item.count || null}</span>
+        </label>)}
         
-        { (!toggleable || opened) ? <label><input type="checkbox" name="" /> <div className="img-bg"><img src={checkbox} alt="checkbox" /></div> Будущие релизы</label> : null }
+        { (!toggleable || opened) ? <>
+            {remaining.map( item => <label key={item.id}>
+                <input type="checkbox" value={item.id} checked={items.includes(item.id)} onChange={handleSelect}/>
+                <div className="img-bg">
+                    <img src={checkbox} alt="checkbox"/>
+                </div>
+                {item.name}
+                <span className="game-count">{item.count || null}</span>
+            </label>)}
+        </> : null }
     
     </div>
 }

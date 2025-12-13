@@ -1,26 +1,43 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useStoreContext } from "../../utils/context";
 
+// API
 import { SearchTerm, getGenres, getTags } from "../../utils/api";
 
+// Иконки
 import gamepad from '../../assets/icons/gamepad.png';
 import steam from '../../assets/icons/steam.png';
 import ps from '../../assets/icons/ps.png';
 import xbox from '../../assets/icons/xbox.png';
 import nswitch from '../../assets/icons/switch.png';
 import mobile from '../../assets/icons/mobile.png';
-
 import sun from '../../assets/icons/sun.png';
 import moon from '../../assets/icons/moon.png';
-
 import dice from '../../assets/icons/dice.png';
 
+// Компоненты
 import SelectBlock from "../store/SelectBlock";
 
 const StorePage = () => {
-
+    // Контекст для управления темой
     const {theme, setTheme} = useStoreContext();
+
+    // Состояния для работы с выборкой
+    const[genres, setGenres] = useState<SearchTerm[]>([]);
+    const[tags, setTags] = useState<SearchTerm[]>([]);
+
+    // Работа с выборкой
+    const[selGenres, selectGenres] = useState<number[]>([]);
+    const[selTags, selectTags] = useState<number[]>([]);
+ 
+    // Подгрузка элементов выборки
+    // Дополнительная обработка текста для лучшего отображения в полях
+    useEffect(() => {
+        getGenres().then(data => setGenres(data.map(item => item.name === "Massively Multiplayer" ? {...item, name: "MMO"} : item)));
+
+        getTags().then(data => setTags(data.map(item => item.name === "steam-trading-cards" ? {...item, name: "Steam Cards"} : item)));
+    }, []);
 
     return <div className="page-content">
 
@@ -70,11 +87,9 @@ const StorePage = () => {
                     <img src={dice} alt="dice" /> Мне повезёт!
                 </button>
 
-                <SelectBlock toggleable={false}/>
+                <SelectBlock title={"Жанры"} data={genres} select={selectGenres} toggleable={true}/>
 
-                <SelectBlock toggleable={true}/>
-
-                <SelectBlock toggleable={true}/>
+                <SelectBlock title={"Теги"} data={tags} select={selectTags} toggleable={true}/>
             </div>
 
             <div className="store-tile-container">
