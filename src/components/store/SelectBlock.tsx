@@ -13,6 +13,16 @@ type SelectBlockProps = {
     select: (items: number[]) => void,
 }
 
+/**
+ * Компонент поля, содержащего в себе варианты для выборки данных и расопложенный в левой колонке магазина
+ * 
+ * @param {SelectBlockProps} props набор пропсов для работы поля
+ * @param {string} title отображаемое название поля
+ * @param {boolean} toggleable флаг, указывающий является ли поле раскрываемым / сворачиваемым
+ * @param {SearchTerm[]} data массив исходных данных формата SearchTerm
+ * @param {(items: number[]) => void} select функция, вызываемая при активации / деактивации чекбокса
+ * @returns JSX разметка компонента
+ */
 const SelectBlock = ({title, toggleable, select, data}: SelectBlockProps) => {
 
     // Раскрытие / сворачивание списка
@@ -40,7 +50,7 @@ const SelectBlock = ({title, toggleable, select, data}: SelectBlockProps) => {
     }, [items]);
 
     return <div className="select-block">
-        <h3 className="select-block-title">{title}</h3>
+        <h3 className="select-block-title" onClick={() => {toggleOpened(!opened)}}>{title}</h3>
         
         {toggleable ? <div className={opened ? "toggle-arrow active" : "toggle-arrow"} onClick={() => {toggleOpened(!opened)}}>▼</div> : null}
 
