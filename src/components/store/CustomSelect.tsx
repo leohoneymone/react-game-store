@@ -8,6 +8,15 @@ type CustomSelectProps = {
     select: (value: string) => void
 }
 
+/**
+ * Кастомный компонент, реализующий логику поля со списком
+ * 
+ * @param {CustomSelectProps} props набор пропсов для работы поля со списком
+ * @param {CustomSelectType[]} data массив возможных вариантов формата CustomSelectType
+ * @param {string} value выбранное значение
+ * @param {(value: string) => void} select функция, вызываемая при выборе пункта в списке
+ * @returns JSX разметка компонента
+ */
 const CustomSelect = ({data, value, select}: CustomSelectProps) => { 
     
     // Состояния
