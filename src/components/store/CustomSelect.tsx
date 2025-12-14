@@ -25,7 +25,7 @@ const CustomSelect = ({data, value, select}: CustomSelectProps) => {
     return <div className="custom-select">
 
         <div className="custom-select-selected" onClick={() => {toggleOpened(!opened)}}>
-            {data.find(item => item.value === value)?.name || ""}
+            <p>{data.find(item => item.value === value)?.name || ""}</p>
             <span className={opened ? "active" : undefined}>▼</span>
         </div>
         

@@ -105,7 +105,7 @@ const StorePage = () => {
 
             <div className="store-tile-container">
 
-                <div className="tile-control-row">
+                <div className="tile-control-row background">
 
                     <CustomSelect data={customSelectSortingOptions} value={sort} select={setSort} />
 

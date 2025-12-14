@@ -33,7 +33,7 @@ button{
         align-items: center;
         gap: 1rem;
         p{
-            padding-right: 1rem;
+            flex-grow: 1;
         }
         span{
             transition: v.$transition-hover;
