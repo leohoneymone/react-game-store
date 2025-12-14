@@ -5,7 +5,7 @@ import { useStoreContext } from "../../utils/context";
 // API
 import { SearchTerm, getGenres, getTags } from "../../utils/api";
 
-import { releaseOptionsList } from "../../utils/misc";
+import { customSelectSortingOptions, releaseOptionsList } from "../../utils/misc";
 
 // Иконки
 import gamepad from '../../assets/icons/gamepad.png';
@@ -22,6 +22,7 @@ import cart from '../../assets/icons/cart.png';
 // Компоненты
 import SelectBlock from "../store/SelectBlock";
 import Preloader from "../layout/Preloader";
+import CustomSelect from "../store/CustomSelect";
 
 const StorePage = () => {
     // Контекст для управления темой
@@ -35,6 +36,9 @@ const StorePage = () => {
     const[selGenres, selectGenres] = useState<number[]>([]);
     const[selTags, selectTags] = useState<number[]>([]);
     const[selDates, selectDates] = useState<number[]>([]);
+
+    // Сортировка
+    const[sort, setSort] = useState<string>(customSelectSortingOptions[0].value);
  
     // Подгрузка элементов выборки
     // Дополнительная обработка текста для лучшего отображения в полях
@@ -100,6 +104,12 @@ const StorePage = () => {
             </div>
 
             <div className="store-tile-container">
+
+                <div className="tile-control-row">
+
+                    <CustomSelect data={customSelectSortingOptions} value={sort} select={setSort} />
+
+                </div>
 
             </div>
 

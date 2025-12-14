@@ -19,3 +19,66 @@ button{
     font-family: 'Jost', sans-serif;
     font-size: 1rem;
 }
+
+// Кастомное поле ввода со списком
+.custom-select{
+    position: relative;
+
+    // Тело селекта с выбранном вариантом
+    .custom-select-selected{
+        position: relative;
+        z-index: 2;
+        @include m.buttons-and-controls();
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        p{
+            padding-right: 1rem;
+        }
+        span{
+            transition: v.$transition-hover;
+            &.active{
+                transition: v.$transition-hover;
+                transform: rotate(180deg);
+            }
+        }
+        &:has(.active){
+            border-radius: 0.3rem 0.3rem 0 0;
+        }
+    }
+
+    // Список вариантов
+    .custom-select-options{
+        width: 100%;
+        position: absolute;
+        @include m.elements-background();
+        padding: 0;
+        border-radius: 0 0 0.3rem 0.3rem;
+        &:not(.active){
+            display: none;
+        }
+        .options-list{
+            display: flex;
+            flex-direction: column;
+            li{
+                padding: 0.3rem 0.5rem;
+                list-style-type: none;
+                cursor: pointer;
+                transition: v.$transition-hover;
+                &:not(:last-of-type){
+                    border-bottom: 1px solid v.$border;
+                }
+                &:hover{
+                    transition: v.$transition-hover;
+                    background: var(--btn-bg-hover);
+                    color: var(--btn-text-hover);
+                }
+
+                // Выбранный пункт меню
+                &.selected{
+                    color: var(--secondary);
+                }
+            }
+        }
+    }
+}

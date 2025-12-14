@@ -295,7 +295,7 @@ footer{
     padding-top: 1rem;
     display: flex;
     gap: 1rem;
-    min-height: 100%;
+    min-height: calc(100vh - 353px - 3rem - 53px);
 }
 
 // Левая панель с элементами выборки
@@ -397,4 +397,12 @@ footer{
 // Контейнер с тайлами
 .store-tile-container{
     width: 100%;
+}
+
+// Строка с элементами управления тайлами
+.tile-control-row{
+    width: 100%;
+    height: 53px;
+    display: flex;
+    justify-content: space-between;
 }
