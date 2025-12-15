@@ -412,6 +412,10 @@ footer{
         @include m.elements-background();
         padding: 0.5rem;
     }
+    &.under-tiles{
+        flex-direction: row-reverse;
+        padding: 0.5rem;
+    }
 
     .tile-control-selects{
         display: flex;
@@ -431,4 +435,35 @@ footer{
     .custom-select:nth-of-type(2){
         width: 75px;
     }
+}
+
+// Пагинация 
+.pagination-block{
+    display: flex;
+    box-shadow: 0 0 5px 0 v.$shadow;
+    border-radius: 0.3rem;
+    // Кнопка
+    button{
+        border-radius: 0;
+        box-shadow: none;
+        min-width: 37px;
+        &.left{
+            border-radius: 0.3rem 0 0 0.3rem;
+        }
+        &.right{
+            border-radius: 0 0.3rem 0.3rem 0;
+        }
+        &.single{
+            border-radius: 0.3rem; 
+        }
+        &.selected, &.disabled{
+            background: var(--secondary);
+            pointer-events: none;
+        }
+    }
+}
+
+// Контейнер для тайлов (плиток)
+.tile-content{
+    flex-grow: 1;
 }

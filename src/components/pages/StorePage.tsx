@@ -23,6 +23,7 @@ import cart from '../../assets/icons/cart.png';
 import SelectBlock from "../store/SelectBlock";
 import Preloader from "../layout/Preloader";
 import CustomSelect from "../store/CustomSelect";
+import Pagination from "../store/Pagination";
 
 const StorePage = () => {
     // Контекст для управления темой
@@ -37,8 +38,13 @@ const StorePage = () => {
     const[selTags, selectTags] = useState<number[]>([]);
     const[selDates, selectDates] = useState<number[]>([]);
 
+    // Сортировка
     const[sort, setSort] = useState<string>(customSelectSortingOptions[0].value);
+
+    // Пагинация
     const[tpp, setTpp] = useState<string>(customSelectTilesPerPageOptions[0].value);
+    const[page, selectPage] = useState<number>(1);
+    const[pagesNum, setPagesNum] = useState<number>(10);
  
     // Подгрузка элементов выборки
     // Дополнительная обработка текста для лучшего отображения в полях
@@ -111,6 +117,14 @@ const StorePage = () => {
                         <CustomSelect data={customSelectTilesPerPageOptions} value={tpp} select={setTpp} /> 
                     </div>
 
+                    <Pagination page={page} total={pagesNum} select={selectPage}/>
+
+                </div>
+
+                <div className="tile-content"></div>
+
+                <div className="tile-control-row under-tiles">
+                    <Pagination page={page} total={pagesNum} select={selectPage}/>
                 </div>
 
             </div>
