@@ -135,7 +135,7 @@ footer{
     // Контент футера
     .footer-content{
         @include m.content-limitations();
-        max-width: calc(1700px - 4rem);
+        max-width: calc(1800px - 4rem);
         height: 200px;
         border-top: 3px solid var(--secondary);
         padding: 1rem 0.5rem;
