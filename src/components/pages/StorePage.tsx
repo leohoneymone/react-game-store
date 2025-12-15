@@ -55,7 +55,7 @@ const StorePage = () => {
     useEffect(() => {
         getGenres().then(data => setGenres(data.map(item => item.name === "Massively Multiplayer" ? {...item, name: "MMO"} : item)));
 
-        getTags().then(data => setTags(data.map(item => item.name === "steam-trading-cards" ? {...item, name: "Steam Cards"} : item)));
+        getTags().then(data => setTags(data.map(item => item.name === "steam-trading-cards" ? {...item, name: "Steam Cards"} : item).filter(item => item.name !== "Partial Controller Support")));
 
         getGames().then(data => {
             setGamesCount(data.count);

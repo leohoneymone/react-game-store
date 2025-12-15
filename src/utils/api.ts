@@ -75,7 +75,7 @@ export const getGenres = (): Promise<SearchTerm[]> => {
  * @returns {Promise<SearchTerm[]>} промис формата SearchTerm, содержащий список тегов
  */
 export const getTags = (): Promise<SearchTerm[]> => {
-    return rawrApiRequest(Endpoints.tags, '&ordering=-games_count')
+    return rawrApiRequest(Endpoints.tags, '&ordering=-games_count&page_size=21')
         .then(data => data.results.map(item => {
             return {id: item.id, name: item.name, count: item.games_count}
         }));
