@@ -135,6 +135,7 @@ const StorePage = () => {
 
                 <div className="tile-control-row under-tiles">
                     <Pagination page={page} total={pagesNum} select={selectPage}/>
+                    <p className="results-count">Найдено {gamesCount} результатов</p>
                 </div>
 
             </div>
