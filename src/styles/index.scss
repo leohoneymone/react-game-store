@@ -442,6 +442,7 @@ footer{
     display: flex;
     box-shadow: 0 0 5px 0 v.$shadow;
     border-radius: 0.3rem;
+    background: transparent;
     // Кнопка
     button{
         border-radius: 0;
@@ -456,8 +457,12 @@ footer{
         &.single{
             border-radius: 0.3rem; 
         }
-        &.selected, &.disabled{
+        &.selected{
             background: var(--secondary);
+            pointer-events: none;
+        }
+        &.disabled{
+            color: var(--secondary);
             pointer-events: none;
         }
     }
