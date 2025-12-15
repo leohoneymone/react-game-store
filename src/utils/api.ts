@@ -10,10 +10,29 @@ export interface SearchTerm {
     count: number,
 }
 
+// Тип получаемых данных об игрe
+export interface Game {
+    name: string,
+    slug: string,
+    genres: string[],
+    tags: string[],
+    background: string,
+    screenshots: string[],
+    platforms: string[],
+    release: string,
+}
+
+// Тип полной информации об игре
+export interface GameData{
+    count: number,
+    games: Game[],
+}
+
 // Список конечных точек API
 enum Endpoints {
     genres = 'genres',
-    tags = 'tags'
+    tags = 'tags',
+    games = 'games',
 }
 
 /**
@@ -60,4 +79,30 @@ export const getTags = (): Promise<SearchTerm[]> => {
         .then(data => data.results.map(item => {
             return {id: item.id, name: item.name, count: item.games_count}
         }));
+}
+
+/**
+ * Функция для получения списка игр по параметрам выборки
+ * 
+ * @returns {Promise<GameData[]>} промис формата GameData, содержащий список игр и их количество
+ */
+export const getGames = (): Promise<GameData> => {
+    return rawrApiRequest(Endpoints.games, '&page_size=10')
+        .then(data => {
+            return {
+                count: data.count,
+                games: data.results.map(item => {
+                    return {
+                        name: item.name,
+                        slug: item.slug,
+                        genres: item.genres.map(g => g?.name),
+                        tags: item.tags.map(t => t?.name),
+                        background: item.background_image,
+                        screenshots: item.short_screenshots.map(i => i?.image),  
+                        platforms: item.parent_platforms.map(p => p.platform?.name),
+                        release: item.released,
+                    }
+                }) 
+            } 
+        });
 }

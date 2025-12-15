@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useStoreContext } from "../../utils/context";
 
 // API
-import { SearchTerm, getGenres, getTags } from "../../utils/api";
+import { SearchTerm, Game, GameData, getGenres, getTags, getGames } from "../../utils/api";
 
 import { customSelectSortingOptions, customSelectTilesPerPageOptions, releaseOptionsList } from "../../utils/misc";
 
@@ -45,6 +45,10 @@ const StorePage = () => {
     const[tpp, setTpp] = useState<string>(customSelectTilesPerPageOptions[0].value);
     const[page, selectPage] = useState<number>(1);
     const[pagesNum, setPagesNum] = useState<number>(10);
+
+    // Результаты выборки
+    const[gamesCount, setGamesCount] = useState<number>(0);
+    const[games, setGames] = useState<Game[]>([]);
  
     // Подгрузка элементов выборки
     // Дополнительная обработка текста для лучшего отображения в полях
@@ -52,6 +56,12 @@ const StorePage = () => {
         getGenres().then(data => setGenres(data.map(item => item.name === "Massively Multiplayer" ? {...item, name: "MMO"} : item)));
 
         getTags().then(data => setTags(data.map(item => item.name === "steam-trading-cards" ? {...item, name: "Steam Cards"} : item)));
+
+        getGames().then(data => {
+            setGamesCount(data.count);
+            setGames(data.games);
+            setPagesNum(Math.ceil(data.count / +tpp));
+        });
     }, []);
 
     return <div className="page-content">
