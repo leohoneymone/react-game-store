@@ -412,9 +412,23 @@ footer{
         @include m.elements-background();
         padding: 0.5rem;
     }
-    
+
+    .tile-control-selects{
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+        .tile-per-page-title{
+            padding-left: 0.5rem;
+        }
+    }
+
     // Сортировка
     .custom-select:nth-of-type(1){
         width: 225px;
+    }
+
+    // Количество плиток на странице
+    .custom-select:nth-of-type(2){
+        width: 75px;
     }
 }

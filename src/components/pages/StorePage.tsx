@@ -5,7 +5,7 @@ import { useStoreContext } from "../../utils/context";
 // API
 import { SearchTerm, getGenres, getTags } from "../../utils/api";
 
-import { customSelectSortingOptions, releaseOptionsList } from "../../utils/misc";
+import { customSelectSortingOptions, customSelectTilesPerPageOptions, releaseOptionsList } from "../../utils/misc";
 
 // Иконки
 import gamepad from '../../assets/icons/gamepad.png';
@@ -37,8 +37,8 @@ const StorePage = () => {
     const[selTags, selectTags] = useState<number[]>([]);
     const[selDates, selectDates] = useState<number[]>([]);
 
-    // Сортировка
     const[sort, setSort] = useState<string>(customSelectSortingOptions[0].value);
+    const[tpp, setTpp] = useState<string>(customSelectTilesPerPageOptions[0].value);
  
     // Подгрузка элементов выборки
     // Дополнительная обработка текста для лучшего отображения в полях
@@ -97,9 +97,7 @@ const StorePage = () => {
                 </button>
 
                 <SelectBlock title={"Дата выхода"} data={releaseOptionsList} select={selectDates} toggleable={false}/>
-
                 <SelectBlock title={"Жанры"} data={genres} select={selectGenres} toggleable={true}/>
-
                 <SelectBlock title={"Теги"} data={tags} select={selectTags} toggleable={true}/>
             </div>
 
@@ -107,7 +105,11 @@ const StorePage = () => {
 
                 <div className="tile-control-row background">
 
-                    <CustomSelect data={customSelectSortingOptions} value={sort} select={setSort} />
+                    <div className="tile-control-selects">
+                        <CustomSelect data={customSelectSortingOptions} value={sort} select={setSort} />
+                        <p className="tile-per-page-title">Плиток на странице:</p>
+                        <CustomSelect data={customSelectTilesPerPageOptions} value={tpp} select={setTpp} /> 
+                    </div>
 
                 </div>
 

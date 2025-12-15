@@ -20,7 +20,14 @@ export type CustomSelectType = {
 // Сортировка для кастомного селекта
 export const customSelectSortingOptions: CustomSelectType[] = [
     {id: 1, name: "Сначала новые", value: "-released"},
-    {id: 3, name: "Сначала актуальные", value: "-updated"},
-    {id: 4, name: "С высоким рейтингом", value: "-rating"},
-    {id: 2, name: "В алфавитном порядке", value: "name"},
+    {id: 2, name: "Сначала актуальные", value: "-updated"},
+    {id: 3, name: "С высоким рейтингом", value: "-rating"},
+    {id: 4, name: "В алфавитном порядке", value: "name"},
+];
+
+// Выбор количества отображаемых плиток на странице
+export const customSelectTilesPerPageOptions:  CustomSelectType[] = [
+    {id: 1, name: "12", value: "12"},
+    {id: 2, name: "24", value: "24"},
+    {id: 3, name: "48", value: "48"}
 ];
