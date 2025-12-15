@@ -24,6 +24,7 @@ import SelectBlock from "../store/SelectBlock";
 import Preloader from "../layout/Preloader";
 import CustomSelect from "../store/CustomSelect";
 import Pagination from "../store/Pagination";
+import GameTile from "../store/GameTile";
 
 const StorePage = () => {
     // Контекст для управления темой
@@ -131,7 +132,11 @@ const StorePage = () => {
 
                 </div>
 
-                <div className="tile-content"></div>
+                <div className="tile-content">
+
+                    {games.map(item => <GameTile key={item.slug} {...item}/>)}
+
+                </div>
 
                 <div className="tile-control-row under-tiles">
                     <Pagination page={page} total={pagesNum} select={selectPage}/>
