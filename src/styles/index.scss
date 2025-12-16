@@ -548,6 +548,9 @@ footer{
             display: flex;
             align-items: center;
             justify-content: space-between;
+            .date{
+                font-size: 0.85rem;
+            }
         }
     }
 }

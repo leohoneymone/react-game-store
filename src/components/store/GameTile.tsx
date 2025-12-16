@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { Game } from "../../utils/api";
 
@@ -8,6 +8,11 @@ import ps from '../../assets/icons/ps.png';
 import xbox from '../../assets/icons/xbox.png';
 import nswitch from '../../assets/icons/switch.png';
 import mobile from '../../assets/icons/mobile.png';
+
+
+const formatDate = (str: string): string => {
+    return new Date(str).toLocaleDateString("ru", {year: 'numeric',  month: 'short',  day: 'numeric'});
+}
 
 const GameTile = ({ name, slug, genres, tags, background, screenshots, platforms, release }: Game) => {
 
@@ -30,7 +35,7 @@ const GameTile = ({ name, slug, genres, tags, background, screenshots, platforms
             <p className="genres">{genres.join(" / ")}</p>
             <p className="tags">{tags.slice(0, 5).join(" / ")}</p>
             <div className="last-row">
-                <p className="date">{release}</p>
+                <p className="date">{formatDate(release)}</p>
                 <button>Подробнее</button>
             </div>
         </div>
