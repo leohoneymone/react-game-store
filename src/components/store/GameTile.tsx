@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 import { Game } from "../../utils/api";
 
@@ -35,8 +35,33 @@ const formatDate = (str: string): string => {
  */
 const GameTile = ({ name, slug, genres, tags, background, screenshots, platforms, release }: Game) => {
 
-    return <div className="game-tile">
-        <img className="thumbnail" src={background} alt={slug} />
+    // Состояние источника картинки
+    const[imgIndex, setImgIndex] = useState<number>(0);
+
+    // Реф интервала 
+    const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+    // Наведение на тайл
+    const handleMouseEnter = ():void => {
+        if(intervalRef.current) return;
+
+        setImgIndex(1);
+        intervalRef.current = setInterval(() => {
+            setImgIndex(prev => (prev + 1 < screenshots.length) ? prev + 1 : 1);
+        }, 1000);
+    }
+
+    // Убирание наведения на тайл
+    const handleMouseLeft = ():void => {
+        if(intervalRef.current){
+            clearInterval(intervalRef.current);
+            intervalRef.current = null;
+        }
+        setImgIndex(0);
+    }
+
+    return <div className="game-tile" onMouseEnter={() => {handleMouseEnter()}} onMouseLeave={() => {handleMouseLeft()}}>
+        <img className="thumbnail" src={screenshots[imgIndex]} alt={slug}/>
         <div className="game-tile-text">
             <h3 className="title">{name}</h3>
             <div className="platforms">
