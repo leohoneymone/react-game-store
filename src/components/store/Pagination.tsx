@@ -7,7 +7,15 @@ type PaginationProps = {
     select: (page: number) => void,
 }
 
-
+/**
+ * Компонент, реализующий логику работы блока пагинации страницы
+ * 
+ * @param param0 
+ * @param {number} page текущая выбранная страница 
+ * @param {number} total итоговое количество страниц
+ * @param {(page: number) => void} select функция для выбора страницы
+ * @returns JSX разметка пагинатора
+ */
 const Pagination = ({page, total, select}: PaginationProps) => {
 
     return <div className="pagination-block">

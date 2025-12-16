@@ -9,11 +9,30 @@ import xbox from '../../assets/icons/xbox.png';
 import nswitch from '../../assets/icons/switch.png';
 import mobile from '../../assets/icons/mobile.png';
 
-
+/**
+ * Функция, форматирующая строку из формата ISO 8601 в более человекопонятный вид для отображения внутри тайла ("плитки")
+ * 
+ * @param {string} str - дата в формате ISO 8601
+ * @returns - возвращаемая строка даты и времени на русском языке
+ */
 const formatDate = (str: string): string => {
     return new Date(str).toLocaleDateString("ru", {year: 'numeric',  month: 'short',  day: 'numeric'});
 }
 
+/**
+ * Компонент, реализующий логику работы тайла с игрой
+ * 
+ * @param {Game} props набор пропсов для работы поля
+ * @param {string} name Название игры
+ * @param {string} slug алиас игры. Используется для ссылок и в качестве значения key компонента 
+ * @param {string[]} genres список жанров, к которым относится игра
+ * @param {string[]} tags список пользовательских тегов, которые указаны для игры
+ * @param {string} background URL изображения игры, используемое как картинка по умолчанию
+ * @param {string[]} screenshots список URLов скриншотов, которые переключаются между игрой
+ * @param {string[]} platforms список платформ, на которые вышла / выходит игра
+ * @param {string} release дата выхода игры формата ISO 8601
+ * @returns JSX разметка тайла с информацией о игре
+ */
 const GameTile = ({ name, slug, genres, tags, background, screenshots, platforms, release }: Game) => {
 
     return <div className="game-tile">
