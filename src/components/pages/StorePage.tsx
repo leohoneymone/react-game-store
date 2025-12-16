@@ -34,6 +34,7 @@ const StorePage = () => {
     const[loading, setLoading] = useState<boolean>(false);
 
     // Состояния для работы с выборкой
+    const[platform, setPlatform] = useState<string>("all");
     const[genres, setGenres] = useState<SearchTerm[]>([]);
     const[tags, setTags] = useState<SearchTerm[]>([]);
 
@@ -75,22 +76,22 @@ const StorePage = () => {
 
         <div className="store-control-row">
             <div className="switch-block">
-                <label htmlFor="all" className="switch-options"><input type="radio" name="platform" id="all" defaultChecked={true}/>
+                <label htmlFor="all" className="switch-options"><input type="radio" name="platform" id="all"  onChange={() => {setPlatform("all")}} defaultChecked={true}/>
                     <img src={gamepad} alt="gamepad"/> Все
                 </label>
-                <label htmlFor="steam" className="switch-options"><input type="radio" name="platform" id="steam"/>
+                <label htmlFor="steam" className="switch-options"><input type="radio" name="platform" id="steam" onChange={() => {setPlatform("pc")}} />
                     <img src={steam} alt="steam"/> Steam
                 </label>
-                <label htmlFor="ps" className="switch-options"><input type="radio" name="platform" id="ps"/>
+                <label htmlFor="ps" className="switch-options"><input type="radio" name="platform" id="ps" onChange={() => {setPlatform("playstation")}} />
                     <img src={ps} alt="ps"/> PS5
                 </label>
-                <label htmlFor="xbox" className="switch-options"><input type="radio" name="platform" id="xbox"/>
+                <label htmlFor="xbox" className="switch-options"><input type="radio" name="platform" id="xbox" onChange={() => {setPlatform("xbox")}} />
                     <img src={xbox} alt="xbox"/> Xbox
                 </label>
-                <label htmlFor="switch" className="switch-options"><input type="radio" name="platform" id="switch"/>
+                <label htmlFor="switch" className="switch-options"><input type="radio" name="platform" id="switch" onChange={() => {setPlatform("nintendo")}} />
                     <img src={nswitch} alt="nswitch"/> Switch
                 </label>
-                <label htmlFor="mobile" className="switch-options"><input type="radio" name="platform" id="mobile"/>
+                <label htmlFor="mobile" className="switch-options"><input type="radio" name="platform" id="mobile" onChange={() => {setPlatform("ios,android")}} />
                     <img src={mobile} alt="mobile"/> Мобильные
                 </label>
             </div>
