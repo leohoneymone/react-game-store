@@ -124,7 +124,7 @@ const StorePage = () => {
 
                     <div className="tile-control-selects">
                         <CustomSelect data={customSelectSortingOptions} value={sort} select={setSort} />
-                        <p className="tile-per-page-title">Плиток на странице:</p>
+                        <p className="tile-per-page-title">Игр на странице:</p>
                         <CustomSelect data={customSelectTilesPerPageOptions} value={tpp} select={setTpp} /> 
                     </div>
 
