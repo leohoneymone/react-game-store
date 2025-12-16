@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 import { useStoreContext } from "../../utils/context";
 
@@ -34,6 +34,7 @@ const StorePage = () => {
     const[loading, setLoading] = useState<boolean>(false);
 
     // Состояния для работы с выборкой
+    const[search, setSearch] = useState<string>(""); 
     const[platform, setPlatform] = useState<string>("all");
     const[genres, setGenres] = useState<SearchTerm[]>([]);
     const[tags, setTags] = useState<SearchTerm[]>([]);
@@ -54,6 +55,9 @@ const StorePage = () => {
     // Результаты выборки
     const[gamesCount, setGamesCount] = useState<number>(0);
     const[games, setGames] = useState<Game[]>([]);
+
+    // Реф поля поиска игр
+    const searchRef = useRef<HTMLInputElement>(null);
  
     // Подгрузка элементов выборки
     // Дополнительная обработка текста для лучшего отображения в полях
@@ -71,6 +75,12 @@ const StorePage = () => {
             setLoading(false);
         });
     }, []);
+
+    // Работа с поисковой строкой
+    const handleSearchBar = (e:React.KeyboardEvent<HTMLInputElement>): void => {
+        if(e.key !== "Enter") return;
+        setSearch(searchRef.current ? searchRef.current.value : "");
+    }
 
     return <div className="page-content">
 
@@ -96,7 +106,7 @@ const StorePage = () => {
                 </label>
             </div>
 
-            <input type="text" placeholder="Поиск игры..." className="search-bar"/>
+            <input type="text" placeholder="Поиск (введите и нажмите Enter)" className="search-bar" onKeyDown={handleSearchBar} ref={searchRef}/>
 
             <a href="#" className="store-control-links"> <img src={cart} alt="cart" /> Корзина</a>
 
