@@ -30,6 +30,9 @@ const StorePage = () => {
     // Контекст для управления темой
     const {theme, setTheme} = useStoreContext();
 
+    // Cостояние загрузки
+    const[loading, setLoading] = useState<boolean>(false);
+
     // Состояния для работы с выборкой
     const[genres, setGenres] = useState<SearchTerm[]>([]);
     const[tags, setTags] = useState<SearchTerm[]>([]);
@@ -54,6 +57,8 @@ const StorePage = () => {
     // Подгрузка элементов выборки
     // Дополнительная обработка текста для лучшего отображения в полях
     useEffect(() => {
+        setLoading(true);
+
         getGenres().then(data => setGenres(data.map(item => item.name === "Massively Multiplayer" ? {...item, name: "MMO"} : item)));
 
         getTags().then(data => setTags(data.map(item => item.name === "steam-trading-cards" ? {...item, name: "Steam Cards"} : item).filter(item => item.name !== "Partial Controller Support")));
@@ -62,6 +67,7 @@ const StorePage = () => {
             setGamesCount(data.count);
             setGames(data.games);
             setPagesNum(Math.ceil(data.count / +tpp));
+            setLoading(false);
         });
     }, []);
 
@@ -132,11 +138,9 @@ const StorePage = () => {
 
                 </div>
 
-                <div className="tile-content">
-
+                { loading ? <Preloader /> : <div className="tile-content">
                     {games.map(item => <GameTile key={item.slug} {...item}/>)}
-
-                </div>
+                </div>}
 
                 <div className="tile-control-row under-tiles">
                     <Pagination page={page} total={pagesNum} select={selectPage}/>
