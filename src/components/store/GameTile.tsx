@@ -33,7 +33,7 @@ const formatDate = (str: string): string => {
  * @param {string} release дата выхода игры формата ISO 8601
  * @returns JSX разметка тайла с информацией о игре
  */
-const GameTile = ({ name, slug, genres, tags, background, screenshots, platforms, release }: Game) => {
+const GameTile = ({ name, slug, genres, tags, screenshots, platforms, release }: Game) => {
 
     // Состояние источника картинки
     const[imgIndex, setImgIndex] = useState<number>(0);

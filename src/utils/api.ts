@@ -16,7 +16,6 @@ export interface Game {
     slug: string,
     genres: string[],
     tags: string[],
-    background: string,
     screenshots: string[],
     platforms: string[],
     release: string,
@@ -87,7 +86,7 @@ export const getTags = (): Promise<SearchTerm[]> => {
  * @returns {Promise<GameData[]>} промис формата GameData, содержащий список игр и их количество
  */
 export const getGames = (): Promise<GameData> => {
-    return rawrApiRequest(Endpoints.games, '&page_size=10')
+    return rawrApiRequest(Endpoints.games, '&page_size=12')
         .then(data => {
             return {
                 count: data.count,
@@ -97,7 +96,6 @@ export const getGames = (): Promise<GameData> => {
                         slug: item.slug,
                         genres: item.genres.map(g => g?.name),
                         tags: item.tags.map(t => t?.name),
-                        background: item.background_image,
                         screenshots: item.short_screenshots.map(i => i?.image),  
                         platforms: item.parent_platforms.map(p => p.platform?.name),
                         release: item.released,
