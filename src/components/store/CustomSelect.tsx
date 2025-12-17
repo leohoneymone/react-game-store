@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { CustomSelectType } from "../../utils/misc";
 
 // Тип пропсов для селектора
@@ -20,11 +20,31 @@ type CustomSelectProps = {
 const CustomSelect = ({data, value, select}: CustomSelectProps) => { 
     
     // Состояния
-    const[opened, toggleOpened] = useState<boolean>(false);    
+    const[opened, toggleOpened] = useState<boolean>(false);
+    
+    // Реф компонента для проверки нажатия
+    const selectRef = useRef<HTMLDivElement>(null);
 
-    return <div className="custom-select">
+    // Проверка на нажатие внутри контейнера - если нажат извне, то селект закрывается
+    const handleClickPositionCheck = (e: MouseEvent): void => {
+        if(selectRef.current && e.target instanceof Node && !selectRef.current.contains(e.target)){
+            toggleOpened(false);
+        }
+    }
 
-        <div className="custom-select-selected" onClick={() => {toggleOpened(!opened)}}>
+    // Регистрация event listener дял проверки нажатия на компонент
+    useEffect(() => {
+        const callback = (e: MouseEvent) => handleClickPositionCheck(e);
+        document.addEventListener('mousedown', callback);
+
+        return () => {
+            document.removeEventListener('mousedown', callback);
+        }
+    }, [])
+
+    return <div className="custom-select" ref={selectRef}>
+
+        <div className="custom-select-selected" onClick={() => {toggleOpened(true)}}>
             <p>{data.find(item => item.value === value)?.name || ""}</p>
             <span className={opened ? "active" : undefined}>▼</span>
         </div>

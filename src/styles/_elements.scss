@@ -51,6 +51,7 @@ button{
     .custom-select-options{
         width: 100%;
         position: absolute;
+        z-index: 3;
         @include m.elements-background();
         padding: 0;
         border-radius: 0 0 0.3rem 0.3rem;
