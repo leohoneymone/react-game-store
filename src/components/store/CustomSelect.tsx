@@ -44,7 +44,7 @@ const CustomSelect = ({data, value, select}: CustomSelectProps) => {
 
     return <div className="custom-select" ref={selectRef}>
 
-        <div className="custom-select-selected" onClick={() => {toggleOpened(true)}}>
+        <div className="custom-select-selected" onClick={() => {toggleOpened(!opened)}}>
             <p>{data.find(item => item.value === value)?.name || ""}</p>
             <span className={opened ? "active" : undefined}>▼</span>
         </div>
