@@ -70,6 +70,7 @@ const StorePage = () => {
 
     }, []);
 
+    // Поиск данных по заданным параметрам
     useEffect(() => {
         getGames(+tpp, page, platform, selDates, selGenres, selTags, sort, search).then(data => {
             setGamesCount(data.count);
@@ -77,7 +78,12 @@ const StorePage = () => {
             setPagesNum(Math.ceil(data.count / +tpp));
             setLoading(false);
         });
-    }, [page, tpp, platform, selDates, selGenres, selTags, sort, search]);
+    }, [page, tpp]);
+
+    // Сброс на первую страницу при изменении параметров поиска. Также вызывает поиск по заданным параметрам
+    useEffect(() => {
+        selectPage(1)
+    }, [platform, selDates, selGenres, selTags, sort, search]); 
 
     // Работа с поисковой строкой
     const handleSearchBar = (e:React.KeyboardEvent<HTMLInputElement>): void => {
