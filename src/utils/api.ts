@@ -83,10 +83,34 @@ export const getTags = (): Promise<SearchTerm[]> => {
 /**
  * Функция для получения списка игр по параметрам выборки
  * 
+ * @param {number} tilesOnPage количество плиток на странице. По умолчанию 12
+ * @param {number} page номер страницы. По умолчанию 1
+ * @param {string} platform выбранная платформа 
+ * @param {number[]} dates параметры даты выхода. Массив из ID значений, обрабатывается особым образом внутри функции
+ * @param {number[]} genres выбранные жанры. Массив из ID значений
+ * @param {number[]} tags выбранные пользовательские теги. Массив из ID значений
+ * @param {string} sort порядок сортировки, согласно API
+ *  
  * @returns {Promise<GameData[]>} промис формата GameData, содержащий список игр и их количество
  */
-export const getGames = (): Promise<GameData> => {
-    return rawrApiRequest(Endpoints.games, '&page_size=12')
+export const getGames = (tilesOnPage:number = 12, page: number = 1, platform:string, dates: number[], genres: number[], tags: number[], sort: string): Promise<GameData> => {
+
+    let getParams: string = `&page_size=${tilesOnPage}&page=${page}`;
+
+    // Платформа
+    getParams += platform !== '0' ? `&parent_platforms=${platform}` : '';
+
+    // Жанры
+    getParams += genres.length ? `&genres=${genres.join(',')}` : '';
+
+    // теги
+    getParams += tags.length ? `&tags=${tags.join(',')}` : '';
+
+    // Порядок сортировки
+    getParams += `&ordering=${sort}`;
+    
+
+    return rawrApiRequest(Endpoints.games, getParams)
         .then(data => {
             return {
                 count: data.count,

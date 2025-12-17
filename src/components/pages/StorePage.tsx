@@ -35,7 +35,7 @@ const StorePage = () => {
 
     // Состояния для работы с выборкой
     const[search, setSearch] = useState<string>(""); 
-    const[platform, setPlatform] = useState<string>("all");
+    const[platform, setPlatform] = useState<string>('0');
     const[genres, setGenres] = useState<SearchTerm[]>([]);
     const[tags, setTags] = useState<SearchTerm[]>([]);
 
@@ -50,10 +50,10 @@ const StorePage = () => {
     // Пагинация
     const[tpp, setTpp] = useState<string>(customSelectTilesPerPageOptions[0].value);
     const[page, selectPage] = useState<number>(1);
-    const[pagesNum, setPagesNum] = useState<number>(10);
 
     // Результаты выборки
     const[gamesCount, setGamesCount] = useState<number>(0);
+    const[pagesNum, setPagesNum] = useState<number>(0);
     const[games, setGames] = useState<Game[]>([]);
 
     // Реф поля поиска игр
@@ -68,13 +68,16 @@ const StorePage = () => {
 
         getTags().then(data => setTags(data.map(item => item.name === "steam-trading-cards" ? {...item, name: "Steam Cards"} : item).filter(item => item.name !== "Partial Controller Support")));
 
-        getGames().then(data => {
+    }, []);
+
+    useEffect(() => {
+        getGames(+tpp, page, platform, selDates, selGenres, selTags, sort).then(data => {
             setGamesCount(data.count);
             setGames(data.games);
             setPagesNum(Math.ceil(data.count / +tpp));
             setLoading(false);
         });
-    }, []);
+    }, [page, tpp, platform, selDates, selGenres, selTags, sort]);
 
     // Работа с поисковой строкой
     const handleSearchBar = (e:React.KeyboardEvent<HTMLInputElement>): void => {
@@ -86,22 +89,22 @@ const StorePage = () => {
 
         <div className="store-control-row">
             <div className="switch-block">
-                <label htmlFor="all" className="switch-options"><input type="radio" name="platform" id="all"  onChange={() => {setPlatform("all")}} defaultChecked={true}/>
+                <label htmlFor="all" className="switch-options"><input type="radio" name="platform" id="all"  onChange={() => {setPlatform('0')}} defaultChecked={true}/>
                     <img src={gamepad} alt="gamepad"/> Все
                 </label>
-                <label htmlFor="steam" className="switch-options"><input type="radio" name="platform" id="steam" onChange={() => {setPlatform("pc")}} />
+                <label htmlFor="steam" className="switch-options"><input type="radio" name="platform" id="steam" onChange={() => {setPlatform('1')}} />
                     <img src={steam} alt="steam"/> Steam
                 </label>
-                <label htmlFor="ps" className="switch-options"><input type="radio" name="platform" id="ps" onChange={() => {setPlatform("playstation")}} />
+                <label htmlFor="ps" className="switch-options"><input type="radio" name="platform" id="ps" onChange={() => {setPlatform('2')}} />
                     <img src={ps} alt="ps"/> PS5
                 </label>
-                <label htmlFor="xbox" className="switch-options"><input type="radio" name="platform" id="xbox" onChange={() => {setPlatform("xbox")}} />
+                <label htmlFor="xbox" className="switch-options"><input type="radio" name="platform" id="xbox" onChange={() => {setPlatform('3')}} />
                     <img src={xbox} alt="xbox"/> Xbox
                 </label>
-                <label htmlFor="switch" className="switch-options"><input type="radio" name="platform" id="switch" onChange={() => {setPlatform("nintendo")}} />
+                <label htmlFor="switch" className="switch-options"><input type="radio" name="platform" id="switch" onChange={() => {setPlatform('7')}} />
                     <img src={nswitch} alt="nswitch"/> Switch
                 </label>
-                <label htmlFor="mobile" className="switch-options"><input type="radio" name="platform" id="mobile" onChange={() => {setPlatform("ios,android")}} />
+                <label htmlFor="mobile" className="switch-options"><input type="radio" name="platform" id="mobile" onChange={() => {setPlatform("4,8")}} />
                     <img src={mobile} alt="mobile"/> Мобильные
                 </label>
             </div>
