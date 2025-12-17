@@ -30,5 +30,5 @@ export const customSelectSortingOptions: CustomSelectType[] = [
 export const customSelectTilesPerPageOptions:  CustomSelectType[] = [
     {id: 1, name: "12", value: "12"},
     {id: 2, name: "24", value: "24"},
-    {id: 3, name: "48", value: "48"}
+    {id: 3, name: "36", value: "36"}
 ];
