@@ -71,13 +71,13 @@ const StorePage = () => {
     }, []);
 
     useEffect(() => {
-        getGames(+tpp, page, platform, selDates, selGenres, selTags, sort).then(data => {
+        getGames(+tpp, page, platform, selDates, selGenres, selTags, sort, search).then(data => {
             setGamesCount(data.count);
             setGames(data.games);
             setPagesNum(Math.ceil(data.count / +tpp));
             setLoading(false);
         });
-    }, [page, tpp, platform, selDates, selGenres, selTags, sort]);
+    }, [page, tpp, platform, selDates, selGenres, selTags, sort, search]);
 
     // Работа с поисковой строкой
     const handleSearchBar = (e:React.KeyboardEvent<HTMLInputElement>): void => {

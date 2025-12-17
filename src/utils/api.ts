@@ -90,10 +90,11 @@ export const getTags = (): Promise<SearchTerm[]> => {
  * @param {number[]} genres выбранные жанры. Массив из ID значений
  * @param {number[]} tags выбранные пользовательские теги. Массив из ID значений
  * @param {string} sort порядок сортировки, согласно API
+ * @param {string} search запрос из посиковой строки
  *  
  * @returns {Promise<GameData[]>} промис формата GameData, содержащий список игр и их количество
  */
-export const getGames = (tilesOnPage:number = 12, page: number = 1, platform:string, dates: number[], genres: number[], tags: number[], sort: string): Promise<GameData> => {
+export const getGames = (tilesOnPage:number = 12, page: number = 1, platform:string, dates: number[], genres: number[], tags: number[], sort: string, search: string): Promise<GameData> => {
 
     let getParams: string = `&page_size=${tilesOnPage}&page=${page}`;
 
@@ -108,7 +109,9 @@ export const getGames = (tilesOnPage:number = 12, page: number = 1, platform:str
 
     // Порядок сортировки
     getParams += `&ordering=${sort}`;
-    
+
+    // Поисковой запрос
+    getParams += search ? `&search=${search}` : '';
 
     return rawrApiRequest(Endpoints.games, getParams)
         .then(data => {
