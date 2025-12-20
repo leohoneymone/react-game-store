@@ -1,7 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
 
-import { useStoreContext } from "../../utils/context";
-
 // API
 import { SearchTerm, Game, GameData, getGenres, getTags, getGames } from "../../utils/api";
 
@@ -14,12 +12,11 @@ import ps from '../../assets/icons/ps.png';
 import xbox from '../../assets/icons/xbox.png';
 import nswitch from '../../assets/icons/switch.png';
 import mobile from '../../assets/icons/mobile.png';
-import sun from '../../assets/icons/sun.png';
-import moon from '../../assets/icons/moon.png';
 import dice from '../../assets/icons/dice.png';
 import cart from '../../assets/icons/cart.png';
 
 // Компоненты
+import ThemeToggler from "../common/ThemeToggler";
 import SelectBlock from "../store/SelectBlock";
 import Preloader from "../layout/Preloader";
 import CustomSelect from "../store/CustomSelect";
@@ -27,8 +24,6 @@ import Pagination from "../store/Pagination";
 import GameTile from "../store/GameTile";
 
 const StorePage = () => {
-    // Контекст для управления темой
-    const {theme, setTheme} = useStoreContext();
 
     // Cостояние загрузки
     const[loading, setLoading] = useState<boolean>(false);
@@ -134,14 +129,8 @@ const StorePage = () => {
 
             <a href="#" className="store-control-links">Приобретённые</a>
 
-            <div className="switch-block">
-                <label htmlFor="light" className="switch-options"><input type="radio" name="theme" id="light" checked={theme === "light"} onChange={() => {setTheme("light")}}/>
-                    <img src={sun} alt="sun" />
-                </label>
-                <label htmlFor="dark" className="switch-options"><input type="radio" name="theme" id="dark" checked={theme === "dark"} onChange={() => {setTheme("dark")}}/>
-                    <img src={moon} alt="moon" />
-                </label>
-            </div>
+            <ThemeToggler/>
+
         </div>
 
         <div className="store-content-block">
