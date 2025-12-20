@@ -36,7 +36,7 @@ const Pagination = ({page, total, select}: PaginationProps) => {
 
         {page + 4 < total ? <button className="disabled">...</button> : null}
 
-        {total > 1 ? <button className={page === total ? "selected right" : "right"} onClick={() => {select(total)}}>{total}</button> : null}
+        {total > 1 ? <button className={`right ${page === total ? "selected" : ""} ${page + 4 >= total ? "" : "disabled"}`}  onClick={() => {select(total)}}>{total}</button> : null}
         
     </div>
 }
