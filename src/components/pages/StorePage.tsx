@@ -53,7 +53,7 @@ const StorePage = () => {
 
     // Результаты выборки
     const[gamesCount, setGamesCount] = useState<number>(0);
-    const[pagesNum, setPagesNum] = useState<number>(0);
+    const[pagesNum, setPagesNum] = useState<number | null>(null);
     const[games, setGames] = useState<Game[]>([]);
 
     // Реф поля поиска игр
@@ -90,6 +90,7 @@ const StorePage = () => {
     // Сброс на первую страницу при изменении параметров поиска. Также вызывает поиск по заданным параметрам
     useEffect(() => {
         setLoading(true);
+        setPagesNum(null);
         if(page !== 1){
             selectPage(1);
         } else {
@@ -151,9 +152,11 @@ const StorePage = () => {
                     <img src={dice} alt="dice" /> Мне повезёт!
                 </button>
 
-                <SelectBlock title={"Дата выхода"} data={releaseOptionsList} select={selectDates} toggleable={false}/>
-                <SelectBlock title={"Жанры"} data={genres} select={selectGenres} toggleable={true}/>
-                <SelectBlock title={"Теги"} data={tags} select={selectTags} toggleable={true}/>
+                { (genres.length && tags.length) ? <>
+                    <SelectBlock title={"Дата выхода"} data={releaseOptionsList} select={selectDates} toggleable={false}/>
+                    <SelectBlock title={"Жанры"} data={genres} select={selectGenres} toggleable={true}/>
+                    <SelectBlock title={"Теги"} data={tags} select={selectTags} toggleable={true}/>
+                </> : null}
             </div>
 
             <div className="store-tile-container">
@@ -166,7 +169,7 @@ const StorePage = () => {
                         <CustomSelect data={customSelectTilesPerPageOptions} value={tpp} select={setTpp} /> 
                     </div>
 
-                    <Pagination page={page} total={pagesNum} select={selectPage}/>
+                    { pagesNum !== null ? <Pagination page={page} total={pagesNum} select={selectPage}/> : null }
 
                 </div>
 
@@ -174,10 +177,10 @@ const StorePage = () => {
                     {games.map(item => <GameTile key={item.slug} {...item}/>)}
                 </div>}
 
-                <div className="tile-control-row under-tiles">
+                { pagesNum !== null ? <div className="tile-control-row under-tiles">
                     <Pagination page={page} total={pagesNum} select={selectPage}/>
                     <p className="results-count">Найдено {gamesCount} результатов</p>
-                </div>
+                </div> : null }
 
             </div>
 
