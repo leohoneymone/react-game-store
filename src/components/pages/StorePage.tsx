@@ -70,19 +70,31 @@ const StorePage = () => {
 
     }, []);
 
-    // Поиск данных по заданным параметрам
-    useEffect(() => {
+
+    // Функция для получения данных с сервера по заданным параметрам
+    const gamesRequest = ():void => {
         getGames(+tpp, page, platform, selDates, selGenres, selTags, sort, search).then(data => {
             setGamesCount(data.count);
             setGames(data.games);
             setPagesNum(Math.ceil(data.count / +tpp));
             setLoading(false);
         });
+    }
+
+    // Пагинация 
+    useEffect(() => {
+        setLoading(true);
+        gamesRequest();
     }, [page, tpp]);
 
     // Сброс на первую страницу при изменении параметров поиска. Также вызывает поиск по заданным параметрам
     useEffect(() => {
-        selectPage(1)
+        setLoading(true);
+        if(page !== 1){
+            selectPage(1);
+        } else {
+            gamesRequest();
+        }
     }, [platform, selDates, selGenres, selTags, sort, search]); 
 
     // Работа с поисковой строкой
