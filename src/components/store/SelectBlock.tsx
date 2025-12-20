@@ -28,6 +28,9 @@ const SelectBlock = ({title, toggleable, select, data}: SelectBlockProps) => {
     // Раскрытие / сворачивание списка
     const[opened, toggleOpened] = useState<boolean>(false);
 
+    // Первый рендер
+    const[firstRender, setFirstRender] = useState<boolean>(true);
+
     // Cписок выбранных значений
     const [items, setItems] = useState<number[]>([]);
 
@@ -46,6 +49,11 @@ const SelectBlock = ({title, toggleable, select, data}: SelectBlockProps) => {
 
     // ОБновление списка 
     useEffect(() => {
+        if(firstRender){
+            setFirstRender(false);
+            return;
+        }
+
         select(items);
     }, [items]);
 
