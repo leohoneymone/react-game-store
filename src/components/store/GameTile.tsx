@@ -45,6 +45,9 @@ const GameTile = ({ name, slug, genres, tags, screenshots, platforms, release }:
     const handleMouseEnter = ():void => {
         if(intervalRef.current) return;
 
+        // Если скриншоты отстутствуют
+        if(screenshots.length <= 1) return;
+
         setImgIndex(1);
         intervalRef.current = setInterval(() => {
             setImgIndex(prev => (prev + 1 < screenshots.length) ? prev + 1 : 1);
