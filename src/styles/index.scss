@@ -490,6 +490,7 @@ footer{
     @include m.elements-background();
     padding: 0;
     width: 100%;
+    max-height: 500px;
     transition: v.$transition-hover;
 
     // Наведение
