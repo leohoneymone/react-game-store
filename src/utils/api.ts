@@ -1,5 +1,7 @@
 // Конфигурация
 
+import { processReleaseDateInterval } from "./misc";
+
 const url = process.env.RAWG_API_URL || '';
 const apikey = process.env.RAWG_API_KEY || '';
 
@@ -98,6 +100,11 @@ export const getGames = (tilesOnPage:number = 12, page: number = 1, platform:str
 
     let getParams: string = `&page_size=${tilesOnPage}&page=${page}`;
 
+    // Даты выхода
+    if(dates.length) {
+        getParams += `&dates=${processReleaseDateInterval(dates)}`;
+    }
+
     // Платформа
     getParams += platform !== '0' ? `&parent_platforms=${platform}` : '';
 
@@ -121,9 +128,9 @@ export const getGames = (tilesOnPage:number = 12, page: number = 1, platform:str
                     return {
                         name: item.name,
                         slug: item.slug,
-                        genres: item.genres.map(g => g?.name),
-                        tags: item.tags.map(t => t?.name),
-                        screenshots: item.short_screenshots.map(i => i?.image),  
+                        genres: item?.genres?.map(g => g?.name) ?? [],
+                        tags: item?.tags?.map(t => t?.name) ?? [],
+                        screenshots: item?.short_screenshots?.map(i => i?.image) ?? [],  
                         platforms: item.parent_platforms.map(p => p.platform?.name),
                         release: item.released,
                     }

@@ -32,3 +32,63 @@ export const customSelectTilesPerPageOptions:  CustomSelectType[] = [
     {id: 2, name: "24", value: "24"},
     {id: 3, name: "36", value: "36"}
 ];
+
+
+/**
+ * Функция для рассчёта интервала дат выхода. На основе выбранных параметров подбирает минимальную начальную и максимальную конечную дату для интервала
+ * 
+ * @param dates массив выбранных ID дат выхода, обозначенных в формате SearchTerm
+ * @returns подстрока, встраиваемая в запрос на сервер
+ */
+export const processReleaseDateInterval = (dates: number[]):string => {
+    
+    // Переменные и константы с датами
+    const d: Date = new Date();
+    let start: Date = new Date(d);
+    let end: Date = new Date(d);
+
+    /**
+     * Функция для форматирования даты в нужный формат строки
+     * 
+     * @param {Date} date объект даты
+     * @returns {string} отформатированная для запроса строка
+     */
+    const formatDate = (date: Date): string => {
+        const year: string = date.getFullYear().toString();
+        const month: string = date.getMonth() >= 9 ? (date.getMonth() + 1).toString() : `0${date.getMonth() + 1}`;
+        const day: string = date.getDate() >= 10 ? date.getDate().toString() : `0${date.getDate()}`;
+        return `${year}-${month}-${day}`;
+    };
+
+    // Новинки (вышедшие за последний месяц игры)
+    if (dates.includes(1)){
+        start.setMonth(d.getMonth() - 1);
+    }
+
+    // Игры, вышедшие в этом году
+    if(dates.includes(2)){
+        start = new Date(d.getFullYear(), 0, 1);
+    }
+
+    // Игры старше 1 года
+    if(dates.includes(3)){
+        start = new Date(1970, 0, 1);
+
+        // Если другие параметры не установлены
+        if(!dates.includes(1) && !dates.includes(2) && !dates.includes(4)){
+            end.setFullYear(d.getFullYear() - 1);
+        }
+    }
+
+    // Будущие релизы (на год вперёд)
+    if(dates.includes(4)){
+        end.setFullYear(d.getFullYear() + 1);
+
+        // Если остальные параметры не установлены
+        if(!dates.includes(1) && !dates.includes(2) && !dates.includes(3)){
+            start = d;
+        }
+    }
+
+    return `${formatDate(start)},${formatDate(end)}`;
+}
