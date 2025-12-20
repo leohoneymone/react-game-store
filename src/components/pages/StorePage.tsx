@@ -35,7 +35,7 @@ const StorePage = () => {
 
     // Состояния для работы с выборкой
     const[search, setSearch] = useState<string>(""); 
-    const[platform, setPlatform] = useState<string>('0');
+    const[platform, setPlatform] = useState<string>('1,2,3,4,7,8');
     const[genres, setGenres] = useState<SearchTerm[]>([]);
     const[tags, setTags] = useState<SearchTerm[]>([]);
 
@@ -107,7 +107,7 @@ const StorePage = () => {
 
         <div className="store-control-row">
             <div className="switch-block">
-                <label htmlFor="all" className="switch-options"><input type="radio" name="platform" id="all"  onChange={() => {setPlatform('0')}} defaultChecked={true}/>
+                <label htmlFor="all" className="switch-options"><input type="radio" name="platform" id="all"  onChange={() => {setPlatform('1,2,3,4,7,8')}} defaultChecked={true}/>
                     <img src={gamepad} alt="gamepad"/> Все
                 </label>
                 <label htmlFor="steam" className="switch-options"><input type="radio" name="platform" id="steam" onChange={() => {setPlatform('1')}} />
