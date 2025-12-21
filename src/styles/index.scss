@@ -588,11 +588,11 @@ footer{
             }
         }
 
-        
+        // Колонки для размещенияч контента внутри
         .info-page-column{
             display: inherit;
             flex-direction: column;
-            gap: inherit;
+            gap: 1.5rem;
 
             // Левая колонка
             &.left{
