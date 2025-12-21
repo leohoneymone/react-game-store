@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 
 // API
-import { SearchTerm, Game, GameData, getGenres, getTags, getGames } from "../../utils/api";
+import { SearchTerm, Game, getGenres, getTags, getGames } from "../../utils/api";
 
 import { customSelectSortingOptions, customSelectTilesPerPageOptions, releaseOptionsList } from "../../utils/misc";
 
