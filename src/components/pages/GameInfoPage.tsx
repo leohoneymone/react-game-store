@@ -115,7 +115,7 @@ const GameInfoPage = () => {
                                 case 1: return <a href={item.url} target="_blank" rel="noreferrer" key={item.url} className="store-link"> <img src={steam} alt="steam"/> Steam</a>
                                 case 2: return <a href={item.url} target="_blank" rel="noreferrer" key={item.url} className="store-link"> <img src={xbox} alt="xbox"/> Microsoft Store</a>               
                                 case 3: return <a href={item.url} target="_blank" rel="noreferrer" key={item.url} className="store-link"> <img src={ps} alt="ps"/> PlayStation Store</a>
-                                case 6: return <a href={item.url} target="_blank" rel="noreferrer" key={item.url} className="store-link"> <img src={ps} alt="ps"/> Nintendo E-Shop</a>
+                                case 6: return <a href={item.url} target="_blank" rel="noreferrer" key={item.url} className="store-link"> <img src={nswitch} alt="nswitch"/> Nintendo E-Shop</a>
                                 case 4: return <a href={item.url} target="_blank" rel="noreferrer" key={item.url} className="store-link"> <img src={mobile} alt="mobile"/> App Store</a>
                                 case 8: return <a href={item.url} target="_blank" rel="noreferrer" key={item.url} className="store-link"> <img src={mobile} alt="mobile"/> Play Market</a>
                                 
