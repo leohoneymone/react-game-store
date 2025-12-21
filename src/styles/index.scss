@@ -587,6 +587,24 @@ footer{
                 color: var(--primary);
             }
         }
+
+        
+        .info-page-column{
+            display: inherit;
+            flex-direction: column;
+            gap: inherit;
+
+            // Левая колонка
+            &.left{
+                width: calc(75% - 1rem);
+            }
+
+            // Правая колонка
+            &.right{
+                width: 25%;
+            }
+        }
+
     }
 }
 
@@ -595,7 +613,6 @@ footer{
     @include m.elements-background();
     display: flex;
     flex-direction: column;
-    width: 75%;
     gap: 1rem;
 
     .selected-screenshot{

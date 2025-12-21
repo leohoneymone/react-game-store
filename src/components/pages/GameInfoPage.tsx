@@ -74,11 +74,18 @@ const GameInfoPage = () => {
 
             <div className="info-page-row">
 
-                <Screenshots images={screenshots} />
+                <div className="info-page-column left">
 
-                <div className="purchase-controls rigth-panel">
+                    <Screenshots images={screenshots} />
 
                 </div>
+                
+                <div className="info-page-column right">
+
+                    <button>Добавить в корзину</button>
+
+                </div>
+
             </div>
 
         </div>
