@@ -1,10 +1,22 @@
 import React, {useEffect, useState} from "react";
-import { useParams } from "react-router-dom";
-import { Achievements, GameFullData, GameStore, getFullGameInfo, getGameAchievements, getGameScreenshots, getGameStores } from "../../utils/api";
-import Breadcrumbs from "../common/Breadcrumbs";
+import { useNavigate, useParams } from "react-router-dom";
 
+// API
+import { Achievements, GameFullData, GameStore, getFullGameInfo, getGameAchievements, getGameScreenshots, getGameStores } from "../../utils/api";
+
+// Компоненты
+import ThemeToggler from "../common/ThemeToggler";
+import Breadcrumbs from "../common/Breadcrumbs";
+import Preloader from "../layout/Preloader";
+import Screenshots from "../gameinfo/Screenshots";
 
 const GameInfoPage = () => {
+
+    // Для навигаци
+    const nav = useNavigate();
+
+    // Cостояние загрузки
+    const[loading, setLoading] = useState<boolean>(true);
 
     // Алиас для поиска данных о игре
     const slug: string = useParams().slug || "";
@@ -38,12 +50,41 @@ const GameInfoPage = () => {
         // Достижения
         getGameAchievements(slug, 1).then(data => {
             setAchievements(data);
+        }).then(data => {
+            setLoading(false); 
         })
 
     }, [gameInfo]);
 
     return <div className="page-content">
-        <Breadcrumbs url={`/#/game/${slug}`} name={gameInfo?.name || ""}/>
+        
+        {loading ? <Preloader /> : <div className="game-info-page-content">
+
+            <div className="info-page-row">
+                <Breadcrumbs url={`/game/${slug}`} name={gameInfo?.name || ""}/>
+
+                <a className="go-back" onClick={() => {nav(-1)}}> ← Назад</a>
+            </div>
+
+            <div className="info-page-row">
+                <h1>{gameInfo?.name}</h1>
+
+                    <ThemeToggler />
+            </div>
+
+            <div className="info-page-row">
+
+                <Screenshots images={screenshots} />
+
+                <div className="purchase-controls rigth-panel">
+
+                </div>
+            </div>
+
+        </div>
+
+        }
+
     </div>
 
 }
