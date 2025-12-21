@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 // API
 import { Achievements, GameFullData, GameStore, getFullGameInfo, getGameAchievements, getGameScreenshots, getGameStores } from "../../utils/api";
+import { formatDate } from "../../utils/misc";
 
 // Иконки
 import cart from '../../assets/icons/cart.png';
@@ -94,7 +95,15 @@ const GameInfoPage = () => {
                     </div>
 
                     <div className="game-info-block">
-
+                        <h3>Информация о игре:</h3>
+                        <p><b>Дата релиза:</b> {formatDate(gameInfo?.release || '')}</p>
+                        <p><b>Разрботчик:</b> {gameInfo?.developers.map((item, index) => gameInfo.developers.length - 1 !== index ? `${item.name} / `: item.name)}</p>
+                        <p className="with-mb"><b>Издатель:</b> {gameInfo?.publishers.map((item, index) => gameInfo.publishers.length - 1 !== index ? `${item.name} / `: item.name)}</p>
+                        <p className="with-mb"><b>Жанры:</b> {gameInfo?.genres.map((item, index) => gameInfo.genres.length - 1 !== index ? `${item} / `: item)} </p>
+                        
+                        <div className="tags-container"><b>Теги:</b> 
+                            {gameInfo?.tags.map(item => <span key={item} className="tag-item">{item}</span>)}
+                        </div>
                     </div>
 
                 </div>

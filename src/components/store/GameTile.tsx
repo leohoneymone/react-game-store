@@ -2,22 +2,14 @@ import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Game } from "../../utils/api";
 
+import { formatDate } from "../../utils/misc";
+
 // Иконки платформ
 import steam from '../../assets/icons/steam.png';
 import ps from '../../assets/icons/ps.png';
 import xbox from '../../assets/icons/xbox.png';
 import nswitch from '../../assets/icons/switch.png';
 import mobile from '../../assets/icons/mobile.png';
-
-/**
- * Функция, форматирующая строку из формата ISO 8601 в более человекопонятный вид для отображения внутри тайла ("плитки")
- * 
- * @param {string} str - дата в формате ISO 8601
- * @returns - возвращаемая строка даты и времени на русском языке
- */
-const formatDate = (str: string): string => {
-    return new Date(str).toLocaleDateString("ru", {year: 'numeric',  month: 'short',  day: 'numeric'});
-}
 
 /**
  * Компонент, реализующий логику работы тайла с игрой

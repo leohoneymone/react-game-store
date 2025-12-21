@@ -92,3 +92,13 @@ export const processReleaseDateInterval = (dates: number[]):string => {
 
     return `${formatDate(start)},${formatDate(end)}`;
 }
+
+/**
+ * Функция, форматирующая строку из формата ISO 8601 в более человекопонятный вид для отображения внутри тайла ("плитки")
+ * 
+ * @param {string} str - дата в формате ISO 8601
+ * @returns - возвращаемая строка даты и времени на русском языке
+ */
+export const formatDate = (str: string): string | null => {
+    return str ? new Date(str).toLocaleDateString("ru", {year: 'numeric',  month: 'short',  day: 'numeric'}) : null;
+}

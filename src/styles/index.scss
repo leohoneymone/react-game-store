@@ -683,6 +683,9 @@ footer{
 .game-info-block{
     @include m.elements-background();
     text-align: justify;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 
     &.description-block{
         font-size: 1.25rem;
@@ -691,5 +694,30 @@ footer{
     h3, h4{
         font-size: 1.25rem;
         margin-bottom: 1rem;
+    }
+
+    p{
+        color: var(--secondary);
+
+        &.with-mb{
+            margin-bottom: 1rem;
+        }
+
+        b{
+            color: var(--primary);
+        }
+    }
+
+    // Теги
+    .tags-container{
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        align-items: center;
+
+        .tag-item{
+            @include m.elements-background();
+            padding: 0.3rem 0.5rem;
+        }
     }
 }
