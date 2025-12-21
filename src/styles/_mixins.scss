@@ -98,3 +98,17 @@
         }
     }
 }
+
+// Миксин для настройки полосы прокрутки
+@mixin scrollbar-options(){
+    &::-webkit-scrollbar{
+        background: transparent;
+        width: 6px;
+        height: 6px;
+    }
+    &::-webkit-scrollbar-thumb{
+        border-radius: 3px;
+        background: var(--secondary);
+        cursor: grab;
+    }
+}

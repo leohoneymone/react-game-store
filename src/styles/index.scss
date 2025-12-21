@@ -38,6 +38,19 @@
 html{
     font-family: 'Jost', sans-serif;
     font-size: 13pt;
+    scroll-behavior: smooth;
+    
+    // Полоса прокрутки
+    &::-webkit-scrollbar{
+        background: transparent;
+        width: 6px;
+        height: 6px;
+    }
+    &::-webkit-scrollbar-thumb{
+        border-radius: 3px;
+        background: v.$color-secondary-light;
+        cursor: grab;
+    }
 }
 
 // Заголовок и его содержимое
@@ -595,6 +608,8 @@ footer{
         display: flex;
         gap: inherit;
         overflow-x: scroll;
+        @include m.scrollbar-options();
+        padding-bottom: 0.5rem;
         .screenshot-item{
             width: 250px;
             border-radius: inherit;
