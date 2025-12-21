@@ -4,11 +4,21 @@ import { useNavigate, useParams } from "react-router-dom";
 // API
 import { Achievements, GameFullData, GameStore, getFullGameInfo, getGameAchievements, getGameScreenshots, getGameStores } from "../../utils/api";
 
+// Иконки
+import cart from '../../assets/icons/cart.png';
+import star from '../../assets/icons/star.png';
+import steam from '../../assets/icons/steam.png';
+import ps from '../../assets/icons/ps.png';
+import xbox from '../../assets/icons/xbox.png';
+import nswitch from '../../assets/icons/switch.png';
+import mobile from '../../assets/icons/mobile.png';
+
 // Компоненты
 import ThemeToggler from "../common/ThemeToggler";
 import Breadcrumbs from "../common/Breadcrumbs";
 import Preloader from "../layout/Preloader";
 import Screenshots from "../gameinfo/Screenshots";
+import { Link } from "react-router-dom";
 
 const GameInfoPage = () => {
 
@@ -44,7 +54,7 @@ const GameInfoPage = () => {
 
         // Ссылки на магазины
         getGameStores(slug).then(data => {
-            setStores(data);
+            setStores(data.sort((a, b) => (a.id - b.id)));
         })
 
         // Достижения
@@ -78,11 +88,44 @@ const GameInfoPage = () => {
 
                     <Screenshots images={screenshots} />
 
+                    <div className="game-info-block description-block">
+                        <h3>Описание:</h3>
+                        <p>{gameInfo?.description}</p>
+                    </div>
+
+                    <div className="game-info-block">
+
+                    </div>
+
                 </div>
                 
                 <div className="info-page-column right">
 
-                    <button>Добавить в корзину</button>
+                    <div className="purchase-options">
+
+                        <button> <img src={star} alt="star" /> В избранное</button>
+                        <button> <img src={cart} alt="cart" /> Добавить в корзину</button>
+
+                        <h4>Официальные магазины: </h4>
+
+                        {stores.map(item => {
+                            switch(item.id){
+                                
+                                // Ссылки на магазины
+                                case 1: return <a href={item.url} target="_blank" rel="noreferrer" key={item.url} className="store-link"> <img src={steam} alt="steam"/> Steam</a>
+                                case 2: return <a href={item.url} target="_blank" rel="noreferrer" key={item.url} className="store-link"> <img src={xbox} alt="xbox"/> Microsoft Store</a>               
+                                case 3: return <a href={item.url} target="_blank" rel="noreferrer" key={item.url} className="store-link"> <img src={ps} alt="ps"/> PlayStation Store</a>
+                                case 6: return <a href={item.url} target="_blank" rel="noreferrer" key={item.url} className="store-link"> <img src={ps} alt="ps"/> Nintendo E-Shop</a>
+                                case 4: return <a href={item.url} target="_blank" rel="noreferrer" key={item.url} className="store-link"> <img src={mobile} alt="mobile"/> App Store</a>
+                                case 8: return <a href={item.url} target="_blank" rel="noreferrer" key={item.url} className="store-link"> <img src={mobile} alt="mobile"/> Play Market</a>
+                                
+                                // Дополнительный ID для магазина Microsoft (Xbox)
+                                case 7: return stores.find(i => i.id === 2) ? null : <a href={item.url} target="_blank" rel="noreferrer" key={item.url} className="store-link"> <img src={xbox} alt="xbox"/> Microsoft Store</a>
+                                default: return null;
+                            }
+                        })}
+
+                    </div>
 
                 </div>
 

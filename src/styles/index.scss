@@ -642,3 +642,54 @@ footer{
         }
     }
 }
+
+// Контейнер с кнопками для покупки игры
+.purchase-options{
+    @include m.elements-background();
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-size: 1.25rem;
+    
+    // Кнопки
+    button{
+        font-size: inherit;
+        display: flex;
+        gap: 0.5rem;
+        justify-content: center;
+        align-items: center;
+
+        img{
+            transform: scaleX(-1);
+        }
+        
+        &:last-of-type{
+            margin-bottom: 1rem;
+        }
+    }
+
+    // Ссылки на магазины
+    .store-link{
+        @include m.buttons-and-controls();
+        @include m.controls-icons();
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+}
+
+// Контейнер с информацией о игре
+.game-info-block{
+    @include m.elements-background();
+    text-align: justify;
+
+    &.description-block{
+        font-size: 1.25rem;
+    }
+
+    h3, h4{
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+    }
+}
