@@ -219,6 +219,19 @@ footer{
     }
 }
 
+// Хлебные крошки
+.breadcrumbs{
+    color: var(--secondary);
+    display: flex;
+    gap: 0.5rem;
+    .breadcrumb-link{
+        color: inherit;
+        &:hover{
+            color: var(--primary);
+        }
+    }
+}
+
 // СТРАНИЦА МАГАЗИНА
 // Строка с элементами управления контентом
 .store-control-row{
@@ -558,3 +571,5 @@ footer{
         }
     }
 }
+
+// СТРАНИЦА С ИНФОРМАЦИЕЙ О ИГРЕ

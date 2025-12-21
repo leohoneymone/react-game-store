@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { useParams } from "react-router-dom";
 import { Achievements, GameFullData, GameStore, getFullGameInfo, getGameAchievements, getGameScreenshots, getGameStores } from "../../utils/api";
+import Breadcrumbs from "../common/Breadcrumbs";
 
 
 const GameInfoPage = () => {
@@ -42,7 +43,7 @@ const GameInfoPage = () => {
     }, [gameInfo]);
 
     return <div className="page-content">
-        <h2 style={{color: 'white'}}>{slug}</h2>
+        <Breadcrumbs url={`/#/game/${slug}`} name={gameInfo?.name || ""}/>
     </div>
 
 }
