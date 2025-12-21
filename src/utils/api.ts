@@ -194,7 +194,12 @@ export interface Achievements {
     }[]
 }
 
-
+/**
+ * Функция для получения подробной информации о игре
+ * 
+ * @param {string} slug алиас, укзывающий на необходимую игру
+ * @returns {Promise<GameFullData>} промис формата GameFullData, содержащий в себе объект с информацией о игре
+ */
 export const getFullGameInfo = (slug: string): Promise<GameFullData> => {
     return rawgApiRequest(Endpoints.games, undefined, slug)
         .then(data => {
@@ -221,16 +226,35 @@ export const getFullGameInfo = (slug: string): Promise<GameFullData> => {
         })
 }
 
+/**
+ * Функция для получения скриншотов игры
+ * 
+ * @param {string} slug алиас, укзывающий на необходимую игру
+ * @returns {Promise<string[]>} промис, содержащий в себе массив с URL скриншотов игры
+ */
 export const getGameScreenshots = (slug: string): Promise<string[]> => {
     return rawgApiRequest(Endpoints.games, undefined, `${slug}/screenshots`)
         .then(data => data?.results?.map(item => item.image) ?? []);
 }
 
+/**
+ * Функция для получения информации о магазинах, где можно купить игру
+ * 
+ * @param {string} slug алиас, укзывающий на необходимую игру
+ * @returns {Promise<GameStore[]>} промис, содержащий в себе массив объектов с информацией о магазинах игр
+ */
 export const getGameStores = (slug: string): Promise<GameStore[]> => {
     return rawgApiRequest(Endpoints.games, undefined, `${slug}/stores`)
         .then(data => data?.results?.map(item => {return {id: item.store_id, url:item.url}}) ?? []);
 }
 
+/**
+ * Функция для получения подробной информации о достижениях. Получает по 10 достижений за 1 запрос - ограничение API
+ * 
+ * @param {string} slug алиас, укзывающий на необходимую игру
+ * @param {number} page номер "страницы" - используется для дозагрузки данных
+ * @returns {Promise<Achievements>} промис формата Achievements, содержащий в себе объект с информацией о достижениях
+ */
 export const getGameAchievements = (slug: string, page: number): Promise<Achievements> => {
     return rawgApiRequest(Endpoints.games, `&page=${page}`, `${slug}/achievements`)
         .then(data => {
