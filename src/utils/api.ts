@@ -41,11 +41,23 @@ enum Endpoints {
  * 
  * @param {Endpoints} endpoint конечная точка, к которой обращается API. Допустимые значения определены в enum Endpoints
  * @param {string} parameters необязательный параметр, определяющий внутри себя параметры для выборки данных. Является подстрокой GET запроса
+ * * @param {string} slug необязательный параметр, алиас для поиска информации о игре
  * @returns {Promise<any>} промис, пробрасываемый далее для обработки данных. В зависимости от эндпоинта содержит в себе различные данные
  */
-const rawrApiRequest = async (endpoint: Endpoints, parameters?: string): Promise<any> => {
+const rawgApiRequest = async (endpoint: Endpoints, parameters?: string, slug?:string): Promise<any> => {
 
-    const requestUrl: string = `${url + endpoint}?key=${apikey}${parameters || ''}`;
+    let requestUrl: string = `${url + endpoint}`;
+
+    // Проверка на алиас и метод
+    if(slug){
+        if(endpoint === Endpoints.games){
+            requestUrl += `/${slug}`;
+        } else {
+            throw new Error('Ошибка запроса. Параметр "slug" можно использовать только для эндпоинта "games"');
+        }
+    }
+
+    requestUrl += `?key=${apikey}${parameters || ''}`;
 
     const result: Promise<any> = fetch(requestUrl, {method: 'GET'})
         .then(response => {
@@ -64,7 +76,7 @@ const rawrApiRequest = async (endpoint: Endpoints, parameters?: string): Promise
  * @returns {Promise<SearchTerm[]>} промис формата SearchTerm, содержащий список жанров
  */
 export const getGenres = (): Promise<SearchTerm[]> => {
-    return rawrApiRequest(Endpoints.genres, '&ordering=-games_count')
+    return rawgApiRequest(Endpoints.genres, '&ordering=-games_count')
         .then(data => data.results.map(item => {
             return {id: item.id, name: item.name, count: item.games_count}
         }));
@@ -76,7 +88,7 @@ export const getGenres = (): Promise<SearchTerm[]> => {
  * @returns {Promise<SearchTerm[]>} промис формата SearchTerm, содержащий список тегов
  */
 export const getTags = (): Promise<SearchTerm[]> => {
-    return rawrApiRequest(Endpoints.tags, '&ordering=-games_count&page_size=21')
+    return rawgApiRequest(Endpoints.tags, '&ordering=-games_count&page_size=21')
         .then(data => data.results.map(item => {
             return {id: item.id, name: item.name, count: item.games_count}
         }));
@@ -120,7 +132,7 @@ export const getGames = (tilesOnPage:number = 12, page: number = 1, platform:str
     // Поисковой запрос
     getParams += search ? `&search=${search}` : '';
 
-    return rawrApiRequest(Endpoints.games, getParams)
+    return rawgApiRequest(Endpoints.games, getParams)
         .then(data => {
             return {
                 count: data.count,
@@ -136,5 +148,95 @@ export const getGames = (tilesOnPage:number = 12, page: number = 1, platform:str
                     }
                 }) 
             } 
+        });
+}
+
+// Тип для разработчиков и издателей
+interface Creator {
+    slug: string,
+    name: string,
+}
+
+// Тип для полной информации о игре
+export interface GameFullData extends Game {
+    background: string,
+    description: string,
+    developers: Creator[],
+    publishers: Creator[],
+    rating: {
+        total: number,
+        top: number,
+        ratings: {
+            title: string,
+            count: number,
+            percent: number,
+        }[],
+    },
+    reviewsCount: number,
+    ratesCount: number,
+}
+
+// Тип с информацией о магазине
+export interface GameStore {
+    id: number,
+    url: string,
+}
+
+// Тип с достижениями
+export interface Achievements {
+    count: number,
+    items: {
+        id: number
+        name: string,
+        description: string,
+        image: string,
+        percent: number,
+    }[]
+}
+
+
+export const getFullGameInfo = (slug: string): Promise<GameFullData> => {
+    return rawgApiRequest(Endpoints.games, undefined, slug)
+        .then(data => {
+            return {
+                name: data.name,
+                slug: data.slug,
+                genres: data?.genres?.map(g => g?.name) ?? [],
+                tags: data?.tags?.map(t => t?.name) ?? [],
+                screenshots: [],  
+                platforms: data.parent_platforms.map(p => p.platform?.name),
+                release: data.released,
+                background: data.background_image,
+                description: data.description_raw,
+                developers: data.developers.map(item => { return {slug: item.slug, name: item.name}}),
+                publishers: data.publishers.map(item => { return {slug: item.slug, name: item.name}}),
+                rating: {
+                    total: data.rating,
+                    top: data.rating_top,
+                    ratings: data.ratings.map(item => { return {title: item.title, count: item.count, percent: item.percent}})
+                },
+                reviewsCount: data.reviews_text_count,
+                ratesCount: data.reviews_count
+            }
+        })
+}
+
+export const getGameScreenshots = (slug: string): Promise<string[]> => {
+    return rawgApiRequest(Endpoints.games, undefined, `${slug}/screenshots`)
+        .then(data => data?.results?.map(item => item.image) ?? []);
+}
+
+export const getGameStores = (slug: string): Promise<GameStore[]> => {
+    return rawgApiRequest(Endpoints.games, undefined, `${slug}/stores`)
+        .then(data => data?.results?.map(item => {return {id: item.store_id, url:item.url}}) ?? []);
+}
+
+export const getGameAchievements = (slug: string, page: number): Promise<Achievements> => {
+    return rawgApiRequest(Endpoints.games, `&page=${page}`, `${slug}/achievements`)
+        .then(data => {
+            return {
+                count: data?.count,
+                items: data?.results,
+            }
         });
 }
