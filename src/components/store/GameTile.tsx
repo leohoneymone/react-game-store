@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-
+import { Link } from "react-router-dom";
 import { Game } from "../../utils/api";
 
 // Иконки платформ
@@ -83,7 +83,7 @@ const GameTile = ({ name, slug, genres, tags, screenshots, platforms, release }:
             <p className="tags">{tags.slice(0, 5).join(" / ")}</p>
             <div className="last-row">
                 <p className="date">{formatDate(release)}</p>
-                <button>Подробнее</button>
+                <Link className="game-info-link" to={`game/${slug}`}>Подробнее</Link>
             </div>
         </div>
     </div>
