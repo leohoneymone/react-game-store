@@ -15,7 +15,7 @@ const ThemeToggler = () => {
     // Контекст для управления темой
     const {theme, setTheme} = useStoreContext();
 
-    return <div className="switch-block">
+    return <div className="switch-block theme-toggler">
     <label htmlFor="light" className="switch-options"><input type="radio" name="theme" id="light" checked={theme === "light"} onChange={() => {setTheme("light")}}/>
         <img src={sun} alt="sun" />
     </label>

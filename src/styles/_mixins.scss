@@ -66,3 +66,35 @@
         }
     }
 }
+
+// Миксин для компонентов, реализующих панель выбора через input:radio
+@mixin radio-switch(){
+    display: flex;
+    width: fit-content;
+    gap: 0.5rem;
+    @include elements-background();
+    padding: 0.5rem;
+    .switch-options{
+        @include buttons-and-controls();
+        box-shadow: 0 0 3px 0 v.$shadow;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+
+        // Иконки
+        @include controls-icons();
+        &:has(input:checked){
+            color: var(--btn-text-hover);
+            background: var(--btn-bg-hover);
+            img{
+                filter: var(--icon-filter-hover);
+            }
+        }
+
+        // Маскировка input:radio
+        input{
+            display: none;
+        }
+    }
+}
