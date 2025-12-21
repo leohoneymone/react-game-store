@@ -609,11 +609,11 @@ footer{
         gap: inherit;
         overflow-x: scroll;
         @include m.scrollbar-options();
-        padding-bottom: 0.5rem;
+        padding-bottom: 0.75rem;
         .screenshot-item{
             width: 250px;
             border-radius: inherit;
-            opacity: 0.5;
+            opacity: 0.65;
             transition: v.$transition-hover;
             cursor: pointer;
             &.current{

@@ -103,11 +103,11 @@
 @mixin scrollbar-options(){
     &::-webkit-scrollbar{
         background: transparent;
-        width: 6px;
-        height: 6px;
+        width: 8px;
+        height: 8px;
     }
     &::-webkit-scrollbar-thumb{
-        border-radius: 3px;
+        border-radius: 4px;
         background: var(--secondary);
         cursor: grab;
     }
