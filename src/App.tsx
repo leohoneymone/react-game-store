@@ -8,6 +8,7 @@ import Main from "./components/layout/Main";
 import Footer from "./components/layout/Footer";
 
 import StorePage from "./components/pages/StorePage";
+import GameInfoPage from "./components/pages/GameInfoPage";
 
 const App = () => {
     
@@ -17,6 +18,7 @@ const App = () => {
             <Main>
                 <Routes>
                     <Route path="/" element={<StorePage />}/>
+                    <Route path="/game/:slug" element={<GameInfoPage />}/>
                 </Routes>
             </Main>
         </StoreContext>
