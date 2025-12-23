@@ -51,6 +51,15 @@ const Ratings = ({rates}: {rates: GameRatings}) => {
                 {rates.ratings.reduce((acc, item) => acc + item.count, 0)}
             </div>
         </div>
+
+        { (rates.metacritic.url && rates.metacritic.score) ? 
+            <div className="rating-block star-rating">
+                <a href={rates.metacritic.url} target="_blank" rel="noreferrer"> <b className="metacritic-pseudologo">m</b> Metacritic</a>
+                <p>{rates.metacritic.score}</p>
+            </div> : null
+        }
+
+        
     </div>
 }
 

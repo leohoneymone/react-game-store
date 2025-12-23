@@ -826,4 +826,11 @@ footer{
             border-top: 1px solid var(--secondary);
         }
     }
+
+    // Псевдо логотип метакритика
+    .metacritic-pseudologo{
+        display: inline-block;
+        transform: rotate(-45deg) translate(0.2rem, -0.2rem);
+        padding-right: 0.5rem;
+    }
 }

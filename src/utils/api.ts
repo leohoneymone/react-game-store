@@ -166,6 +166,10 @@ export interface GameRatings {
         count: number,
         percent: number,
     }[],
+    metacritic: {
+        url: string,
+        score: number,
+    }
 }
 
 // Тип для полной информации о игре
@@ -221,7 +225,11 @@ export const getFullGameInfo = (slug: string): Promise<GameFullData> => {
                 rating: {
                     total: data.rating,
                     top: data.rating_top,
-                    ratings: data.ratings.map(item => { return {title: item.title, count: item.count, percent: item.percent}})
+                    ratings: data.ratings.map(item => { return {title: item.title, count: item.count, percent: item.percent}}),
+                    metacritic: {
+                        url: data.metacritic_url ?? "",
+                        score: data.metacritic ?? 0, 
+                    }
                 },
                 reviewsCount: data.reviews_text_count,
                 ratesCount: data.reviews_count
