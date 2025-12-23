@@ -19,7 +19,7 @@ import ThemeToggler from "../common/ThemeToggler";
 import Breadcrumbs from "../common/Breadcrumbs";
 import Preloader from "../layout/Preloader";
 import Screenshots from "../gameinfo/Screenshots";
-import { Link } from "react-router-dom";
+import Ratings from "../gameinfo/Ratings";
 
 const GameInfoPage = () => {
 
@@ -61,7 +61,7 @@ const GameInfoPage = () => {
         // Достижения
         getGameAchievements(slug, 1).then(data => {
             setAchievements(data);
-        }).then(data => {
+        }).then(() => {
             setLoading(false); 
         })
 
@@ -90,12 +90,12 @@ const GameInfoPage = () => {
                     <Screenshots images={screenshots} />
 
                     <div className="game-info-block description-block">
-                        <h3>Описание:</h3>
+                        <h2>Описание</h2>
                         <p>{gameInfo?.description}</p>
                     </div>
 
                     <div className="game-info-block">
-                        <h3>Информация о игре:</h3>
+                        <h2>Информация о игре</h2>
                         <p><b>Дата релиза:</b> {formatDate(gameInfo?.release || '')}</p>
                         <p><b>Разрботчик:</b> {gameInfo?.developers.map((item, index) => gameInfo.developers.length - 1 !== index ? `${item.name} / `: item.name)}</p>
                         <p className="with-mb"><b>Издатель:</b> {gameInfo?.publishers.map((item, index) => gameInfo.publishers.length - 1 !== index ? `${item.name} / `: item.name)}</p>
@@ -115,7 +115,7 @@ const GameInfoPage = () => {
                         <button> <img src={star} alt="star" /> В избранное</button>
                         <button> <img src={cart} alt="cart" /> Добавить в корзину</button>
 
-                        <h4>Официальные магазины: </h4>
+                        <h4>Официальные магазины</h4>
 
                         {stores.map(item => {
                             switch(item.id){
@@ -135,6 +135,8 @@ const GameInfoPage = () => {
                         })}
 
                     </div>
+
+                    <Ratings />
 
                 </div>
 

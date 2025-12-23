@@ -596,15 +596,15 @@ footer{
 
             // Левая колонка
             &.left{
-                width: calc(75% - 1rem);
+                max-width: calc(75% - 1rem);
             }
 
             // Правая колонка
             &.right{
                 width: 25%;
+                min-width: 300px;
             }
         }
-
     }
 }
 
@@ -668,6 +668,11 @@ footer{
         }
     }
 
+    h4{
+        color: var(--secondary);
+        text-align: center;
+    }
+
     // Ссылки на магазины
     .store-link{
         @include m.buttons-and-controls();
@@ -691,8 +696,8 @@ footer{
         font-size: 1.25rem;
     }
 
-    h3, h4{
-        font-size: 1.25rem;
+    h2{
+        font-size: 1.5rem;
         margin-bottom: 1rem;
     }
 
@@ -720,4 +725,9 @@ footer{
             padding: 0.3rem 0.5rem;
         }
     }
+}
+
+// Контейнер с оценками игры
+.ratings-block{
+    @include m.elements-background();
 }
