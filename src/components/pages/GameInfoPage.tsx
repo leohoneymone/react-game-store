@@ -136,7 +136,7 @@ const GameInfoPage = () => {
 
                     </div>
 
-                    <Ratings />
+                    {(gameInfo?.rating) ? <Ratings rates={gameInfo.rating}/>: null}
 
                 </div>
 

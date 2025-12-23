@@ -730,4 +730,100 @@ footer{
 // Контейнер с оценками игры
 .ratings-block{
     @include m.elements-background();
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    // Блоки для рейтинка
+    .rating-block{
+        @include m.elements-background();
+        display: inherit;
+
+        &.star-rating{
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        &.rates-number{
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+    }
+
+    // Блок для звёздочек
+    .stars-container{
+        display: inherit;
+        gap: 0.1rem;
+    }
+
+    // Шкала для оценок
+    .ratings-gauge{
+        width: 100%;
+        height: 10px;
+        border-radius: 5px;
+        display: flex;
+        margin-bottom: 0.5rem;
+    }
+
+    .ratings-gauge-block{
+        height: inherit;
+
+        // Границы шкалы
+        &:first-of-type{
+            border-radius: 5px 0 0 5px;
+        }
+
+        &:last-of-type{
+            border-radius: 0 5px 5px 0;
+        }
+
+        // Маркеры для легенды
+        &.legend{
+            border-radius: 5px;
+            width: 10px;
+            height: 10px;
+        }
+
+        // Цвета шкалы
+        &.exceptional{
+            background: #008d00;
+        }
+
+        &.recommended{
+            background: #008bb9;
+        }
+
+        &.meh{
+            background: #e99700;
+        }
+
+        &.skip{
+            background: #9b0000;
+        }
+    }
+
+    // Счётчики оценок
+    .ratings-counter{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .ratings-counter-title{
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            text-transform: capitalize;
+        }
+
+        .count{
+            color: var(--secondary);
+        }
+
+        &.total{
+            margin-top: 0.25rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--secondary);
+        }
+    }
 }
