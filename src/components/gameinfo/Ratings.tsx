@@ -59,7 +59,7 @@ const Ratings = ({rates}: {rates: GameRatings}) => {
             </div> : null
         }
 
-        
+        <a href="#" className="goto-reviews">Перейти к письменным обзорам</a>
     </div>
 }
 

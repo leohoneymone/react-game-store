@@ -833,4 +833,13 @@ footer{
         transform: rotate(-45deg) translate(0.2rem, -0.2rem);
         padding-right: 0.5rem;
     }
+
+    // Переход к обзорам
+    .goto-reviews{
+        @include m.buttons-and-controls();
+        height: 42px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
