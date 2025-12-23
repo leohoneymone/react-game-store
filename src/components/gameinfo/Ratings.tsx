@@ -4,6 +4,21 @@ import { GameRatings } from "../../utils/api";
 // Иконки
 import star from '../../assets/icons/star-color.png';
 
+const sortRatingsArray = (arr: {title: string, count: number, percent: number}[]): {title: string, count: number, percent: number}[] => {
+    const properOrder = ["exceptional", "recommended", "meh", "skip"];
+
+    return arr.sort((a, b) => {
+        const iA = properOrder.indexOf(a.title);
+        const iB = properOrder.indexOf(b.title);
+
+        if(iA !== -1 && iB !== -1){
+            return iA - iB;
+        } else {
+            return iA === -1 ? -1 : 1;
+        }
+    })
+}
+
 /**
  * Функция для генерации массива из оценки. Используется для указания прозрачности "звёздочек" в оценке игры
  * 
@@ -23,6 +38,8 @@ const generateStarRatesArray = (rate: number): number[] => {
 
 const Ratings = ({rates}: {rates: GameRatings}) => {
     
+    const ratesArr = sortRatingsArray(rates.ratings);
+
     return <div className="ratings-block">
         <h3>Оценки</h3>
 
@@ -35,10 +52,10 @@ const Ratings = ({rates}: {rates: GameRatings}) => {
 
         <div className="rating-block rates-number">
             <div className="ratings-gauge">
-                {rates.ratings.map(item => <div key={item.title} className={`ratings-gauge-block ${item.title}`} style={{width: `${item.percent}%`}}></div>)}
+                {ratesArr.map(item => <div key={item.title} className={`ratings-gauge-block ${item.title}`} style={{width: `${item.percent}%`}}></div>)}
             </div>
 
-            {rates.ratings.map(item => <div key={`${item.title}-count`} className="ratings-counter">
+            {ratesArr.map(item => <div key={`${item.title}-count`} className="ratings-counter">
                 <div className="ratings-counter-title">
                     <div className={`ratings-gauge-block legend ${item.title}`}></div>
                     <span>{item.title}</span>
@@ -48,7 +65,7 @@ const Ratings = ({rates}: {rates: GameRatings}) => {
 
             <div className="ratings-counter total">
                 <div className="ratings-counter-title">Всего:</div>
-                {rates.ratings.reduce((acc, item) => acc + item.count, 0)}
+                {ratesArr.reduce((acc, item) => acc + item.count, 0)}
             </div>
         </div>
 
@@ -59,7 +76,7 @@ const Ratings = ({rates}: {rates: GameRatings}) => {
             </div> : null
         }
 
-        <a href="#" className="goto-reviews">Перейти к письменным обзорам</a>
+        <a href="#" className="goto-reviews">Перейти к обзорам</a>
     </div>
 }
 
