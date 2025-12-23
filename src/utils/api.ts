@@ -157,21 +157,24 @@ interface Creator {
     name: string,
 }
 
+// Тип для оценок игры
+export interface GameRatings {
+    total: number,
+    top: number,
+    ratings: {
+        title: string,
+        count: number,
+        percent: number,
+    }[],
+}
+
 // Тип для полной информации о игре
 export interface GameFullData extends Game {
     background: string,
     description: string,
     developers: Creator[],
     publishers: Creator[],
-    rating: {
-        total: number,
-        top: number,
-        ratings: {
-            title: string,
-            count: number,
-            percent: number,
-        }[],
-    },
+    rating: GameRatings,
     reviewsCount: number,
     ratesCount: number,
 }
