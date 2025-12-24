@@ -713,6 +713,16 @@ footer{
         }
     }
 
+    // Ссылка на сайт
+    .game-website{
+        text-align: right;
+        margin-top: 1rem;
+        color: var(--secondary);
+        &:hover{
+            color: var(--primary);
+        }
+    }
+
     // Теги
     .tags-container{
         display: flex;

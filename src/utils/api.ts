@@ -181,6 +181,7 @@ export interface GameFullData extends Game {
     rating: GameRatings,
     reviewsCount: number,
     ratesCount: number,
+    website: string,
 }
 
 // Тип с информацией о магазине
@@ -232,7 +233,8 @@ export const getFullGameInfo = (slug: string): Promise<GameFullData> => {
                     }
                 },
                 reviewsCount: data.reviews_text_count,
-                ratesCount: data.reviews_count
+                ratesCount: data.reviews_count,
+                website: data.website ?? "",
             }
         })
 }

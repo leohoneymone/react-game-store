@@ -105,6 +105,7 @@ const GameInfoPage = () => {
                         <div className="tags-container"><b>Теги:</b> 
                             {gameInfo?.tags.map(item => <span key={item} className="tag-item">{item}</span>)}
                         </div>
+                        {gameInfo?.website ? <a className="game-website" href={gameInfo.website} target="_blank" rel="noreferrer">{gameInfo.website}</a> : null}
                     </div>
 
                 </div>
