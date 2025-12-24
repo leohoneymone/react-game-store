@@ -75,8 +75,6 @@ const Ratings = ({rates}: {rates: GameRatings}) => {
                 <p>{rates.metacritic.score}</p>
             </div> : null
         }
-
-        <a href="#" className="goto-reviews">Перейти к обзорам</a>
     </div>
 }
 

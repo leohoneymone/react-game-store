@@ -86,7 +86,7 @@ const GameInfoPage = () => {
                     <ThemeToggler />
             </div>
 
-            <div className="info-page-row">
+            <div className="info-page-row main">
 
                 <div className="info-page-column left">
 

@@ -581,9 +581,11 @@ footer{
         display: inherit;
         gap: inherit;
         justify-content: space-between;
+
         h1{
             color: var(--primary);
         }
+
         // Cсылка возврата на предыдущую страницу
         .go-back{
             cursor: pointer;
@@ -591,6 +593,12 @@ footer{
             &:hover{
                 color: var(--primary);
             }
+        }
+
+        &.main{
+            padding-bottom: 3rem;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid var(--secondary);
         }
 
         // Колонки для размещенияч контента внутри
@@ -901,7 +909,7 @@ footer{
 
 // Контейнер с играми по категориям (DLC / Серия / Разработчик / Издатель)
 .more-games-block{
-    display: flex;
+    padding: 0.5rem 0;
     flex-direction: column;
     gap: 1rem;
 
@@ -910,10 +918,15 @@ footer{
         color: var(--primary);
     }
 
+    &:last-of-type{
+        margin-bottom: 5rem;
+    }
+
     .more-games-list{
         display: inherit;
         gap: inherit;
         width: 100%;
+        border-radius: 0.3rem;
         overflow-y: hidden;
         overflow-x: scroll;
         padding-bottom: 1rem;
