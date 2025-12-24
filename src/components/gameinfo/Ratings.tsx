@@ -36,6 +36,13 @@ const generateStarRatesArray = (rate: number): number[] => {
     return starRates;
 } 
 
+/**
+ * Компонент, реализующйи контейнер с информацией об оценках игры
+ * 
+ * @param props пропсы
+ * @param rates объект типа GameRatings, содержащий всю необходимую информацию об оценках игры  
+ * @returns JSX-разметка контейнера
+ */
 const Ratings = ({rates}: {rates: GameRatings}) => {
     
     const ratesArr = sortRatingsArray(rates.ratings);
