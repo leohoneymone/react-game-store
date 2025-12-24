@@ -11,7 +11,7 @@ const Footer = () => {
                 <h3 className="footer-title">Ссылки</h3>
                 <a href="#">GitHub</a>
                 <a href="#">Репозиторий</a>
-                <a href="#">RAWG API</a>                
+                <a href="https://rawg.io/apidocs" target="_blank" rel="noreferrer">RAWG API</a>                
             </div>
 
             <div className="footer-links-block">
