@@ -523,6 +523,11 @@ footer{
         // Название
         .title{
             font-size: 1.35rem;
+            overflow: hidden;
+            line-clamp: 3;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
         }
 
         // Список платформ
