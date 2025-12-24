@@ -160,14 +160,14 @@ export const getGames = (tilesOnPage:number = 12, page: number = 1, platform:str
 }
 
 export const getDLCforGame = (slug: string): Promise<Game[]> => {
-    return rawgApiRequest(Endpoints.games, '&page_size=5', `${slug}/additions`)
+    return rawgApiRequest(Endpoints.games, '&page_size=10', `${slug}/additions`)
         .then(data => {
             return data.results.map(item => parseGameData(item)); 
         });
 }
 
 export const getSeriesForGame = (slug: string): Promise<Game[]> => {
-    return rawgApiRequest(Endpoints.games, '&page_size=5', `${slug}/game-series`)
+    return rawgApiRequest(Endpoints.games, '&page_size=10', `${slug}/game-series`)
         .then(data => {
             return data.results.map(item => parseGameData(item)); 
         });
@@ -175,7 +175,7 @@ export const getSeriesForGame = (slug: string): Promise<Game[]> => {
 }
 
 export const getGamesByDeveloper = (slug: string): Promise<Game[]> => {
-    return rawgApiRequest(Endpoints.games, `&page_size=5&developers=${slug}`)
+    return rawgApiRequest(Endpoints.games, `&page_size=10&developers=${slug}`)
         .then(data => {
             return data.results.map(item => parseGameData(item)); 
         });
@@ -183,7 +183,7 @@ export const getGamesByDeveloper = (slug: string): Promise<Game[]> => {
 }
 
 export const getGamesByPublisher = (slug: string): Promise<Game[]> => {
-    return rawgApiRequest(Endpoints.games, `&page_size=5&publishers=${slug}`)
+    return rawgApiRequest(Endpoints.games, `&page_size=10&publishers=${slug}`)
         .then(data => {
             return data.results.map(item => parseGameData(item)); 
         });
