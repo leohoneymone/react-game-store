@@ -20,6 +20,7 @@ import Breadcrumbs from "../common/Breadcrumbs";
 import Preloader from "../layout/Preloader";
 import Screenshots from "../gameinfo/Screenshots";
 import Ratings from "../gameinfo/Ratings";
+import Achievement from "../gameinfo/Achievement";
 
 const GameInfoPage = () => {
 
@@ -137,6 +138,14 @@ const GameInfoPage = () => {
                     </div>
 
                     {(gameInfo?.rating) ? <Ratings rates={gameInfo.rating}/>: null}
+
+                    <div className="achievements-block">
+                        <h3>Достижения <span className="achievements-count">{achievements.count}</span></h3>
+
+                        {achievements.items.slice(0, 5).map(item => <Achievement key={item.id} {...item}/>)}
+
+                        <button>Посмотреть все</button>
+                    </div>
 
                 </div>
 

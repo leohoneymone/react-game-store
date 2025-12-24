@@ -843,3 +843,37 @@ footer{
         align-items: center;
     }
 }
+
+// Контейнер с достижениями
+.achievements-block{
+    @include m.elements-background();
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .achievements-count{
+        float: right;
+    }
+
+    button{
+        height: 42px;
+    }
+}
+
+// Достижение
+.achievement-item{
+    @include m.elements-background();
+    display: flex;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+
+    img{
+        width: 60px;
+        height: 60px;
+    }
+
+    .description{
+        font-size: 0.8rem;
+        color: var(--secondary);
+    }
+}
