@@ -9,6 +9,11 @@ type MoreGamesBlockProps = {
     name?: string,
 }
 
+/**
+ * 
+ * @param {MoreGamesBlockProps} props 
+ * @returns 
+ */
 const MoreGamesBlock = ({type, slug, name}: MoreGamesBlockProps) => {
     
     // Состояния

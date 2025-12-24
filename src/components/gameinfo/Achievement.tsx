@@ -11,7 +11,7 @@ type AchievementsProps = {
 /**
  * Компонент, отображающий достижение в виде отдельного блока
  * 
- * @param {AchievementsProps} пропсы 
+ * @param {AchievementsProps} props пропсы 
  * @param {string} name название достижения
  * @param {string} description описание / требования для достижения 
  * @param {string} image URL иконки достижения 
