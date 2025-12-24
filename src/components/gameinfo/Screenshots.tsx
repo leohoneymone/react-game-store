@@ -5,6 +5,13 @@ type ScreenshotsProps = {
     images: string[],
 }
 
+/**
+ * Компонент, реализующий панель со скриншотами игры и механизмами для выбора и смены скриншотов
+ * 
+ * @param {ScreenshotsProps} props пропсы 
+ * @param {string[]} images массив URL-ов скриншотов
+ * @returns JSX-разметка компонента
+ */
 const Screenshots = ({images}: ScreenshotsProps) => {
     
     // Состояния
