@@ -29,7 +29,7 @@ const GameInfoPage = () => {
     const nav = useNavigate();
 
     // Cостояние загрузки
-    const[loading, setLoading] = useState<boolean>(true);
+    const[loading, setLoading] = useState<boolean>(false);
 
     // Алиас для поиска данных о игре
     const slug: string = useParams().slug || "";
@@ -42,10 +42,11 @@ const GameInfoPage = () => {
 
     // Загрузка основных данных о игре
     useEffect(() => {
+        setLoading(true);
         getFullGameInfo(slug).then(data => {
             setGameInfo(data);
         });
-    }, []);
+    }, [slug]);
 
     // Загрузка дополнительных данных о игре
     useEffect(() => {
@@ -157,9 +158,9 @@ const GameInfoPage = () => {
 
             <MoreGamesBlock type="series" slug={slug}/>
 
-            {gameInfo?.developers.map(item => <MoreGamesBlock name={item.name} type="developer" slug={item.slug}/>)}
+            {gameInfo?.developers.map(item => <MoreGamesBlock key={`developer-${item.slug}`} name={item.name} type="developer" slug={item.slug}/>)}
 
-            {gameInfo?.publishers.map(item => gameInfo?.developers.find(i => i.name === item.name) ? null : <MoreGamesBlock name={item.name} type="publisher" slug={item.slug}/>)}
+            {gameInfo?.publishers.map(item => gameInfo?.developers.find(i => i.name === item.name) ? null : <MoreGamesBlock key={`publisher-${item.slug}`} name={item.name} type="publisher" slug={item.slug}/>)}
 
         </div>
 

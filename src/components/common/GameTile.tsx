@@ -75,7 +75,7 @@ const GameTile = ({ name, slug, genres, tags, screenshots, platforms, release }:
             <p className="tags">{tags.slice(0, 5).join(" / ")}</p>
             <div className="last-row">
                 <p className="date">{formatDate(release)}</p>
-                <Link className="game-info-link" to={`game/${slug}`}>Подробнее</Link>
+                <Link className="game-info-link" to={`/game/${slug}`}>Подробнее</Link>
             </div>
         </div>
     </div>
