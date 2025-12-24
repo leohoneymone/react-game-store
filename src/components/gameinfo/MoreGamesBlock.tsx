@@ -10,9 +10,13 @@ type MoreGamesBlockProps = {
 }
 
 /**
+ * Компонент для отображения подходящих под категории игр
  * 
- * @param {MoreGamesBlockProps} props 
- * @returns 
+ * @param {MoreGamesBlockProps} props пропсы
+ * @param {'dlc' | 'series' | 'developer' | 'publisher'} type тип контейнера (Дополнения / Игры серии / ИГры от разработчика / Игры от издателя)
+ * @param {string} slug алиас, по которому ищется необходимая информация
+ * @param {string} name опциональный параметр имени. Используется в заголовке контейнера
+ * @returns JSX-разметка достижения
  */
 const MoreGamesBlock = ({type, slug, name}: MoreGamesBlockProps) => {
     
