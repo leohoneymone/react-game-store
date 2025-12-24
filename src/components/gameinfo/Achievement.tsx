@@ -1,5 +1,6 @@
 import React from "react";
 
+// Тип пропсов для достижений
 type AchievementsProps = {
     name: string,
     description: string,
@@ -7,6 +8,16 @@ type AchievementsProps = {
     percent: number,
 }
 
+/**
+ * Компонент, отображающий достижение в виде отдельного блока
+ * 
+ * @param {AchievementsProps} пропсы 
+ * @param {string} name название достижения
+ * @param {string} description описание / требования для достижения 
+ * @param {string} image URL иконки достижения 
+ * @param {number} percent процент получения среди игроков 
+ * @returns JSX-разметка достижения
+ */
 const Achievement = ({name, description, image, percent}: AchievementsProps) => {
     return <div className="achievement-item">
         <img src={image} alt={image} />
