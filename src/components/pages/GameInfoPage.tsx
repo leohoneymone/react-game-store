@@ -142,13 +142,13 @@ const GameInfoPage = () => {
 
                     {(gameInfo?.rating) ? <Ratings rates={gameInfo.rating}/>: null}
 
-                    <div className="achievements-block">
+                    {achievements.items.length ? <div className="achievements-block">
                         <h3>Достижения <span className="achievements-count">{achievements.count}</span></h3>
 
                         {achievements.items.slice(0, 5).map(item => <Achievement key={item.id} {...item}/>)}
 
                         <button>Посмотреть все</button>
-                    </div>
+                    </div> : null}
 
                 </div>
 
