@@ -21,7 +21,7 @@ import SelectBlock from "../store/SelectBlock";
 import Preloader from "../layout/Preloader";
 import CustomSelect from "../store/CustomSelect";
 import Pagination from "../store/Pagination";
-import GameTile from "../store/GameTile";
+import GameTile from "../common/GameTile";
 
 const StorePage = () => {
 
