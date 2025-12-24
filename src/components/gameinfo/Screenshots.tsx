@@ -1,18 +1,13 @@
 import React, {useState, useEffect, useRef} from "react";
 
-// Тип пропсов для контейнера со сркиншотами
-type ScreenshotsProps = {
-    images: string[],
-}
-
 /**
  * Компонент, реализующий панель со скриншотами игры и механизмами для выбора и смены скриншотов
  * 
- * @param {ScreenshotsProps} props пропсы 
+ * @param props пропсы 
  * @param {string[]} images массив URL-ов скриншотов
  * @returns JSX-разметка компонента
  */
-const Screenshots = ({images}: ScreenshotsProps) => {
+const Screenshots = ({images}: {images: string[]}) => {
     
     // Состояния
     const [autoScroll, setAutoScroll] = useState<boolean>(true);
