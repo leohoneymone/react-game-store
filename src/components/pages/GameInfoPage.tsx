@@ -21,6 +21,7 @@ import Preloader from "../layout/Preloader";
 import Screenshots from "../gameinfo/Screenshots";
 import Ratings from "../gameinfo/Ratings";
 import Achievement from "../gameinfo/Achievement";
+import MoreGamesBlock from "../gameinfo/MoreGamesBlock";
 
 const GameInfoPage = () => {
 
@@ -151,6 +152,14 @@ const GameInfoPage = () => {
                 </div>
 
             </div>
+
+            <MoreGamesBlock name={gameInfo?.name} type="dlc" slug={slug}/>
+
+            <MoreGamesBlock type="series" slug={slug}/>
+
+            {gameInfo?.developers.map(item => <MoreGamesBlock name={item.name} type="developer" slug={item.slug}/>)}
+
+            {gameInfo?.publishers.map(item => gameInfo?.developers.find(i => i.name === item.name) ? null : <MoreGamesBlock name={item.name} type="publisher" slug={item.slug}/>)}
 
         </div>
 

@@ -95,6 +95,24 @@ export const getTags = (): Promise<SearchTerm[]> => {
 }
 
 /**
+ * Утилитарная функция для парсинга данных о играх в списке
+ * 
+ * @param item полученный ответ от сервера, переведённый в формат JSON
+ * @returns объект типа Game из полученных данных
+ */
+const parseGameData = (item: any): Game => {
+    return {
+        name: item.name,
+        slug: item.slug,
+        genres: item?.genres?.map(g => g?.name) ?? [],
+        tags: item?.tags?.map(t => t?.name) ?? [],
+        screenshots: item?.short_screenshots?.map(i => i?.image) ?? [],  
+        platforms: item.parent_platforms.map(p => p.platform?.name),
+        release: item.released,
+    }
+}
+
+/**
  * Функция для получения списка игр по параметрам выборки
  * 
  * @param {number} tilesOnPage количество плиток на странице. По умолчанию 12
@@ -136,21 +154,44 @@ export const getGames = (tilesOnPage:number = 12, page: number = 1, platform:str
         .then(data => {
             return {
                 count: data.count,
-                games: data.results.map(item => {
-                    return {
-                        name: item.name,
-                        slug: item.slug,
-                        genres: item?.genres?.map(g => g?.name) ?? [],
-                        tags: item?.tags?.map(t => t?.name) ?? [],
-                        screenshots: item?.short_screenshots?.map(i => i?.image) ?? [],  
-                        platforms: item.parent_platforms.map(p => p.platform?.name),
-                        release: item.released,
-                    }
-                }) 
+                games: data.results.map(item => parseGameData(item))
             } 
         });
 }
 
+export const getDLCforGame = (slug: string): Promise<Game[]> => {
+    return rawgApiRequest(Endpoints.games, '&page_size=5', `${slug}/additions`)
+        .then(data => {
+            return data.results.map(item => parseGameData(item)); 
+        });
+}
+
+export const getSeriesForGame = (slug: string): Promise<Game[]> => {
+    return rawgApiRequest(Endpoints.games, '&page_size=5', `${slug}/game-series`)
+        .then(data => {
+            return data.results.map(item => parseGameData(item)); 
+        });
+
+}
+
+export const getGamesByDeveloper = (slug: string): Promise<Game[]> => {
+    return rawgApiRequest(Endpoints.games, `&page_size=5&developers=${slug}`)
+        .then(data => {
+            return data.results.map(item => parseGameData(item)); 
+        });
+
+}
+
+export const getGamesByPublisher = (slug: string): Promise<Game[]> => {
+    return rawgApiRequest(Endpoints.games, `&page_size=5&publishers=${slug}`)
+        .then(data => {
+            return data.results.map(item => parseGameData(item)); 
+        });
+
+}
+
+
+// ПОЛНАЯ ИНФОРМАЦИЯ О ИГРЕ
 // Тип для разработчиков и издателей
 interface Creator {
     slug: string,
