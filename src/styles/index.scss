@@ -250,6 +250,36 @@ footer{
     @include m.radio-switch();
 }
 
+// Разметка всплывающего окна
+.popup-background-overlay{
+    position: fixed;
+    background: #00000088;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .popup-window{
+        position: relative;
+        @include m.elements-background();
+        width: 100%;
+        max-width: 900px;
+        margin: 0 2rem;
+        
+        .popup-close{
+            font-size: 2rem;
+            cursor: pointer;
+            position: absolute;
+            right: 1rem;
+            top: 0;
+        }
+    }
+}
+
 // СТРАНИЦА МАГАЗИНА
 // Строка с элементами управления контентом
 .store-control-row{
@@ -905,6 +935,13 @@ footer{
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
     }
+}
+
+.popup-achievements{
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 // Контейнер с играми по категориям (DLC / Серия / Разработчик / Издатель)

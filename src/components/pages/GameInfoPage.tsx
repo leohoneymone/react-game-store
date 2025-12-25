@@ -22,6 +22,7 @@ import Screenshots from "../gameinfo/Screenshots";
 import Ratings from "../gameinfo/Ratings";
 import Achievement from "../gameinfo/Achievement";
 import MoreGamesBlock from "../gameinfo/MoreGamesBlock";
+import Popup from "../layout/Popup";
 
 const GameInfoPage = () => {
 
@@ -39,6 +40,9 @@ const GameInfoPage = () => {
     const[screenshots, setScreenshots] = useState<string[]>([]);
     const[stores, setStores] = useState<GameStore[]>([]);
     const[achievements, setAchievements] = useState<Achievements>({count: 0, items: []});
+
+    // Состояние для открытия всплывающего окна
+    const[popup, setPopup] = useState<boolean>(false);
 
     // Загрузка основных данных о игре
     useEffect(() => {
@@ -147,7 +151,7 @@ const GameInfoPage = () => {
 
                         {achievements.items.slice(0, 5).map(item => <Achievement key={item.id} {...item}/>)}
 
-                        <button>Посмотреть все</button>
+                        <button onClick={() => {setPopup(true)}}>Посмотреть все</button>
                     </div> : null}
 
                 </div>
@@ -165,6 +169,14 @@ const GameInfoPage = () => {
         </div>
 
         }
+
+        {popup ? <Popup close={() => {setPopup(false)}}>
+            <h1>NIGGA</h1>
+
+            <div className="popup-achievements">
+                {achievements.items.map(item => <Achievement key={item.id} {...item}/>)}
+            </div>
+        </Popup> : null}
 
     </div>
 
