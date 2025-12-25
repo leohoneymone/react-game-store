@@ -159,6 +159,12 @@ export const getGames = (tilesOnPage:number = 12, page: number = 1, platform:str
         });
 }
 
+/**
+ * Функция для поиска DLC для игры по алиасу
+ * 
+ * @param {string} slug алиас игры
+ * @returns {Promise<Game[]>} промис, содержащий список игр в формате Game
+ */
 export const getDLCforGame = (slug: string): Promise<Game[]> => {
     return rawgApiRequest(Endpoints.games, '&page_size=10', `${slug}/additions`)
         .then(data => {
@@ -166,6 +172,12 @@ export const getDLCforGame = (slug: string): Promise<Game[]> => {
         });
 }
 
+/**
+ * Функция для поиска других частей серии для игры по алиасу
+ * 
+ * @param {string} slug алиас игры
+ * @returns {Promise<Game[]>} промис, содержащий список игр в формате Game
+ */
 export const getSeriesForGame = (slug: string): Promise<Game[]> => {
     return rawgApiRequest(Endpoints.games, '&page_size=10', `${slug}/game-series`)
         .then(data => {
@@ -174,6 +186,12 @@ export const getSeriesForGame = (slug: string): Promise<Game[]> => {
 
 }
 
+/**
+ * Функция для поиска игр от того же разработчика
+ * 
+ * @param {string} slug алиас разработчика
+ * @returns {Promise<Game[]>} промис, содержащий список игр в формате Game
+ */
 export const getGamesByDeveloper = (slug: string): Promise<Game[]> => {
     return rawgApiRequest(Endpoints.games, `&page_size=10&developers=${slug}`)
         .then(data => {
@@ -182,6 +200,12 @@ export const getGamesByDeveloper = (slug: string): Promise<Game[]> => {
 
 }
 
+/**
+ * Функция для поиска игр от того же издателя
+ * 
+ * @param {string} slug алиас издателя
+ * @returns {Promise<Game[]>} промис, содержащий список игр в формате Game
+ */
 export const getGamesByPublisher = (slug: string): Promise<Game[]> => {
     return rawgApiRequest(Endpoints.games, `&page_size=10&publishers=${slug}`)
         .then(data => {
