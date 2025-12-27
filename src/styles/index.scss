@@ -1011,3 +1011,49 @@ footer{
 }
 
 // СТРАНИЦА С КОРЗИНОЙ
+.cart-row{
+    align-items: center;
+    flex-direction: column;
+}
+
+// Тайл с элементом корзины
+.cart-item{
+    display: flex;
+    gap: 1rem;
+    @include m.elements-background();
+    width: 100%;
+    max-width: 900px;
+
+    img{
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        object-position: center;
+        border-radius: inherit;
+    }
+
+    .item-info{
+        flex-grow: 1;
+        
+        .genres{
+            color: var(--secondary);
+        }
+    }
+
+    .item-controls{
+        width: 165px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+
+        .remove-from-cart:hover{
+            color: white;
+            background: #9b0000;
+        }
+
+        a{
+            @include m.buttons-and-controls();
+            text-align: center;
+        }
+    }
+}

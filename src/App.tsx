@@ -9,6 +9,7 @@ import Footer from "./components/layout/Footer";
 
 import StorePage from "./components/pages/StorePage";
 import GameInfoPage from "./components/pages/GameInfoPage";
+import CartPage from "./components/pages/CartPage";
 
 const App = () => {
     
@@ -19,6 +20,8 @@ const App = () => {
                 <Routes>
                     <Route path="/" element={<StorePage />}/>
                     <Route path="/game/:slug" element={<GameInfoPage />}/>
+                    <Route path="/cart" element={<CartPage />}/>
+                    <Route path="/favorites" element={"Избранное"}/>
                 </Routes>
             </Main>
         </StoreContext>

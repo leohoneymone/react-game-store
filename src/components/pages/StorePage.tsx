@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import {Link} from 'react-router-dom';
 
 // API
 import { SearchTerm, Game, getGenres, getTags, getGames } from "../../utils/api";
@@ -126,9 +127,9 @@ const StorePage = () => {
 
             <input type="text" placeholder="Поиск (введите и нажмите Enter)" className="search-bar" onKeyDown={handleSearchBar} ref={searchRef}/>
 
-            <a href="#" className="store-control-links"> <img src={cart} alt="cart" /> Корзина</a>
+            <Link to="cart" className="store-control-links"> <img src={cart} alt="cart" /> Корзина</Link>
 
-            <a href="#" className="store-control-links"> <img src={star} alt="star" /> Избранное</a>
+            <Link to="favorites" className="store-control-links"> <img src={star} alt="star" /> Избранное</Link>
 
             <ThemeToggler/>
 
