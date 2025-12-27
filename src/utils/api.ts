@@ -281,7 +281,7 @@ export const getFullGameInfo = (slug: string): Promise<GameFullData> => {
                 slug: data.slug,
                 genres: data?.genres?.map(g => g?.name) ?? [],
                 tags: data?.tags?.map(t => t?.name) ?? [],
-                screenshots: [],  
+                screenshots: [data.background_image],  
                 platforms: data.parent_platforms.map(p => p.platform?.name),
                 release: data.released,
                 background: data.background_image,
