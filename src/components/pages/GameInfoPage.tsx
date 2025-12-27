@@ -2,11 +2,12 @@ import React, {useEffect, useRef, useState} from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 // API
-import { Achievements, GameFullData, GameStore, getFullGameInfo, getGameAchievements, getGameScreenshots, getGameStores } from "../../utils/api";
+import { Achievements, GameFullData, GameStore, getFullGameInfo, getGameAchievements, getGameScreenshots, getGameStores, Game } from "../../utils/api";
 import { formatDate } from "../../utils/misc";
+import { useStoreContext, GameInCart } from "../../utils/context";
 
 // Иконки
-import cart from '../../assets/icons/cart.png';
+import cartImg from '../../assets/icons/cart.png';
 import star from '../../assets/icons/star.png';
 import steam from '../../assets/icons/steam.png';
 import ps from '../../assets/icons/ps.png';
@@ -29,6 +30,9 @@ const GameInfoPage = () => {
     // Для навигаци
     const nav = useNavigate();
 
+    // Контекст
+    const {cart, setCart, favorites, setFavorites, setToast} = useStoreContext();
+
     // Cостояние загрузки
     const[loading, setLoading] = useState<boolean>(false);
 
@@ -44,7 +48,8 @@ const GameInfoPage = () => {
     const[stores, setStores] = useState<GameStore[]>([]);
     const[achievements, setAchievements] = useState<Achievements>({count: 0, items: []});
 
-    // Состояние для открытия всплывающмх окон
+    // Флаги для открытия всплывающих окон
+    const[cartAddPopup, setCartAddPopup] = useState<boolean>(false); 
     const[achievementsPopup, setAchievementsPopup] = useState<boolean>(false);
 
     // Загрузка основных данных о игре
@@ -76,6 +81,7 @@ const GameInfoPage = () => {
             setLoading(false); 
         })
 
+
     }, [gameInfo]);
 
     // "Дозагрузка" достижений
@@ -102,7 +108,54 @@ const GameInfoPage = () => {
 
     }, [achievementsPopup]);
 
-    
+    // Добавление игры в избранное
+    const handleAddToFavorites = ():void => {
+        if(favorites.find(item => item.slug === slug)){
+            setToast(`${gameInfo?.name} уже в избранном`);
+            return;
+        }
+
+        const gameToFav: Game = {
+            name: gameInfo?.name || "",
+            slug: slug,
+            genres: gameInfo?.genres || [],
+            tags: gameInfo?.tags || [],
+            screenshots: gameInfo?.screenshots || [],
+            platforms: gameInfo?.platforms || [],
+            release: gameInfo?.release || "",
+        }
+
+        setFavorites([...favorites, gameToFav]);
+        setToast(`${gameInfo?.name} добавлена в избранное`);
+    }
+
+    // Добавление игры в корзину
+    const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement>): void => {
+        if(!e.currentTarget.value){
+            console.error(`Error: Cannot find value property of selected platform`);
+            return;
+        }
+
+        if(cart.find(item => item.slug === slug && item.platforms === e.currentTarget.value)){
+            setCartAddPopup(false);
+            setToast(`${gameInfo?.name} (${e.currentTarget.value}) уже добавлена в корзину`);
+            return;
+        }
+
+        const gameToCart: GameInCart = {
+            name: gameInfo?.name || "",
+            slug: slug,
+            genres: gameInfo?.genres || [],
+            tags: gameInfo?.tags || [],
+            screenshots: gameInfo?.screenshots || [],
+            platforms: e.currentTarget.value,
+            release: gameInfo?.release || "",
+        }
+
+        setCart([...cart, gameToCart]);
+        setCartAddPopup(false);
+        setToast(`${gameInfo?.name} (${e.currentTarget.value}) добавлена в корзину`);
+    }
 
     return <div className="page-content">
         
@@ -150,8 +203,8 @@ const GameInfoPage = () => {
 
                     <div className="purchase-options">
 
-                        <button> <img src={star} alt="star" /> Добавить в избранное</button>
-                        <button> <img src={cart} alt="cart" /> Добавить в корзину</button>
+                        <button onClick={() => {handleAddToFavorites()}}> <img src={star} alt="star"/> Добавить в избранное</button>
+                        <button onClick={() => {setCartAddPopup(true)}}> <img src={cartImg} alt="cart" /> Добавить в корзину</button>
 
                         <h4>Официальные магазины</h4>
 
@@ -199,6 +252,28 @@ const GameInfoPage = () => {
         </div>
 
         }
+
+        {cartAddPopup ? <Popup close={() => {setCartAddPopup(false)}}> 
+            
+            <div className="popup-platform-selector">
+                <h1>Выберите платформу</h1>
+                <div className="platforms-list">
+
+                    {gameInfo?.platforms.map(item => {
+                        switch(item){
+                            case 'PC': return <button onClick={handleAddToCart} key={'select-platform-'+item} value={item}> <img src={steam} alt="steam"/> Steam </button>;
+                            case 'PlayStation': return <button onClick={handleAddToCart} key={'select-platform-'+item} value={item}> <img src={ps} alt="ps"/> PlayStation </button>;
+                            case 'Xbox': return <button onClick={handleAddToCart} key={'select-platform-'+item} value={item}> <img src={xbox} alt="xbox"/> XBOX </button>;
+                            case 'Nintendo': return <button onClick={handleAddToCart} key={'select-platform-'+item} value={item}> <img src={nswitch} alt="nswitch"/> Nintendo Switch </button>;
+                            case 'Android': return <button onClick={handleAddToCart} key={'select-platform-'+item} value={item}> <img src={mobile} alt="Android"/> Android </button>;
+                            default: return null;
+                        }
+                    })}
+
+                </div>
+            </div>
+
+        </Popup> : null}
 
         {achievementsPopup ? <Popup close={() => {setAchievementsPopup(false)}}>
             <h2>Достижения {gameInfo?.name}</h2>

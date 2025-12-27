@@ -255,6 +255,7 @@ footer{
     position: fixed;
     background: #00000088;
     z-index: 10;
+    padding: 2rem;
     top: 0;
     left: 0;
     width: 100vw;
@@ -268,9 +269,7 @@ footer{
         @include m.elements-background();
         width: 100%;
         max-width: 900px;
-        height: 90vh;
         max-height: 850px;
-        margin: 0 2rem;
         display: flex;
         flex-direction: column;
         
@@ -981,6 +980,32 @@ footer{
         .game-tile{
             width: 350px !important;
             flex-shrink: 0;
+        }
+    }
+}
+
+// Всплывающее окно для выбора платформы (добавление в корзину)
+.popup-platform-selector{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 1rem;
+
+    .platforms-list{
+        display: inherit;
+        width: 100%;
+        gap: inherit;
+        min-height: 150px;
+
+        button{
+            width: 200px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
         }
     }
 }

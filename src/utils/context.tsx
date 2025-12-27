@@ -6,7 +6,7 @@ import { Game } from "./api";
 export type Themes = 'light' | 'dark';
 
 // Тип игры в корзине
-interface GameInCart extends Omit<Game, 'platforms'>{
+export interface GameInCart extends Omit<Game, 'platforms'>{
     platforms: string,
 }
 
