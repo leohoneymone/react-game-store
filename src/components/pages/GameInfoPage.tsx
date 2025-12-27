@@ -41,8 +41,8 @@ const GameInfoPage = () => {
     const[stores, setStores] = useState<GameStore[]>([]);
     const[achievements, setAchievements] = useState<Achievements>({count: 0, items: []});
 
-    // Состояние для открытия всплывающего окна
-    const[popup, setPopup] = useState<boolean>(false);
+    // Состояние для открытия всплывающмх окон
+    const[AchievementsPopup, setAchievementsPopup] = useState<boolean>(false);
 
     // Загрузка основных данных о игре
     useEffect(() => {
@@ -151,7 +151,7 @@ const GameInfoPage = () => {
 
                         {achievements.items.slice(0, 5).map(item => <Achievement key={item.id} {...item}/>)}
 
-                        <button onClick={() => {setPopup(true)}}>Посмотреть все</button>
+                        <button onClick={() => {setAchievementsPopup(true)}}>Посмотреть все</button>
                     </div> : null}
 
                 </div>
@@ -170,8 +170,8 @@ const GameInfoPage = () => {
 
         }
 
-        {popup ? <Popup close={() => {setPopup(false)}}>
-            <h1>NIGGA</h1>
+        {AchievementsPopup ? <Popup close={() => {setAchievementsPopup(false)}}>
+            <h2>Достижения {gameInfo?.name}</h2>
 
             <div className="popup-achievements">
                 {achievements.items.map(item => <Achievement key={item.id} {...item}/>)}
