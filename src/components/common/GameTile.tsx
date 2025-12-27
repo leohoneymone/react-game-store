@@ -10,6 +10,7 @@ import ps from '../../assets/icons/ps.png';
 import xbox from '../../assets/icons/xbox.png';
 import nswitch from '../../assets/icons/switch.png';
 import mobile from '../../assets/icons/mobile.png';
+import placeholder from '../../assets/placeholder-img.png';
 
 /**
  * Компонент, реализующий логику работы тайла с игрой
@@ -56,7 +57,7 @@ const GameTile = ({ name, slug, genres, tags, screenshots, platforms, release }:
     }
 
     return <div className="game-tile" onMouseEnter={() => {handleMouseEnter()}} onMouseLeave={() => {handleMouseLeft()}}>
-        <img className="thumbnail" src={screenshots[imgIndex]} alt={slug}/>
+        <img className="thumbnail" src={screenshots.length ? screenshots[imgIndex] : placeholder} alt={slug}  onError={(e: React.SyntheticEvent<HTMLImageElement>) => {e.currentTarget.src = placeholder}}/>
         <div className="game-tile-text">
             <h3 className="title">{name}</h3>
             <div className="platforms">
