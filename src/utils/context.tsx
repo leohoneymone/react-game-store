@@ -1,6 +1,8 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { SetStateAction, createContext, useState, useContext, useEffect, Dispatch } from "react";
 
-// типы
+import { Game } from "./api";
+
+// Тип темы
 export type Themes = 'light' | 'dark';
 
 type CtxTypes = {
@@ -15,7 +17,7 @@ const storeCtx = createContext<CtxTypes | undefined>(undefined);
 
 export default function StoreContext({children}){
 
-    const[theme, setTheme] = useState<Themes>('dark');
+    const[theme, setTheme] = useLocalStorage<Themes>('theme', 'dark');
     const[toast, setToast] = useState<string>("");
 
     const value = {
@@ -34,4 +36,22 @@ export const useStoreContext = () => {
         throw new Error("Ошибка контекста: не удалось загрузить. Убедитесь, что контекст используется внутри провайдера");
     }
     return ctx;
+}
+
+/**
+ * Кастомный хук для сохранения данных в localStorage. Является шаблонной функцией (generic)
+ * 
+ * @param {string} key ключ, к которому в localStorage будут привязаны данные
+ * @param {T[]} initValue значение по умолчанию
+ * @returns кортеж типа useState для инициализации состояния
+ */
+function useLocalStorage<T>(key: string, initValue: T): [T, Dispatch<SetStateAction<T>>]{
+    const valueStr: string | null = localStorage.getItem(key);
+    const [value, setValue] = useState<T>(valueStr ? JSON.parse(valueStr) : initValue);
+
+    useEffect(() => {
+        localStorage.setItem(key, JSON.stringify(value));
+    }, [key, value]);
+
+    return [value, setValue];
 }
