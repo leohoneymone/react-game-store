@@ -5,9 +5,20 @@ import { Game } from "./api";
 // Тип темы
 export type Themes = 'light' | 'dark';
 
+// Тип игры в корзине
+interface GameInCart extends Omit<Game, 'platforms'>{
+    platforms: string,
+}
+
 type CtxTypes = {
     theme: Themes,
     setTheme: (theme: Themes) => void
+
+    cart: GameInCart[],
+    setCart: (game: GameInCart[]) => void,
+
+    favorites: Game[],
+    setFavorites: (game: Game[]) => void,
 
     toast: string,
     setToast: (msg: string) => void
@@ -19,10 +30,14 @@ export default function StoreContext({children}){
 
     const[theme, setTheme] = useLocalStorage<Themes>('theme', 'dark');
     const[toast, setToast] = useState<string>("");
+    const[cart, setCart] = useLocalStorage<GameInCart[]>('cart', []);
+    const[favorites, setFavorites] = useLocalStorage<Game[]>('favorites', []);
 
     const value = {
         theme, setTheme,
         toast, setToast,
+        cart, setCart,
+        favorites, setFavorites,
     }
 
     return <storeCtx.Provider value={value}>
