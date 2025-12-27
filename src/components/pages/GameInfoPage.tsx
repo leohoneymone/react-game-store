@@ -159,21 +159,21 @@ const GameInfoPage = () => {
 
     return <div className="page-content">
         
-        {loading ? <Preloader /> : <div className="game-info-page-content">
+        {loading ? <Preloader /> : <div className="page-content-wrap game-info-page-content">
 
-            <div className="info-page-row">
+            <div className="content-row">
                 <Breadcrumbs url={`/game/${slug}`} name={gameInfo?.name || ""}/>
 
                 <a className="go-back" onClick={() => {nav(-1)}}> ← Назад</a>
             </div>
 
-            <div className="info-page-row">
+            <div className="content-row">
                 <h1>{gameInfo?.name}</h1>
 
                     <ThemeToggler />
             </div>
 
-            <div className="info-page-row main">
+            <div className="content-row main">
 
                 <div className="info-page-column left">
 

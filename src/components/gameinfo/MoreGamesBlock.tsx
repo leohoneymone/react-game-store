@@ -68,7 +68,7 @@ const MoreGamesBlock = ({type, slug, name}: MoreGamesBlockProps) => {
         return title;
     }
 
-    return games.length ? <div className="info-page-row more-games-block">
+    return games.length ? <div className="content-row more-games-block">
         <h3>{setBlockTitle()}</h3>
         <div className="more-games-list">
             {games.map(item => <GameTile key={item.slug} {...item} />)}
