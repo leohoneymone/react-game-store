@@ -150,7 +150,7 @@ const GameInfoPage = () => {
 
                     <div className="purchase-options">
 
-                        <button> <img src={star} alt="star" /> В избранное</button>
+                        <button> <img src={star} alt="star" /> Добавить в избранное</button>
                         <button> <img src={cart} alt="cart" /> Добавить в корзину</button>
 
                         <h4>Официальные магазины</h4>

@@ -14,6 +14,7 @@ import nswitch from '../../assets/icons/switch.png';
 import mobile from '../../assets/icons/mobile.png';
 import dice from '../../assets/icons/dice.png';
 import cart from '../../assets/icons/cart.png';
+import star from '../../assets/icons/star.png';
 
 // Компоненты
 import ThemeToggler from "../common/ThemeToggler";
@@ -127,7 +128,7 @@ const StorePage = () => {
 
             <a href="#" className="store-control-links"> <img src={cart} alt="cart" /> Корзина</a>
 
-            <a href="#" className="store-control-links">Приобретённые</a>
+            <a href="#" className="store-control-links"> <img src={star} alt="star" /> Избранное</a>
 
             <ThemeToggler/>
 
