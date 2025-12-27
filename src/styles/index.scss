@@ -122,11 +122,11 @@ main{
 .toast-container{
     @include m.elements-background();
     max-width: 300px;
-    position: absolute;
+    position: fixed;
     bottom: 1rem;
     left: 1rem;
     .close{
-        position: inherit;
+        position: absolute;
         right: 0.75rem;
         top: 0.5rem;
         cursor: pointer;
