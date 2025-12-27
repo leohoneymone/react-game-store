@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 // API
@@ -32,6 +32,9 @@ const GameInfoPage = () => {
     // Cостояние загрузки
     const[loading, setLoading] = useState<boolean>(false);
 
+    // Реф для "дозагрузки" достижений
+    const AchievementLenRef = useRef(0);
+
     // Алиас для поиска данных о игре
     const slug: string = useParams().slug || "";
 
@@ -42,7 +45,7 @@ const GameInfoPage = () => {
     const[achievements, setAchievements] = useState<Achievements>({count: 0, items: []});
 
     // Состояние для открытия всплывающмх окон
-    const[AchievementsPopup, setAchievementsPopup] = useState<boolean>(false);
+    const[achievementsPopup, setAchievementsPopup] = useState<boolean>(false);
 
     // Загрузка основных данных о игре
     useEffect(() => {
@@ -68,11 +71,38 @@ const GameInfoPage = () => {
         // Достижения
         getGameAchievements(slug, 1).then(data => {
             setAchievements(data);
+            AchievementLenRef.current = data.items.length;
         }).then(() => {
             setLoading(false); 
         })
 
     }, [gameInfo]);
+
+    // "Дозагрузка" достижений
+    useEffect(() => {
+        const achievementsFetchCycle = async () => {
+            let pg = 2;
+
+            while(AchievementLenRef.current < achievements.count){
+                try{
+                    const data = await getGameAchievements(slug, pg);
+                    setAchievements(prev => ({...prev, items: [...prev.items, ...data.items]}));
+                    AchievementLenRef.current += data.items.length;
+                    pg++;
+                } catch (err) {
+                    console.error(`Fetch loop error: ${err}`);
+                    break;
+                }
+            }
+        }        
+
+        if(achievementsPopup) {
+            achievementsFetchCycle();
+        }
+
+    }, [achievementsPopup]);
+
+    
 
     return <div className="page-content">
         
@@ -170,7 +200,7 @@ const GameInfoPage = () => {
 
         }
 
-        {AchievementsPopup ? <Popup close={() => {setAchievementsPopup(false)}}>
+        {achievementsPopup ? <Popup close={() => {setAchievementsPopup(false)}}>
             <h2>Достижения {gameInfo?.name}</h2>
 
             <div className="popup-achievements">
