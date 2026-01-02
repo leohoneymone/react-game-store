@@ -11,6 +11,7 @@
     --bg-buttons: #{v.$background-buttons-dark};
     --btn-text-hover: #{v.$button-hover-text-dark};
     --btn-bg-hover: #{v.$button-hover-background-dark};
+    --icon-bg: #11141866;
 
     --icon-filter: invert(1);
     --icon-filter-hover: invert(0);
@@ -23,6 +24,7 @@
     --bg-buttons: #{v.$background-buttons-light};
     --btn-text-hover: #{v.$button-hover-text-light};
     --btn-bg-hover: #{v.$button-hover-background-light};
+    --icon-bg: #cecece99;
 
     --icon-filter: invert(0);
     --icon-filter-hover: invert(1);
@@ -1239,6 +1241,52 @@ footer{
             &:nth-of-type(3){
                 opacity: 0.33;
             }
+        }
+    }
+}
+
+// СТРАНИЦА С ИНФОРМАЦИЕЙ
+// Блок для информации
+.info-container{
+    @include m.elements-background();
+    min-height: calc(100vh - 503px);
+    position: relative;
+    .background{
+        @include m.isoline-bg();
+        height: 100%;
+        background: var(--icon-bg);
+        mask-position: center;
+        border-radius: 0.5rem;
+        top: 0;
+        left: 0;
+    }
+    
+    .info-content{
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+
+        p{
+            font-size: 1.25rem;
+
+            &.right{
+                text-align: right;
+            }
+        }
+
+        ul{
+            margin-left: 1.5rem;
+        }
+    }
+
+    .faq-block{
+        @include m.elements-background();
+        transition: v.$transition-hover;
+        &:hover{
+            transition: v.$transition-hover;
+            transform: scale(1.005);
         }
     }
 }

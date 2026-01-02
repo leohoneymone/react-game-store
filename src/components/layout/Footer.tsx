@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const year: string = new Date().getFullYear().toString();
 
@@ -16,23 +17,23 @@ const Footer = () => {
 
             <div className="footer-links-block">
                 <h3 className="footer-title">Дополнительно</h3>
-                <a href="#">О CLD GAMES</a>
-                <a href="#">Ценообразование</a>
-                <a href="#">Политика приватности</a>
+                <Link to="/info/about">О CLD GAMES</Link>
+                <Link to="/info/pricing">Ценообразование</Link>
+                <Link to="/info/policy">Политика приватности</Link>
             </div>
 
             <div className="footer-links-block">
                 <h3 className="footer-title">Информация</h3>
-                <a href="#">Поставщикам</a>
-                <a href="#">Покупателям</a>
-                <a href="#">Партнёрам</a>
+                <Link to="/info/suppliers">Поставщикам</Link>
+                <Link to="/info/clients">Покупателям</Link>
+                <Link to="/info/partners">Партнёрам</Link>
             </div>
 
             <div className="footer-links-block" style={{flexGrow: 1}}>
                 <h3 className="footer-title"> Поддержка</h3>
-                <a href="#">FAQ</a>
+                <Link to="/info/faq">FAQ</Link>
                 <a href="mailto:example@mail.com">Электронная почта</a>
-                <a href="https://example.zendesk.com/tickets">Направить тикет</a>
+                <a href="https://example.zendesk.com/tickets" target="_blank" rel="noreferrer">Направить тикет</a>
             </div>
             
             <div className="author">

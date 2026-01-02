@@ -11,6 +11,7 @@ import StorePage from "./components/pages/StorePage";
 import GameInfoPage from "./components/pages/GameInfoPage";
 import CartPage from "./components/pages/CartPage";
 import FavoritesPage from "./components/pages/FavoritesPage";
+import InfoPage from "./components/pages/InfoPage";
 
 const App = () => {
     
@@ -23,6 +24,7 @@ const App = () => {
                     <Route path="/game/:slug" element={<GameInfoPage />}/>
                     <Route path="/cart" element={<CartPage />}/>
                     <Route path="/favorites" element={<FavoritesPage />}/>
+                    <Route path="/info/:section" element={<InfoPage />}/>
                 </Routes>
             </Main>
         </StoreContext>
