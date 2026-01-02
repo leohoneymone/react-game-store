@@ -8,6 +8,7 @@ import Popup from "../layout/Popup";
 
 import star from "../../assets/icons/star.png";
 import GameTile from "../common/GameTile";
+import FavItem from "../common/FavItem";
 
 const FavoritesPage = () => {
 
@@ -44,7 +45,7 @@ const FavoritesPage = () => {
                 </div>
 
                 <div className="fav-grid">
-                    {favorites.map(item => <GameTile key={item.slug} {...item}/>)}
+                    {favorites.map(item => <FavItem key={item.slug} {...item}/>)}
                 </div>
             </div>
 

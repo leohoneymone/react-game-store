@@ -557,6 +557,21 @@ footer{
         transition: v.$transition-hover;
         transform: scale(1.02);
     }
+    
+    // Кнопка удаления из избранного
+    .remove-fav{
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        background: v.$shadow;
+        display: flex;
+        justify-content: center;
+        border-radius: 0.25rem;
+        height: 28px;
+        width: 28px;
+        color: white;
+        cursor: pointer;
+    }
 
     // Метка избранной игры
     .in-fav{
