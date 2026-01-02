@@ -123,7 +123,7 @@ main{
     @include m.elements-background();
     max-width: 300px;
     position: fixed;
-    bottom: 1rem;
+    bottom: calc(1.5rem + 50px);
     left: 1rem;
     .close{
         position: absolute;
