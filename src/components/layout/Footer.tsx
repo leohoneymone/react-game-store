@@ -9,8 +9,8 @@ const Footer = () => {
 
             <div className="footer-links-block">
                 <h3 className="footer-title">Ссылки</h3>
-                <a href="#">GitHub</a>
-                <a href="#">Репозиторий</a>
+                <a href="https://github.com/leohoneymone" target="_blank" rel="noreferrer">GitHub</a>
+                <a href="https://github.com/leohoneymone/react-game-store" target="_blank" rel="noreferrer">Репозиторий</a>
                 <a href="https://rawg.io/apidocs" target="_blank" rel="noreferrer">RAWG API</a>                
             </div>
 
@@ -31,8 +31,8 @@ const Footer = () => {
             <div className="footer-links-block" style={{flexGrow: 1}}>
                 <h3 className="footer-title"> Поддержка</h3>
                 <a href="#">FAQ</a>
-                <a href="#">Электронная почта</a>
-                <a href="#">Направить тикет</a>
+                <a href="mailto:example@mail.com">Электронная почта</a>
+                <a href="https://example.zendesk.com/tickets">Направить тикет</a>
             </div>
             
             <div className="author">
