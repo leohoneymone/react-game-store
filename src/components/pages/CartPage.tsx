@@ -7,6 +7,8 @@ import ThemeToggler from "../common/ThemeToggler";
 import CartItem from "../common/CartItem";
 import Popup from "../layout/Popup";
 
+import cartIcon from "../../assets/icons/cart.png";
+
 const CartPage = () => {
 
     // Контекст
@@ -42,7 +44,7 @@ const CartPage = () => {
 
             </div>
                     
-            <div className="content-row cart-row">
+            {cart.length ? <div className="content-row cart-row">
 
                 <div className="cart-items">
                     {cart.map(item => <CartItem key={item.cartslug} {...item} />)}
@@ -58,6 +60,11 @@ const CartPage = () => {
                 </div>
 
             </div>
+                
+            : <div className="empty-cart-placeholder">
+                <img src={cartIcon} alt="cartIcon" />
+                <h1>Корзина пуста</h1>
+            </div>}
 
         </div>
 

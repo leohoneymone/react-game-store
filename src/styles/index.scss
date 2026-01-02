@@ -1133,3 +1133,18 @@ footer{
         margin: auto;
     }
 }
+
+// Плейсхолдер для пустой корзины
+.empty-cart-placeholder{
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    img{
+        width: 100px;
+        filter: var(--icon-filter);
+        transform: rotate(172deg);
+    }
+}
