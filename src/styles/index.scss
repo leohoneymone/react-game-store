@@ -1202,6 +1202,11 @@ footer{
     .control-row{
         display: inherit;
         justify-content: space-between;
+
+        .fav-clear:hover{
+            color: white;
+            background: v.$red;
+        }
     }
 
     .fav-grid{

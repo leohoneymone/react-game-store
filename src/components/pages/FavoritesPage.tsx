@@ -32,6 +32,12 @@ const FavoritesPage = () => {
         }
     } 
 
+    // Очистка избранного 
+    const handleClearFav = () => {
+        setFavorites([]);
+        setToast('Раздел "Избранное" успешно очищен');
+    }
+
     return <div className="page-content">
         
         <div className="page-content-wrap">
@@ -55,7 +61,7 @@ const FavoritesPage = () => {
             {favorites.length ? <div className="fav-block">
                 <div className="control-row">
                     <h3>Игр в избранном: {favorites.length}</h3>
-                    <button className="fav-clear">Очистить</button>
+                    <button className="fav-clear" onClick={() => {handleClearFav();}}>Очистить</button>
                 </div>
 
                 <div className="fav-grid" style={{width: setGridWidth()}}>
