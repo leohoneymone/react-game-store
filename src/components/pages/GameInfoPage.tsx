@@ -138,7 +138,7 @@ const GameInfoPage = () => {
 
         if(cart.find(item => item.slug === slug && item.platforms === e.currentTarget.value)){
             setCartAddPopup(false);
-            setToast(`${gameInfo?.name} (${e.currentTarget.value}) уже добавлена в корзину`);
+            setToast(`${gameInfo?.name} (${e.currentTarget.value}) уже в корзине`);
             return;
         }
 
