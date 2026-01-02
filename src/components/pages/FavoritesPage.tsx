@@ -18,6 +18,20 @@ const FavoritesPage = () => {
     // Навигация
     const nav = useNavigate();
 
+    // Установка ширины сетки
+    const setGridWidth = ():string => {
+        if(favorites.length >= 4){
+            return 'auto';
+        }
+
+        switch (favorites.length){
+            case 1: return '25%';
+            case 2: return '50%';
+            case 3: return '75%';
+            default: return 'auto';
+        }
+    } 
+
     return <div className="page-content">
         
         <div className="page-content-wrap">
@@ -44,7 +58,7 @@ const FavoritesPage = () => {
                     <button className="fav-clear">Очистить</button>
                 </div>
 
-                <div className="fav-grid">
+                <div className="fav-grid" style={{width: setGridWidth()}}>
                     {favorites.map(item => <FavItem key={item.slug} {...item}/>)}
                 </div>
             </div>
