@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 // API
 import { SearchTerm, Game, getGenres, getTags, getGames } from "../../utils/api";
-import { customSelectSortingOptions, customSelectTilesPerPageOptions, releaseOptionsList, getRandomGameId } from "../../utils/misc";
+import { customSelectSortingOptions, customSelectTilesPerPageOptions, releaseOptionsList } from "../../utils/misc";
 
 // Контекст
 import { useStoreContext } from "../../utils/context";
@@ -15,7 +15,6 @@ import ps from '../../assets/icons/ps.png';
 import xbox from '../../assets/icons/xbox.png';
 import nswitch from '../../assets/icons/switch.png';
 import mobile from '../../assets/icons/mobile.png';
-import dice from '../../assets/icons/dice.png';
 import cartIcon from '../../assets/icons/cart.png';
 import star from '../../assets/icons/star.png';
 
@@ -35,7 +34,10 @@ const StorePage = () => {
     // Cостояние загрузки
     const[loading, setLoading] = useState<boolean>(false);
 
+    // "Мне повезёт"    
+
     // Состояния для работы с выборкой
+    const searchRef = useRef<HTMLInputElement>(null);
     const[search, setSearch] = useState<string>(""); 
     const[platform, setPlatform] = useState<string>('1,2,3,4,7,8');
     const[genres, setGenres] = useState<SearchTerm[]>([]);
@@ -57,10 +59,6 @@ const StorePage = () => {
     const[gamesCount, setGamesCount] = useState<number>(0);
     const[pagesNum, setPagesNum] = useState<number | null>(null);
     const[games, setGames] = useState<Game[]>([]);
-
-    // Рефы
-    const searchRef = useRef<HTMLInputElement>(null);
-    const maxGamesRef = useRef<number>(0);
  
     // Подгрузка элементов выборки
     // Дополнительная обработка текста для лучшего отображения в полях
@@ -100,14 +98,6 @@ const StorePage = () => {
             gamesRequest();
         }
     }, [platform, selDates, selGenres, selTags, sort, search]); 
-
-    // Запись максимального количества игр
-    useEffect(() => {
-        if(maxGamesRef.current < gamesCount){
-            maxGamesRef.current = gamesCount;
-        }
-        console.log(getRandomGameId(maxGamesRef.current));
-    }, [gamesCount]);
 
     // Работа с поисковой строкой
     const handleSearchBar = (e:React.KeyboardEvent<HTMLInputElement>): void => {
@@ -155,10 +145,6 @@ const StorePage = () => {
         <div className="store-content-block">
 
             <div className="store-select-panel">
-
-                <button className="get-lucky-btn"> 
-                    <img src={dice} alt="dice" /> Мне повезёт!
-                </button>
 
                 { (genres.length && tags.length) ? <>
                     <SelectBlock title={"Дата выхода"} data={releaseOptionsList} select={selectDates} toggleable={false}/>

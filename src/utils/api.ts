@@ -166,7 +166,7 @@ export const getGames = (tilesOnPage:number = 12, page: number = 1, platform:str
  * @returns {Promise<Game[]>} промис, содержащий список игр в формате Game
  */
 export const getDLCforGame = (slug: string): Promise<Game[]> => {
-    return rawgApiRequest(Endpoints.games, '&page_size=10', `${slug}/additions`)
+    return rawgApiRequest(Endpoints.games, undefined, `${slug}/additions`)
         .then(data => {
             return data.results.map(item => parseGameData(item)); 
         });

@@ -102,13 +102,3 @@ export const processReleaseDateInterval = (dates: number[]):string => {
 export const formatDate = (str: string): string | null => {
     return str ? new Date(str).toLocaleDateString("ru", {year: 'numeric',  month: 'short',  day: 'numeric'}) : null;
 }
-
-/**
- * Функция для получения ID случайной игры
- * 
- * @param count количество игр
- * @returns случайны ID игры
- */
-export const getRandomGameId = (count: number): number => {
-    return Math.ceil(Math.random() * count);
-}
