@@ -1032,8 +1032,41 @@ footer{
 
 // СТРАНИЦА С КОРЗИНОЙ
 .cart-row{
-    align-items: center;
-    flex-direction: column;
+    width: 100%;
+    align-items: start;
+    justify-content: center !important;
+    flex-direction: row;
+    gap: 1rem;
+
+    // Игры в корзине
+    .cart-items{
+        display: inherit;
+        flex-direction: column;
+        gap: inherit;
+    }
+
+    // Меню управления корзиной
+    .cart-control-menu{
+        @include m.elements-background();
+        position: sticky;
+        width: 250px;
+
+        .cart-control-buttons{
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 1rem;
+
+            button{
+                width: 100%;
+            }
+
+            .clear-cart-btn:hover{
+                color: white;
+                background: v.$red;
+            }
+        }
+    }
 }
 
 // Тайл с элементом корзины
@@ -1075,5 +1108,28 @@ footer{
             @include m.buttons-and-controls();
             text-align: center;
         }
+    }
+}
+
+// Всплывающее окно с информацией о заказе
+.order-info{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+
+    h1{
+        text-align: center;
+    }
+
+    ul{
+        margin-left: 2rem;
+        list-style-type: square;
+    }
+    
+    button{
+        max-width: 300px;
+        width: 100%;
+        margin: auto;
     }
 }
