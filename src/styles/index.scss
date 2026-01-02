@@ -547,6 +547,7 @@ footer{
     @include m.elements-background();
     padding: 0;
     width: 100%;
+    max-width: 500px;
     max-height: 500px;
     transition: v.$transition-hover;
 
@@ -1146,5 +1147,51 @@ footer{
         width: 100px;
         filter: var(--icon-filter);
         transform: rotate(172deg);
+    }
+}
+
+// СТРАНИЦА С ИЗБРАННЫМИ ИГРАМИ
+// Контент в избранном
+.fav-block{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .control-row{
+        display: inherit;
+        justify-content: space-between;
+    }
+
+    .fav-grid{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 1rem;
+    }
+}
+
+// Плейсхолдер для пустого избранного
+.favorites-placeholder{
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    .fp-imgs{
+        display: inherit;
+        gap: 0.5rem;
+        filter: var(--icon-filter);
+
+        img{
+            width: 30px;
+
+            &:nth-of-type(2){
+                opacity: 0.66;
+            }
+
+            &:nth-of-type(3){
+                opacity: 0.33;
+            }
+        }
     }
 }

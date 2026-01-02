@@ -10,6 +10,7 @@ import Footer from "./components/layout/Footer";
 import StorePage from "./components/pages/StorePage";
 import GameInfoPage from "./components/pages/GameInfoPage";
 import CartPage from "./components/pages/CartPage";
+import FavoritesPage from "./components/pages/FavoritesPage";
 
 const App = () => {
     
@@ -21,7 +22,7 @@ const App = () => {
                     <Route path="/" element={<StorePage />}/>
                     <Route path="/game/:slug" element={<GameInfoPage />}/>
                     <Route path="/cart" element={<CartPage />}/>
-                    <Route path="/favorites" element={"Избранное"}/>
+                    <Route path="/favorites" element={<FavoritesPage />}/>
                 </Routes>
             </Main>
         </StoreContext>
