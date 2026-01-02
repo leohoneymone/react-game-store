@@ -7,6 +7,7 @@ export type Themes = 'light' | 'dark';
 
 // Тип игры в корзине
 export interface GameInCart extends Omit<Game, 'platforms'>{
+    cartslug: string,
     platforms: string,
 }
 

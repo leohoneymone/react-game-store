@@ -35,7 +35,7 @@ const CartPage = () => {
                     
             <div className="content-row cart-row">
 
-                {cart.map(item => <CartItem key={`${item.slug}-${item.platforms}`} {...item} />)}
+                {cart.map(item => <CartItem key={`${item.cartslug}`} {...item} />)}
 
             </div>
 

@@ -144,6 +144,7 @@ const GameInfoPage = () => {
 
         const gameToCart: GameInCart = {
             name: gameInfo?.name || "",
+            cartslug: `${slug}-${e.currentTarget.value}`,
             slug: slug,
             genres: gameInfo?.genres || [],
             tags: gameInfo?.tags || [],
