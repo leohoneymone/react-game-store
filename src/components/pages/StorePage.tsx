@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 // API
 import { SearchTerm, Game, getGenres, getTags, getGames } from "../../utils/api";
-import { customSelectSortingOptions, customSelectTilesPerPageOptions, releaseOptionsList } from "../../utils/misc";
+import { customSelectSortingOptions, customSelectTilesPerPageOptions, releaseOptionsList, getRandomGameId } from "../../utils/misc";
 
 // Контекст
 import { useStoreContext } from "../../utils/context";
@@ -58,8 +58,9 @@ const StorePage = () => {
     const[pagesNum, setPagesNum] = useState<number | null>(null);
     const[games, setGames] = useState<Game[]>([]);
 
-    // Реф поля поиска игр
+    // Рефы
     const searchRef = useRef<HTMLInputElement>(null);
+    const maxGamesRef = useRef<number>(0);
  
     // Подгрузка элементов выборки
     // Дополнительная обработка текста для лучшего отображения в полях
@@ -99,6 +100,14 @@ const StorePage = () => {
             gamesRequest();
         }
     }, [platform, selDates, selGenres, selTags, sort, search]); 
+
+    // Запись максимального количества игр
+    useEffect(() => {
+        if(maxGamesRef.current < gamesCount){
+            maxGamesRef.current = gamesCount;
+        }
+        console.log(getRandomGameId(maxGamesRef.current));
+    }, [gamesCount]);
 
     // Работа с поисковой строкой
     const handleSearchBar = (e:React.KeyboardEvent<HTMLInputElement>): void => {
