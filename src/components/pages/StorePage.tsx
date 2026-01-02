@@ -3,8 +3,10 @@ import {Link} from 'react-router-dom';
 
 // API
 import { SearchTerm, Game, getGenres, getTags, getGames } from "../../utils/api";
-
 import { customSelectSortingOptions, customSelectTilesPerPageOptions, releaseOptionsList } from "../../utils/misc";
+
+// Контекст
+import { useStoreContext } from "../../utils/context";
 
 // Иконки
 import gamepad from '../../assets/icons/gamepad.png';
@@ -14,7 +16,7 @@ import xbox from '../../assets/icons/xbox.png';
 import nswitch from '../../assets/icons/switch.png';
 import mobile from '../../assets/icons/mobile.png';
 import dice from '../../assets/icons/dice.png';
-import cart from '../../assets/icons/cart.png';
+import cartIcon from '../../assets/icons/cart.png';
 import star from '../../assets/icons/star.png';
 
 // Компоненты
@@ -26,6 +28,9 @@ import Pagination from "../store/Pagination";
 import GameTile from "../common/GameTile";
 
 const StorePage = () => {
+
+    // Контекст
+    const {cart} = useStoreContext();
 
     // Cостояние загрузки
     const[loading, setLoading] = useState<boolean>(false);
@@ -127,7 +132,10 @@ const StorePage = () => {
 
             <input type="text" placeholder="Поиск (введите и нажмите Enter)" className="search-bar" onKeyDown={handleSearchBar} ref={searchRef}/>
 
-            <Link to="cart" className="store-control-links"> <img src={cart} alt="cart" /> Корзина</Link>
+            <Link to="cart" className="store-control-links cart-button"> <img src={cartIcon} alt="cart" />
+                Корзина 
+                {cart.length ? <span className="cart-items-count">{cart.length}</span> : null}
+            </Link>
 
             <Link to="favorites" className="store-control-links"> <img src={star} alt="star" /> Избранное</Link>
 
