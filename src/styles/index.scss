@@ -550,11 +550,25 @@ footer{
     max-width: 500px;
     max-height: 500px;
     transition: v.$transition-hover;
+    position: relative;
 
     // Наведение
     &:hover{
         transition: v.$transition-hover;
         transform: scale(1.02);
+    }
+
+    // Метка избранной игры
+    .in-fav{
+        position: absolute;
+        top: 0.5rem;
+        left: 0.5rem;
+        background: v.$shadow;
+        display: flex;
+        gap: 0.25rem;
+        padding: 0.25rem 0.35rem;
+        border-radius: 0.25rem;
+        color: white;
     }
 
     // Обложка для игры

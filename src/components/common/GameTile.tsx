@@ -1,8 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { Game } from "../../utils/api";
 
+import { Game } from "../../utils/api";
 import { formatDate } from "../../utils/misc";
+
+import { useStoreContext } from "../../utils/context";
 
 // Иконки платформ
 import steam from '../../assets/icons/steam.png';
@@ -11,6 +13,8 @@ import xbox from '../../assets/icons/xbox.png';
 import nswitch from '../../assets/icons/switch.png';
 import mobile from '../../assets/icons/mobile.png';
 import placeholder from '../../assets/placeholder-img.png';
+
+import fav from '../../assets/icons/star-color.png';
 
 /**
  * Компонент, реализующий логику работы тайла с игрой
@@ -27,6 +31,9 @@ import placeholder from '../../assets/placeholder-img.png';
  * @returns JSX разметка тайла с информацией о игре
  */
 const GameTile = ({ name, slug, genres, tags, screenshots, platforms, release }: Game) => {
+
+    // Контекст избранного
+    const {favorites} = useStoreContext();
 
     // Состояние источника картинки
     const[imgIndex, setImgIndex] = useState<number>(0);
@@ -57,6 +64,12 @@ const GameTile = ({ name, slug, genres, tags, screenshots, platforms, release }:
     }
 
     return <div className="game-tile" onMouseEnter={() => {handleMouseEnter()}} onMouseLeave={() => {handleMouseLeft()}}>
+
+        {favorites.find(item => item.slug === slug) ? <div className="in-fav">
+            <img src={fav} alt="fav" />
+            <span>В избранном</span>
+        </div>: null}
+
         <img className="thumbnail" src={screenshots.length ? screenshots[imgIndex] : placeholder} alt={slug}  onError={(e: React.SyntheticEvent<HTMLImageElement>) => {e.currentTarget.src = placeholder}}/>
         <div className="game-tile-text">
             <h3 className="title">{name}</h3>
