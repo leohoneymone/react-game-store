@@ -315,7 +315,7 @@ footer{
                 position: absolute;
                 right: -0.5rem;
                 top: -0.5rem;
-                background: #9b0000;
+                background: v.$red;
                 box-shadow: 0 0 5px 0 v.$shadow;
                 border-radius: 5px;
                 width: 25px;
@@ -875,7 +875,7 @@ footer{
         }
 
         &.skip{
-            background: #9b0000;
+            background: v.$red;
         }
     }
 
@@ -1068,7 +1068,7 @@ footer{
 
         .remove-from-cart:hover{
             color: white;
-            background: #9b0000;
+            background: v.$red;
         }
 
         a{
