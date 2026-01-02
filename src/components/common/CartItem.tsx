@@ -5,10 +5,16 @@ import { GameInCart, useStoreContext } from "../../utils/context";
 
 import placeholder from '../../assets/placeholder-img.png';
 
-const CartItem = ({name, slug, screenshots, genres, platforms}: GameInCart) => {
+const CartItem = ({name, slug, screenshots, genres, platforms, cartslug}: GameInCart) => {
 
     // Контекст
     const {setToast, cart, setCart} = useStoreContext();
+
+    // Функция удаления из корзины
+    const handleRemoveFromCart = () => {
+        setCart(cart.filter(item => item.cartslug !== cartslug));
+        setToast(`${name} (${platforms}) удалён из корзины`)
+    }
 
     return <div className="cart-item">
         <img src={screenshots.length ? screenshots[0] : placeholder} alt={slug} />
@@ -24,7 +30,7 @@ const CartItem = ({name, slug, screenshots, genres, platforms}: GameInCart) => {
         <div className="item-controls">
 
             <Link to={`/game/${slug}`}>Подробнее о игре</Link>
-            <button className="remove-from-cart" > Убрать из корзины</button>
+            <button className="remove-from-cart" onClick={() => {handleRemoveFromCart()}} > Убрать из корзины</button>
 
         </div>
 
