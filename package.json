@@ -1,11 +1,13 @@
 {
-  "name": "game-store",
+  "name": "react-game-store",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "webpack serve --config ./cfg/webpack.config.js --mode development",
-    "prod": "webpack --config ./cfg/webpack.config.js --mode production"
+    "prod": "webpack --config ./cfg/webpack.config.js --mode production",
+    "predeploy": "npm run prod",
+    "deploy": "gh-pages -d build"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +24,7 @@
     "babel-loader": "^10.0.0",
     "css-loader": "^7.1.2",
     "dotenv-webpack": "^8.1.1",
+    "gh-pages": "^6.3.0",
     "html-webpack-plugin": "^5.6.5",
     "sass": "^1.96.0",
     "sass-loader": "^16.0.6",
