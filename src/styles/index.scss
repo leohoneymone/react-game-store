@@ -1,6 +1,7 @@
 @use "vars" as v;
 @use "mixins" as m;
 @use "elements";
+@use "mobile";
 
 // Подключение цветов в зависимости от темы приложения
 :root, :root[theme=dark]{
@@ -11,7 +12,7 @@
     --bg-buttons: #{v.$background-buttons-dark};
     --btn-text-hover: #{v.$button-hover-text-dark};
     --btn-bg-hover: #{v.$button-hover-background-dark};
-    --icon-bg: #11141866;
+    --icon-bg: #11141833;
 
     --icon-filter: invert(1);
     --icon-filter-hover: invert(0);
@@ -24,7 +25,7 @@
     --bg-buttons: #{v.$background-buttons-light};
     --btn-text-hover: #{v.$button-hover-text-light};
     --btn-bg-hover: #{v.$button-hover-background-light};
-    --icon-bg: #cecece99;
+    --icon-bg: #dbdbdb99;
 
     --icon-filter: invert(0);
     --icon-filter-hover: invert(1);
@@ -155,6 +156,7 @@ footer{
         border-top: 3px solid var(--secondary);
         padding: 1rem 0.5rem;
         display: flex;
+        flex-wrap: wrap;
         gap: 3.5rem;
         .author{
             display: flex;
