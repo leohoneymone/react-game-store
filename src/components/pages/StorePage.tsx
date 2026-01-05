@@ -108,35 +108,38 @@ const StorePage = () => {
     return <div className="page-content">
 
         <div className="store-control-row">
-            <div className="switch-block">
+            <div className="switch-block platform-switch">
                 <label htmlFor="all" className="switch-options"><input type="radio" name="platform" id="all"  onChange={() => {setPlatform('1,2,3,4,7,8')}} defaultChecked={true}/>
-                    <img src={gamepad} alt="gamepad"/> Все
+                    <img src={gamepad} alt="gamepad"/> <span>Все</span>
                 </label>
                 <label htmlFor="steam" className="switch-options"><input type="radio" name="platform" id="steam" onChange={() => {setPlatform('1')}} />
-                    <img src={steam} alt="steam"/> Steam
+                    <img src={steam} alt="steam"/> <span>Steam</span>
                 </label>
                 <label htmlFor="ps" className="switch-options"><input type="radio" name="platform" id="ps" onChange={() => {setPlatform('2')}} />
-                    <img src={ps} alt="ps"/> PS5
+                    <img src={ps} alt="ps"/> <span>PS5</span>
                 </label>
                 <label htmlFor="xbox" className="switch-options"><input type="radio" name="platform" id="xbox" onChange={() => {setPlatform('3')}} />
-                    <img src={xbox} alt="xbox"/> Xbox
+                    <img src={xbox} alt="xbox"/> <span>Xbox</span>
                 </label>
                 <label htmlFor="switch" className="switch-options"><input type="radio" name="platform" id="switch" onChange={() => {setPlatform('7')}} />
-                    <img src={nswitch} alt="nswitch"/> Switch
+                    <img src={nswitch} alt="nswitch"/> <span>Switch</span>
                 </label>
                 <label htmlFor="mobile" className="switch-options"><input type="radio" name="platform" id="mobile" onChange={() => {setPlatform("4,8")}} />
-                    <img src={mobile} alt="mobile"/> Мобильные
+                    <img src={mobile} alt="mobile"/> <span>Мобильные</span>
                 </label>
             </div>
 
             <input type="text" placeholder="Поиск (введите и нажмите Enter)" className="search-bar" onKeyDown={handleSearchBar} ref={searchRef}/>
 
-            <Link to="cart" className="store-control-links cart-button"> <img src={cartIcon} alt="cart" />
-                Корзина 
-                {cart.length ? <span className="cart-items-count">{cart.length}</span> : null}
-            </Link>
+            <div className="cart-fav-links">
+                <Link to="cart" className="store-control-links cart-button"> <img src={cartIcon} alt="cart" />
+                    Корзина 
+                    {cart.length ? <span className="cart-items-count">{cart.length}</span> : null}
+                </Link>
 
-            <Link to="favorites" className="store-control-links"> <img src={star} alt="star" /> Избранное</Link>
+                <Link to="favorites" className="store-control-links"> <img src={star} alt="star" /> Избранное</Link>
+
+            </div>
 
             <ThemeToggler/>
 

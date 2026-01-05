@@ -306,9 +306,16 @@ footer{
     display: flex;
     gap: 1rem;
     width: 100%;
+    
     // Выборы
     .switch-block{
         @include m.radio-switch();
+    }
+
+    // Блок с ссылками
+    .cart-fav-links{
+        display: inherit;
+        gap: inherit;
     }
 
     // Ссылки, мимикрирующие под кнопки
