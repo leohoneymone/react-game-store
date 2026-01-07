@@ -123,8 +123,6 @@
 Полный список используемых для разработки зависимостей
 
 ``` json
-// package.json
-
 "devDependencies": {
     "@babel/core": "^7.28.5",
     "@babel/preset-env": "^7.28.5",
